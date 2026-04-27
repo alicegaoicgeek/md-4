@@ -537,28 +537,269 @@ full_text = "\n".join(texts)
 
 ---
 
-## Step C / D / E（后续步骤，本 SOP 聚焦 A + B）
+## Step C：PPTX 生成 + 转图片
 
-Step C（PPTX 生成）、Step D（时间轴+字幕）、Step E（MP4 烧制）在 slide_plan.json + design.md 完成后由其他流程执行，此处仅列要点：
+### 输入
 
-**Step C**：用 python-pptx 按 design.md 逐页生成 slides.pptx，再转 JPG。
+- `design.md`（已通过 Step B 校验）
 
-**Step D**：从 slide_plan.json 直接转 slide_timeline.json；从 timestamps.json 生成 subtitles.ass（文本 100% 来自 nlp_timings.text，一字不改）。
+### 产出
 
-**Step E**：ffmpeg 合成 MP4（slides + MP3 + ASS）。
+- `slides.pptx`
+- `slide-01.jpg` ~ `slide-NN.jpg`
+
+### C.1 生成 PPTX
+
+用 python-pptx 按 design.md 逐页生成：
+
+1. 创建 16:9 画布（1920×1080）
+2. 逐页读取 design.md 的 ASCII 布局，按位置放置元素
+3. 使用设计规范中指定的颜色、字体、字号：
+   - 背景色 #0A0E17
+   - 卡片底色 #1A2332
+   - 强调色 #00FF41
+   - 中文字体 Noto Sans CJK SC Bold / Regular
+   - 英文字体 JetBrains Mono / Inter
+
+### C.2 PPTX → JPG
+
+```bash
+soffice --headless --convert-to pdf slides.pptx
+pdftoppm -jpeg -r 150 slides.pdf slide
+```
+
+产物：`slide-01.jpg` ~ `slide-NN.jpg`
+
+### C.3 校验
+
+```
+✅ JPG 数量 = slide_plan.json 的总页数
+✅ 抽查 3 页确认布局与 design.md 的 ASCII 框图一致
+```
 
 ---
 
-## 执行检查单
+## Step D：幻灯片时间轴 + 字幕
 
-执行完成后，逐条打勾确认：
+### 输入
 
-- [ ] slide_plan.json 已输出
-- [ ] slide_plan.json 通过全部 6 项校验
-- [ ] design.md 已输出
-- [ ] design.md 页数 = slide_plan.json 页数
-- [ ] design.md 每页都有 ASCII 布局
-- [ ] design.md 每页都有精确文字
-- [ ] 精确文字 100% 来自原文
-- [ ] 页面类型多样性合规（同类 ≤ 3）
-- [ ] 没有遗漏或重复的 segment
+- `slide_plan.json`
+- `timestamps.json`
+
+### 产出
+
+- `slide_timeline.json`
+- `subtitles.ass`
+
+### D.1 幻灯片时间轴
+
+直接从 slide_plan.json 转换，每页一条：
+
+```json
+[
+  {"slide": 1, "image": "slide-01.jpg", "start": 0.0, "end": 0.0},
+  {"slide": 2, "image": "slide-02.jpg", "start": 0.0, "end": 2.0},
+  {"slide": 3, "image": "slide-03.jpg", "start": 0.0, "end": 17.0}
+]
+```
+
+**时间计算规则**（与 Step A.4 一致）：
+
+```
+内容页：start = slide_plan 中该页的 start, end = 该页的 end
+封面页：start = 0, end = 第一个内容页的 start
+章节分隔页：start = 前一内容页 end - 2, end = 下一内容页 start + 2, duration = 4s
+终页：start = 最后内容页的 end, end = mp3_duration
+```
+
+图片文件名：`slide-{NN}.jpg`，NN 从 01 开始，两位补零。
+
+**铁律：每个 segment 恰好归属一页，不拆分、不跨页共享。**
+
+**校验**：
+
+```
+✅ 最后一页的 end ≈ mp3_duration（±2s）
+✅ 相邻内容页无间隙（前一页 end = 下一页 start，±0.5s）
+✅ 页数 = slide_plan.json 总页数
+```
+
+### D.2 字幕文件（ASS）
+
+**文本来源**：100% 来自 `timestamps.json` 的 `nlp_timings[].text`，一字不改。
+
+**时间来源**：100% 来自 `timestamps.json` 的 `nlp_timings[].start / end`。
+
+**两级时间精度**：
+
+| 级别 | 时间来源 | 精度 |
+|------|---------|------|
+| segment 级（每段的 start/end） | timestamps.json 精确值 | TTS 日志精确到 0.01s |
+| 断句级（段内拆成多条字幕） | 段内按字数比例插值 | 近似（因无词级时间戳） |
+
+**断句算法**：
+
+```
+for seg in nlp_timings:
+    text = seg.text
+    seg_start = seg.start
+    seg_end = seg.end
+    total_chars = len(text)
+    
+    # 按中文标点断句
+    sentences = split_by_punctuation(text, "。？！；")
+    
+    # 每条不超过 20 汉字，超了在逗号处二次断句
+    lines = []
+    for sent in sentences:
+        if len(sent) <= 20:
+            lines.append(sent)
+        else:
+            lines.extend(split_by_punctuation(sent, "，"))
+    
+    # 按字数比例分配时间
+    char_cursor = 0
+    for line in lines:
+        line_start = seg_start + (char_cursor / total_chars) * (seg_end - seg_start)
+        char_cursor += len(line)
+        line_end = seg_start + (char_cursor / total_chars) * (seg_end - seg_start)
+        output_subtitle(line, line_start, line_end)
+```
+
+**ASS 样式**：
+
+```
+[V4+ Styles]
+Style: Default,Noto Sans CJK SC Bold,28,&H00FFFFFF,&H000000FF,&H00000000,&H80000000,0,0,0,0,100,100,0,0,1,2,0,2,10,10,60,1
+```
+
+- 字体：Noto Sans CJK SC Bold，28pt
+- 颜色：白色（&H00FFFFFF）
+- 描边：黑色 2px
+- 位置：底部居中，距底 60px
+
+**校验**：
+
+```
+✅ ASS 全部字幕文本拼接 = timestamps.json 中所有 nlp_timings[].text 拼接（diff = 0）
+✅ 首条字幕 start ≈ timestamps.json 第一个 seg 的 start（±1s）
+✅ 末条字幕 end ≈ mp3_duration（±2s）
+```
+
+---
+
+## Step E：烧制 MP4
+
+### 输入
+
+- `slide_timeline.json`
+- `slide-01.jpg` ~ `slide-NN.jpg`
+- MP3 音频文件
+- `subtitles.ass`
+
+### E.1 生成 ffmpeg concat 文件
+
+从 `slide_timeline.json` 生成 `slides_input.txt`：
+
+```
+file 'slide-01.jpg'
+duration 0.0
+file 'slide-02.jpg'
+duration 4.0
+file 'slide-03.jpg'
+duration 17.0
+...
+file 'slide-NN.jpg'
+duration X.X
+```
+
+每行 duration = 该页的 `end - start`。
+
+### E.2 ffmpeg 合成
+
+```bash
+ffmpeg -y \
+  -f concat -safe 0 -i slides_input.txt \
+  -i output.mp3 \
+  -vf "scale=1920:1080:force_original_aspect_ratio=decrease,pad=1920:1080:(ow-iw)/2:(oh-ih)/2,ass=subtitles.ass" \
+  -c:v libx264 -preset medium -crf 18 \
+  -c:a aac -b:a 192k \
+  -pix_fmt yuv420p \
+  -shortest \
+  output.mp4
+```
+
+### E.3 校验
+
+```
+✅ ffprobe output.mp4 总时长 ≈ MP3 时长（±2s）
+✅ 字幕完整性：ASS 全文 = timestamps.json 全文（diff = 0）
+✅ 抽查 3-5 个画面切换点，确认幻灯片与音频内容对应
+```
+
+### 产物
+
+| 文件 | 说明 |
+|------|------|
+| `output.mp4` | 最终视频（1920×1080, H.264+AAC, 内嵌 ASS 字幕） |
+
+---
+
+## 流水线依赖图
+
+```
+timestamps.json + 四件套 + 口播稿
+    │
+    ├─→ Step A: slide_plan.json  ──→ Step B: design.md
+    │                                    │
+    │                                    ▼
+    │                              Step C: slides.pptx + JPG
+    │                                    │
+    ├────────────────────────────────────┤
+    │                                    │
+    ▼                                    ▼
+Step D: subtitles.ass            slide_timeline.json
+    │                                    │
+    └──────────────┬─────────────────────┘
+                   ▼
+             Step E: output.mp4
+```
+
+**执行顺序**：A → B → C → D → E（严格串行，每步依赖前步产物）
+
+---
+
+## 全流程执行检查单
+
+```
+Step A:
+  ✅ slide_plan.json 已输出
+  ✅ segment 完整性（每个 index 恰好一次）
+  ✅ 时间覆盖（duration 总和 ≈ mp3_duration，差 < 10s）
+  ✅ duration 范围（内容页 25-55s）
+  ✅ 章节页 duration = 4s
+  ✅ segments 全局递增
+  ✅ 页面类型不超限（同类 ≤ 3）
+
+Step B:
+  ✅ design.md 已输出
+  ✅ 页数 = slide_plan.json 总页数
+  ✅ 每页有 ASCII 布局
+  ✅ 每页有精确文字
+  ✅ 精确文字 100% 来自原文
+  ✅ 每页 seg 映射与 slide_plan.json 一致
+
+Step C:
+  ✅ slides.pptx 已生成
+  ✅ JPG 数量 = 总页数
+  ✅ 布局与 design.md 一致
+
+Step D:
+  ✅ slide_timeline.json 覆盖完整时间轴
+  ✅ subtitles.ass 全文 = timestamps.json 全文
+  ✅ 字幕时间覆盖完整
+
+Step E:
+  ✅ output.mp4 时长 ≈ MP3 时长
+  ✅ 画面切换与音频对应
+```
