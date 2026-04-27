@@ -1,0 +1,1066 @@
+{
+  "audio": "/Users/gaoyuan/Projects/r2-video/skill-module9/audio/module9_v5.mp3",
+  "nlp": "/Users/gaoyuan/Projects/r2-video/skill-module9/module9_draft_v5_nlp.json",
+  "nlp_timings": [
+    {
+      "index": 0,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 0.0,
+      "end": 8.5,
+      "duration": 8.5,
+      "text": "上一集讲了Harness系统工程——七层架构、六个方法、八重护栏。系统搭好了，最值钱的那一层是什么？Skill。"
+    },
+    {
+      "index": 1,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 8.5,
+      "end": 15.7,
+      "duration": 7.2,
+      "text": "但同样写Skill，有人的智能体从平庸跳到专家级，有人的反而变差了。差在哪？"
+    },
+    {
+      "index": 2,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 15.7,
+      "end": 26.2,
+      "duration": 10.5,
+      "text": "这集我们就来拆解：怎么用Skill文件，把你脑子里的老专家经验，变成A I能随时调用的智能组件。为什么有效，为什么失败，怎么评判。"
+    },
+    {
+      "index": 3,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 26.2,
+      "end": 37.5,
+      "duration": 11.3,
+      "text": "上一集讲过三层架构。这集聚焦最上层：Skill——承载全部智能的那层。核心原则：把智能尽量往上推到Skill，把执行尽量往下压到确定性工具。"
+    },
+    {
+      "index": 4,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 37.5,
+      "end": 43.6,
+      "duration": 6.1,
+      "text": "Skill文件是可复用的Markdown文档，教模型怎么做一件事——提供的是过程，而非目标。"
+    },
+    {
+      "index": 5,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 43.6,
+      "end": 51.7,
+      "duration": 8.1,
+      "text": "技能文件就像一次方法调用，它描述的是一种判断流程，而真正把它落到现实世界里的，是调用时传入的参数。"
+    },
+    {
+      "index": 6,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 51.7,
+      "end": 67.0,
+      "duration": 15.3,
+      "text": "一个叫investigate的调查技能就是最好的例子。七个步骤：界定数据范围、搭建时间线、为每份文档做日记化、综合归纳、从正反两面论证、引用来源。三个参数：target、question、dataset。"
+    },
+    {
+      "index": 7,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 67.0,
+      "end": 80.3,
+      "duration": 13.3,
+      "text": "传入安全科学家和210万封取证邮件，它变成医学研究分析师，判断吹哨人是否遭压制。传入空壳公司和F E C申报文件，它变成法务取证调查员，追踪协同政治捐款。"
+    },
+    {
+      "index": 8,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 80.3,
+      "end": 83.5,
+      "duration": 3.2,
+      "text": "同一个结构，不同参数，完全不同的能力。"
+    },
+    {
+      "index": 9,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 83.5,
+      "end": 93.3,
+      "duration": 9.8,
+      "text": "这两件事完全不同。提示词 Engineering是一次性的对话技巧——你每次跟模型对话都要重新写。Skill是可复用的方法调用——写一次，永远生效。"
+    },
+    {
+      "index": 10,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 93.3,
+      "end": 107.6,
+      "duration": 14.3,
+      "text": "提示词 Engineering把参数硬编码在提示词里，Skill接受外部参数。提示词 Engineering难以组合，Skill可以调用另一个Skill。提示词 Engineering在模型升级后可能需要重写，Skill在模型升级后自动变强。"
+    },
+    {
+      "index": 11,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 107.6,
+      "end": 114.7,
+      "duration": 7.1,
+      "text": "这不是提示词 engineering，而是软件设计：用Markdown当编程语言，用人的判断力当运行时环境。"
+    },
+    {
+      "index": 12,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 114.7,
+      "end": 134.0,
+      "duration": 19.3,
+      "text": "Skill有类似生物分类学的层级结构。顶层一个Skill覆盖一类广义场景，比如\"验证环境生成\"。内部分支处理细分场景——A X I总线验证、A P B外设验证、中断控制器验证。由智能体根据上下文二次分析，触发具体分支。"
+    },
+    {
+      "index": 13,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 134.0,
+      "end": 137.3,
+      "duration": 3.3,
+      "text": "Skill是\"科\"或\"属\"层级，不是\"种\"。"
+    },
+    {
+      "index": 14,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 137.3,
+      "end": 142.7,
+      "duration": 5.4,
+      "text": "Skill不是孤立存在的。实际系统里，你需要在四种粒度之间做选择。"
+    },
+    {
+      "index": 15,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 142.7,
+      "end": 151.5,
+      "duration": 8.8,
+      "text": "第一种，命令。一行指令，无状态，做完就结束。命令的特点是确定性：同样的输入永远产生同样的输出。"
+    },
+    {
+      "index": 16,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 151.5,
+      "end": 167.1,
+      "duration": 15.6,
+      "text": "第二种，Skill。多步骤工作流，有判断有验证。investigate调查技能就是典型——七个步骤，每步之间有依赖，需要模型在步骤间做判断。Skill是最常用的粒度，因为大多数有价值的工作都需要多步骤加判断。"
+    },
+    {
+      "index": 17,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 167.1,
+      "end": 183.7,
+      "duration": 16.6,
+      "text": "第三种，子智能体。独立上下文的子任务。当一个任务需要大量中间状态，但这些状态会污染主智能体的上下文时，把它拆成子智能体。子智能体有自己的记忆空间，做完把结果交回来，主智能体的上下文保持干净。"
+    },
+    {
+      "index": 18,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 183.7,
+      "end": 197.0,
+      "duration": 13.3,
+      "text": "第四种，多智能体。多角色协作，每个智能体有自己的Skill和视角。多智能体的价值在于角色分离——每个智能体只需要加载自己领域的Skill，不需要加载所有领域的知识。"
+    },
+    {
+      "index": 19,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 197.0,
+      "end": 206.0,
+      "duration": 9.0,
+      "text": "选择原则：用满足需求的最低复杂度。能用一个Skill解决的不要拆成子智能体。能用子智能体的不要上多智能体。"
+    },
+    {
+      "index": 20,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 206.0,
+      "end": 224.6,
+      "duration": 18.6,
+      "text": "为什么不直接用最高粒度？因为每增加一层，协调成本指数增长。两个智能体之间要对齐上下文、同步状态、处理冲突——这是2条协调通道。三个智能体之间协调通道变成6条。四个智能体变成12条。复杂度不是线性增长，是组合爆炸。"
+    },
+    {
+      "index": 21,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 224.6,
+      "end": 233.3,
+      "duration": 8.7,
+      "text": "三层架构讲的是静态分层。但实际运行中有一个动态问题：Skill回答\"怎么做\"，那\"什么时候该加载什么\"由谁来回答？"
+    },
+    {
+      "index": 22,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 233.3,
+      "end": 240.9,
+      "duration": 7.6,
+      "text": "Resolver。本质是上下文路由表：任务类型X出现时，优先加载文档Y。"
+    },
+    {
+      "index": 23,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 240.9,
+      "end": 256.1,
+      "duration": 15.2,
+      "text": "一个真实优化案例。有人的系统配置文档写到了20000行。解决方案是砍到200行，只保留文档指针，由resolver在关键时刻动态加载所需文档。2万行知识随取随用，但不污染上下文窗口。"
+    },
+    {
+      "index": 24,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 256.1,
+      "end": 269.6,
+      "duration": 13.5,
+      "text": "还有一个防护案例。没有resolver的系统，改完提示词直接发版。有resolver的系统，改完后自动加载评估套件，跑评估，对比前后得分，准确率下降超过百分之二就回滚并排查。"
+    },
+    {
+      "index": 25,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 269.6,
+      "end": 279.3,
+      "duration": 9.7,
+      "text": "主流A I编码工具的内置实现也是这个思路——每个Skill的description字段就是resolver，自动匹配用户意图，无需记忆某个命令是否存在。"
+    },
+    {
+      "index": 26,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 279.3,
+      "end": 295.2,
+      "duration": 15.9,
+      "text": "第二个机制是分界线。潜在空间是智能所在：模型阅读、理解、判断、决策、综合、模式识别。确定性是信任所在：相同输入永远相同输出。典型域是S Q L查询、编译后的代码、算术运算。"
+    },
+    {
+      "index": 27,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 295.2,
+      "end": 304.9,
+      "duration": 9.7,
+      "text": "角色分工也遵循这个原则。C F O类高信任任务用纯Python实现，确定性。顾问类综合判断任务用潜在判断加记忆。"
+    },
+    {
+      "index": 28,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 304.9,
+      "end": 312.0,
+      "duration": 7.1,
+      "text": "最差的系统将错误的工作放在潜在空间与确定性边界的错误一侧，而最好的系统对此毫不留情。"
+    },
+    {
+      "index": 29,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 312.0,
+      "end": 330.7,
+      "duration": 18.7,
+      "text": "学习观把人类的学习分成两类：运动类和思考类。运动类靠肌肉记忆，不经过意识——游泳、打字、听母语。思考类靠意识推理，一步步推导——解方程、写论文。致命错误是用错类型：看书学游泳，或者用意识翻译来学口语。"
+    },
+    {
+      "index": 30,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 330.7,
+      "end": 350.1,
+      "duration": 19.4,
+      "text": "这和A I系统的Latent Deterministic分界完全同构。潜在空间对应思考类——模型做判断、综合、模式识别。确定性对应运动类——代码做执行、查询、计算。把确定性问题扔给模型判断，就像用意识思考来学游泳——方法论选错了，再努力也白费。"
+    },
+    {
+      "index": 31,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 350.1,
+      "end": 362.1,
+      "duration": 12.0,
+      "text": "第三个机制。Diarization是模型通读某一主题的所有材料，写出结构化画像。用一页纸浓缩几十至上百份文档的判断。"
+    },
+    {
+      "index": 32,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 362.1,
+      "end": 377.6,
+      "duration": 15.5,
+      "text": "这不是S Q L查询能产出的，也不是传统检索增强流水线能产出的。它需要模型真正阅读、同时在脑中hold住矛盾信息、注意到什么变了以及何时变了、综合成结构化的intelligence。"
+    },
+    {
+      "index": 33,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 377.6,
+      "end": 384.1,
+      "duration": 6.5,
+      "text": "没有任何向量相似度搜索能做到这一点，关键词过滤也不行。模型必须完整阅读，然后做出判断。"
+    },
+    {
+      "index": 34,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 384.1,
+      "end": 396.5,
+      "duration": 12.4,
+      "text": "这三个机制不是静止的。有一个自然现象：确定性代码需要上下文判断时，会自然迁移到技能层。当开发者不再抗拒这种迁移，架构就会趋于稳定。"
+    },
+    {
+      "index": 35,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 396.5,
+      "end": 400.4,
+      "duration": 3.9,
+      "text": "设计原则就一句话：\"在正确的层做正确的事。\""
+    },
+    {
+      "index": 36,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 400.4,
+      "end": 409.4,
+      "duration": 9.0,
+      "text": "先说第一个理论基础：共识天花板。上一集用数据证明了这堵墙的存在——换模型只加百分之五。这集解释它为什么存在。"
+    },
+    {
+      "index": 37,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 409.4,
+      "end": 423.8,
+      "duration": 14.4,
+      "text": "两个训练机制叠加。下一个词预测机制输出最高概率的下一个词——也就是大多数人会说的话。基于人类反馈的对齐训练进一步惩罚争议性输出。结果：默认行为就是回归均值。"
+    },
+    {
+      "index": 38,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 423.8,
+      "end": 429.9,
+      "duration": 6.1,
+      "text": "Skill就是突破层。它不是让模型更聪明，是给模型专家才知道的信息。"
+    },
+    {
+      "index": 39,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 429.9,
+      "end": 432.9,
+      "duration": 3.0,
+      "text": "第二个理论基础来自Transformer的底层机制。"
+    },
+    {
+      "index": 40,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 432.9,
+      "end": 448.9,
+      "duration": 16.0,
+      "text": "Transformer架构有一个关键指标：路径长度。注意力机制连接任意两个位置只需要一步——信息直达，不需要逐步接力。而早期的循环网络需要逐步传递，序列越长，信息衰减越严重。"
+    },
+    {
+      "index": 41,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 448.9,
+      "end": 470.1,
+      "duration": 21.2,
+      "text": "推理：这个机制直接解释了Skill为什么有效。Skill把关键知识直接放进上下文窗口，信息传递的路径长度等于1——知识就在模型眼前，不需要从训练记忆中检索。不给Skill时，模型需要从海量训练数据中\"回忆\"相关知识，这个检索路径不确定，可能成功也可能失败。"
+    },
+    {
+      "index": 42,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 470.1,
+      "end": 482.9,
+      "duration": 12.8,
+      "text": "官方的测试数据直接印证了这一点。没有Skill时：15轮来回、3次A P I调用失败、消耗12000个token。有Skill后：2个澄清问题、0次失败、6000个token。"
+    },
+    {
+      "index": 43,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 482.9,
+      "end": 492.9,
+      "duration": 10.0,
+      "text": "15轮降到2轮——这就是路径缩短的直接体现。模型不再需要反复试探\"你到底想要什么\"，因为Skill文件已经把\"想要什么\"直接告诉了它。"
+    },
+    {
+      "index": 44,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 492.9,
+      "end": 495.1,
+      "duration": 2.2,
+      "text": "第三个理论基础来自认知科学。"
+    },
+    {
+      "index": 45,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 495.1,
+      "end": 503.5,
+      "duration": 8.4,
+      "text": "认知科学研究发现：\"高手关注结构性因素，从核心概念出发解释现象。新手关注表面因素。\""
+    },
+    {
+      "index": 46,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 503.5,
+      "end": 522.4,
+      "duration": 18.9,
+      "text": "推理：Skill就是外化的专家问题图示。专家和新手面对同一个问题，看到的东西完全不同。专家脑中有一套结构化的问题解决框架——遇到什么类型的问题，关注哪些核心变量，走什么决策路径。新手没有这套框架，只能关注表面特征，每次都从零开始。"
+    },
+    {
+      "index": 47,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 522.4,
+      "end": 529.6,
+      "duration": 7.2,
+      "text": "Skill把专家的结构性知识写成文件，让模型不用自己从训练数据中摸索，直接获得专家的视角。"
+    },
+    {
+      "index": 48,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 529.6,
+      "end": 541.8,
+      "duration": 12.2,
+      "text": "前面提到的investigate技能就是一个结构化的问题图示。结构不变，数据变——这就是问题图示的特征。专家换个领域照样厉害，因为他迁移的是结构，不是细节。"
+    },
+    {
+      "index": 49,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 541.8,
+      "end": 544.1,
+      "duration": 2.3,
+      "text": "第四个理论基础来自学习科学。"
+    },
+    {
+      "index": 50,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 544.1,
+      "end": 554.5,
+      "duration": 10.4,
+      "text": "学习观给了学习一个精确定义：\"学习是从有限的例子中，找出问题和答案之间规律的一个过程，而所找出的规律叫做知识。\""
+    },
+    {
+      "index": 51,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 554.5,
+      "end": 569.3,
+      "duration": 14.8,
+      "text": "这个定义直接解释了Skill的设计原则。模型的训练数据就是那些\"有限的例子\"，模型从中学到的规律就是\"共识\"——大多数人会怎么写代码、大多数验证工程师会怎么搭test bench。但共识不等于专家水平。"
+    },
+    {
+      "index": 52,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 569.3,
+      "end": 592.8,
+      "duration": 23.5,
+      "text": "学习观区分了信息和知识：信息是具体的情况，知识是信息与信息之间的关系。\"狗剩花了15元买了10斤西瓜\"是信息，\"一点五元每斤\"是知识。好的Skill写的是知识，而不是信息。写信息的Skill只能覆盖列出的情况，写知识的Skill能让模型举一反三，生成从未见过的测试场景。"
+    },
+    {
+      "index": 53,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 592.8,
+      "end": 616.4,
+      "duration": 23.6,
+      "text": "华罗庚说\"先把书读厚，再把书读薄\"。学习观的解读是：先搜集大量例子体会规律（读厚），真正学会后这些例子被压缩成知识（读薄）。Skill的开发也是这个过程——手动跑样本是\"读厚\"，把规律写成Skill文件是\"读薄\"。如果你的Skill文件比当初那些样本还长，说明你没有压缩，只是在堆砌信息。"
+    },
+    {
+      "index": 54,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 616.4,
+      "end": 646.0,
+      "duration": 29.6,
+      "text": "还有一个关键洞察：知识迁移的局限。学习观指出，深度学习的知识无法通过描述来迁移——\"某人会游泳，但这个人无法仅通过语言让另一个人学会游泳。\"这解释了为什么单纯的提示词 Engineering效果有限——你在用语言描述来\"教\"模型，但很多专家知识不是描述能传递的。Skill的解决方案是：不描述\"什么是好的验证\"，而是给出具体的工作流程和判断节点，让模型在执行中\"体会\"专家的决策路径。"
+    },
+    {
+      "index": 55,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 646.0,
+      "end": 655.9,
+      "duration": 9.9,
+      "text": "第五个理论基础来自认知科学对 A I 模型底层机制的研究。三个硬性限制，不是工程能绕过的——是模型架构本身的物理边界。"
+    },
+    {
+      "index": 56,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 655.9,
+      "end": 669.7,
+      "duration": 13.8,
+      "text": "模型面对过量信息时，注意力机制会分散。不是模型\"不专心\"——是多头注意力的资源有限。当上下文窗口里塞进超过必要量的信息，每个注意力头能分配到的信号强度就下降了。"
+    },
+    {
+      "index": 57,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 669.7,
+      "end": 683.1,
+      "duration": 13.4,
+      "text": "工程含义：Skill 必须做减法，不是加法。只注入当前任务必需的信息。Resolver 的作用就在这里——任务类型 X 出现时，优先加载文档 Y，不相关的不进上下文。"
+    },
+    {
+      "index": 58,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 683.1,
+      "end": 693.8,
+      "duration": 10.7,
+      "text": "对话越长，早期信息被稀释。Transformer 的注意力机制是一层一层传递的——信息在传递过程中会衰减。这不是 缺陷，是架构特性。"
+    },
+    {
+      "index": 59,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 693.8,
+      "end": 712.1,
+      "duration": 18.3,
+      "text": "工程含义：Skill 必须支持动态刷新，不是静态堆砌。你不能写一个 500 行的 Skill 文件，指望它在第 50 轮对话时还能被完整遵守。Harness 必须在关键轮次重新注入关键约束——不是模型忘了，是信息在注意力传递中被稀释了。"
+    },
+    {
+      "index": 60,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 712.1,
+      "end": 724.2,
+      "duration": 12.1,
+      "text": "即使架构最优，Harness 设计完美，A I 仍有 百分之二十 的不确定性。这是潜在空间推理的固有边界——模型输出的是概率分布，不是确定性答案。"
+    },
+    {
+      "index": 61,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 724.2,
+      "end": 745.4,
+      "duration": 21.2,
+      "text": "工程含义：Skill 必须配验证闭环，不能裸奔。百分之八十 的命中率已经很好——剩下的 百分之二十 靠自动化兜底。脚本引擎做确定性验证，人做最终审查。三权分立的必要性就在这里——不是人不信任 A I，是 A I 的物理边界决定了它不能单独承担 百分之百 的责任。"
+    },
+    {
+      "index": 62,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 745.4,
+      "end": 761.5,
+      "duration": 16.1,
+      "text": "这三个限制不是\"等模型升级就会改善\"的临时问题。是 Transformer 架构的固有特性。所以 Harness 设计不能基于\"模型会变得完美\"的假设——必须基于\"模型永远有 百分之二十 不确定性\"的现实。"
+    },
+    {
+      "index": 63,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 761.5,
+      "end": 770.7,
+      "duration": 9.2,
+      "text": "R two 的 Harness 就是治这三个病的：上下文焦虑靠 resolver 治，上下文衰退靠刷新治，百分之八十 限幅靠验证闭环治。"
+    },
+    {
+      "index": 64,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 770.7,
+      "end": 784.4,
+      "duration": 13.7,
+      "text": "理论讲了为什么Skill有效。但现实中很多系统效果不好——首先要排除的不是Skill本身写得差，而是架构就搞反了。厚约束加薄技能的反模式，上一集已经详细拆过。"
+    },
+    {
+      "index": 65,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 784.4,
+      "end": 789.7,
+      "duration": 5.3,
+      "text": "架构搞对了，再来看Skill本身的写法。六个常见错误，逐个讲。"
+    },
+    {
+      "index": 66,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 789.7,
+      "end": 802.9,
+      "duration": 13.2,
+      "text": "Transformer架构还有一个关键机制：多头注意力。模型内部有多个\"注意力头\"并行工作，每个头提取不同维度的特征——有的关注语法，有的关注语义，有的关注位置关系。"
+    },
+    {
+      "index": 67,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 802.9,
+      "end": 817.8,
+      "duration": 14.9,
+      "text": "推理：如果Skill把命名规范、时序约束、功能描述、边界情况全部混在一个没有标题的段落里，等于强迫所有注意力头在同一段混乱文本上竞争。信号混叠，谁也提取不好。"
+    },
+    {
+      "index": 68,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 817.8,
+      "end": 828.0,
+      "duration": 10.2,
+      "text": "正确做法是清晰分节。命名规范一个section，时序约束一个section，边界情况一个section。让不同注意力头各取所需，互不干扰。"
+    },
+    {
+      "index": 69,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 828.0,
+      "end": 839.4,
+      "duration": 11.4,
+      "text": "官方的建议很明确：Skill M D保持5000词以内，关键指令放在文件顶部。超过这个长度，模型的注意力开始分散，关键信息被埋没。"
+    },
+    {
+      "index": 70,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 839.4,
+      "end": 851.5,
+      "duration": 12.1,
+      "text": "官方技能开发指南里有一句话说得很直接：\"对关键验证应捆绑脚本程序化执行，而非依赖语言指令，因为代码具有确定性而语言解释不具备。\""
+    },
+    {
+      "index": 71,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 851.5,
+      "end": 869.2,
+      "duration": 17.7,
+      "text": "写\"确保代码质量\"是模糊的语言指令。模型可以用任何方式解释它——跑个简单测试就算\"确保\"了。写\"运行 python scriptsvalidate点Py --input {filename}，检查返回码为0\"是确定性验证。模型知道该做什么，结果能验证。"
+    },
+    {
+      "index": 72,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 869.2,
+      "end": 890.7,
+      "duration": 21.5,
+      "text": "Skill中每条指令的标准：具体到模型能执行，结果能验证。做不到这一点的指令，不如不写。模糊指令不是无害的——它消耗上下文空间，但不提供行动指引，还给了模型自由发挥的空间。自由发挥在需要创造力的步骤是好事，在需要精确执行的步骤是灾难。"
+    },
+    {
+      "index": 73,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 890.7,
+      "end": 900.2,
+      "duration": 9.5,
+      "text": "一个Skill试图覆盖所有场景，结果在每个场景上都表现平庸。这和工具设计是一个道理——万能工具不如专用工具。"
+    },
+    {
+      "index": 74,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 900.2,
+      "end": 913.4,
+      "duration": 13.2,
+      "text": "官方技能开发指南提供了具体的调优方法。触发不足时，增加描述细节和关键词。触发过度时，添加排除条件——比如明确写\"不适用于简单数据探索\"。"
+    },
+    {
+      "index": 75,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 913.4,
+      "end": 931.5,
+      "duration": 18.1,
+      "text": "这里面有一个反直觉的点：大多数人写Skill的描述时，本能是写得越宽越好——\"处理各种验证任务\"。但宽泛的描述导致Skill在不相关的场景上被误触发，模型加载了不相关的知识，反而干扰了本来能做好的事。"
+    },
+    {
+      "index": 76,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 931.5,
+      "end": 938.9,
+      "duration": 7.4,
+      "text": "边界清晰的Skill做一件事做到极致。好的Skill像一把手术刀，不像一把瑞士军刀。"
+    },
+    {
+      "index": 77,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 938.9,
+      "end": 950.2,
+      "duration": 11.3,
+      "text": "如果同一件事问智能体两次就算失败。需要重复的工作必须先手动跑样本验证，批准后固化为技能文件或cron任务。不是写完就上线。"
+    },
+    {
+      "index": 78,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 950.2,
+      "end": 967.6,
+      "duration": 17.4,
+      "text": "没验证就上线的Skill等于把未经检验的假设注入系统。如果假设是错的，模型不会质疑Skill——它会比没有Skill时更确信地走向错误方向。因为Skill覆盖了共识先验，而共识先验虽然平庸，至少方向大致正确。"
+    },
+    {
+      "index": 79,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 967.6,
+      "end": 973.8,
+      "duration": 6.2,
+      "text": "学习观说过一句话：\"学习后要记忆的内容比学习前还多，那并没有真正学习。\""
+    },
+    {
+      "index": 80,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 973.8,
+      "end": 997.4,
+      "duration": 23.6,
+      "text": "推理：这个标准直接适用于Skill。好的Skill是知识压缩——用更少的token达到更好的效果。如果一个500行Skill文件让token消耗从6000涨到18000，但任务成功率从百分之八十只涨到百分之八十二——压缩失败。你加了三倍的\"记忆负担\"，只换来两个百分点的提升。这不是Skill，是信息堆砌。"
+    },
+    {
+      "index": 81,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 997.4,
+      "end": 1013.1,
+      "duration": 15.7,
+      "text": "好的Skill应该是：加进去之后，token消耗不变或下降，能力显著提升。好的Skill是理科式的——用一条规则覆盖无限场景。坏的Skill是文科式的——列出一百个具体情况让模型去记。"
+    },
+    {
+      "index": 82,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1013.1,
+      "end": 1028.3,
+      "duration": 15.2,
+      "text": "错误的Skill不是无效——是有害。它提供了错误的先验知识，覆盖了模型本来还算正确的默认行为。模型不会说\"这个Skill好像不对\"——它会忠实地执行Skill里的指令，哪怕指令是错的。"
+    },
+    {
+      "index": 83,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1028.3,
+      "end": 1039.5,
+      "duration": 11.2,
+      "text": "所以验证不是可选步骤。每个Skill上线前，必须用边界情况测试——不是用简单case证明它能工作，是用困难case证明它不会搞砸。"
+    },
+    {
+      "index": 84,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1039.5,
+      "end": 1046.7,
+      "duration": 7.2,
+      "text": "理论和反模式都讲了。现在看一个真实系统，验证这些原则在生产环境里是不是真的成立。"
+    },
+    {
+      "index": 85,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1046.7,
+      "end": 1058.4,
+      "duration": 11.7,
+      "text": "一个大型创业训练营（2026年），处理6000名创始人的多模态数据——申请材料、1对1对话转录、代码仓库提交、A I编码工具记录。"
+    },
+    {
+      "index": 86,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1058.4,
+      "end": 1074.5,
+      "duration": 16.1,
+      "text": "传统做法是15人的项目团队做人工审查。在200人规模时有效，在6000人规模时系统崩溃。无法在脑中整合海量异构数据，无法发现跨语境的深层关联——比如不同创始人用不同词语描述的相同痛点。"
+    },
+    {
+      "index": 87,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1074.5,
+      "end": 1094.3,
+      "duration": 19.8,
+      "text": "第一个核心技能是enrich founder。创建这个技能统一拉取所有数据源。确定性层自动化执行S Q L查找、代码提交统计、浏览器测试演示U R L、拉取社交信号、第三方数据查询。设置定时任务每晚自动运行，保持6000个档案数据新鲜。"
+    },
+    {
+      "index": 88,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1094.3,
+      "end": 1101.2,
+      "duration": 6.9,
+      "text": "关键步骤是对比创始人\"说\"的内容与\"实际构建\"的内容，在日记化输出中标注两者差距。"
+    },
+    {
+      "index": 89,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1101.2,
+      "end": 1112.4,
+      "duration": 11.2,
+      "text": "一个真实发现：Maria Santos声称在构建\"A I代理的监控平台\"，但百分之八十的提交在计费模块——她正在构建一个伪装成可观察性的金融运维工具。"
+    },
+    {
+      "index": 90,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1112.4,
+      "end": 1115.6,
+      "duration": 3.2,
+      "text": "那个差距——\"说\"与\"实际构建\"——"
+    },
+    {
+      "index": 91,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1115.6,
+      "end": 1124.4,
+      "duration": 8.8,
+      "text": "这就是Diarization在实战中的价值。这种重新分类，是向量检索完全捕捉不到的。模型必须读完整个画像。"
+    },
+    {
+      "index": 92,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1124.4,
+      "end": 1131.4,
+      "duration": 7.0,
+      "text": "第二个场景是匹配。同一个匹配技能，调用三次，传入不同参数，产生完全不同的策略。"
+    },
+    {
+      "index": 93,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1131.4,
+      "end": 1152.5,
+      "duration": 21.1,
+      "text": "match breakout处理1200人，按领域聚类，每组30人，用向量相似度加确定性分配。match lunch处理600人，跨领域偶然匹配，每桌8人，用模型生成主题加确定性算法排座。match live处理现场实时匹配，1对1，最近邻向量匹配，200毫秒内响应，排除已见过的人。"
+    },
+    {
+      "index": 94,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1152.5,
+      "end": 1175.0,
+      "duration": 22.5,
+      "text": "模型在这里做了两个人类团队做不到的判断。第一，识别非竞争关系——Santos做成本归因，Oram做编排，两人都属于A I基础设施，应该分在同一组。第二，动态重分类——Kim的申请写的是开发者工具，但1对1对话显示她做的是安全合规自动化，应该重归类到金融科技。"
+    },
+    {
+      "index": 95,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1175.0,
+      "end": 1183.2,
+      "duration": 8.2,
+      "text": "第三个技能是improve。输入源是用户满意度调研结果，重点分析\"还行\"的评价，而非差评。"
+    },
+    {
+      "index": 96,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1183.2,
+      "end": 1196.4,
+      "duration": 13.2,
+      "text": "执行步骤是：对\"差一点就好\"的反馈做Diarization，提取模式，识别分类错误或社交网络冗余，提出新规则，将新规则写回Skill文件，下次运行自动生效。"
+    },
+    {
+      "index": 97,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1196.4,
+      "end": 1205.5,
+      "duration": 9.1,
+      "text": "规则示例：代码中计费模块占比超过百分之八十，强制分类为金融科技。同组两人已认识，降低匹配权重，优先引入新关系。"
+    },
+    {
+      "index": 98,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1205.5,
+      "end": 1209.3,
+      "duration": 3.8,
+      "text": "量化效果：\"还行\"评分占比从百分之十二降至百分之四。"
+    },
+    {
+      "index": 99,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1209.3,
+      "end": 1215.2,
+      "duration": 5.9,
+      "text": "Skill文件学会了\"还行\"意味着什么，而系统在没有人重写代码的情况下变得更好。"
+    },
+    {
+      "index": 100,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1215.2,
+      "end": 1238.6,
+      "duration": 23.4,
+      "text": "软件工程界把这个机制叫做Error Driven Context Refinement——犯错→诊断根因→检索现有知识→创建/更新Rule/Skill→预防复发。它有两条互补路径：自动触发（A I识别被纠正的错误后自动建议更新）和手动触发（密集协作后集中沉淀经验）。上面Y C案例里的improve就是自动触发路径的生产级实现。"
+    },
+    {
+      "index": 101,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1238.6,
+      "end": 1248.9,
+      "duration": 10.3,
+      "text": "这就是进化链的完整流程：调研、调查、Diarize、重写Skill。无需人工重写代码，系统通过Skill文件的自我改写实现持续进化。"
+    },
+    {
+      "index": 102,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1248.9,
+      "end": 1258.5,
+      "duration": 9.6,
+      "text": "前面讲了理论、反模式和实战案例。现在把这些提炼成可操作的检查清单。9个标准，每个Skill上线前逐条过。"
+    },
+    {
+      "index": 103,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1258.5,
+      "end": 1272.5,
+      "duration": 14.0,
+      "text": "标准一：触发精准。让模型复述\"你什么时候会用这个Skill\"——如果它的回答和你的预期不一致，说明描述写得不够好。触发不足就加细节和关键词，触发过度就加排除条件。"
+    },
+    {
+      "index": 104,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1272.5,
+      "end": 1284.4,
+      "duration": 11.9,
+      "text": "标准二：边界清晰。Skill应该明确写出\"什么时候不用\"。比如\"不适用于简单数据探索\"。没有边界的Skill会在不相关的场景上被错误触发。"
+    },
+    {
+      "index": 105,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1284.4,
+      "end": 1297.0,
+      "duration": 12.6,
+      "text": "标准三：指令具体可执行。每条指令包含具体命令和预期输出，比如\"python scriptsvalidate点Py --input {filename}\"。\"确保质量\"不是指令，是愿望。"
+    },
+    {
+      "index": 106,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1297.0,
+      "end": 1305.8,
+      "duration": 8.8,
+      "text": "标准四：验证确定性。关键检查用脚本执行，不用语言指令。能写成脚本的验证一定要写成脚本。"
+    },
+    {
+      "index": 107,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1305.8,
+      "end": 1315.6,
+      "duration": 9.8,
+      "text": "标准五：结构分节。不同类型的知识放在不同section，标题清晰。这让多头注意力机制各取所需，避免信号混叠。"
+    },
+    {
+      "index": 108,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1315.6,
+      "end": 1328.8,
+      "duration": 13.2,
+      "text": "标准六：知识压缩。加了Skill之后，token消耗不增加或下降，能力显著提升。如果token消耗大幅增加但能力只有微小提升——压缩失败，需要精简。"
+    },
+    {
+      "index": 109,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1328.8,
+      "end": 1347.3,
+      "duration": 18.5,
+      "text": "标准七：参数化可复用。技能文件就像一次方法调用。用不同的参数调用时，相同的程序会产生完全不同的能力。好的Skill接受参数——传入不同数据集、不同目标，产出不同结果。不能参数化的Skill只能用一次。"
+    },
+    {
+      "index": 110,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1347.3,
+      "end": 1364.8,
+      "duration": 17.5,
+      "text": "标准八：渐进式披露。三级加载——文件头配置信息始终加载到系统提示，Skill M D正文在判断相关时加载，references目录下的文件按需加载。Skill M D保持5000词以内。超过就拆到references目录。"
+    },
+    {
+      "index": 111,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1364.8,
+      "end": 1382.2,
+      "duration": 17.4,
+      "text": "标准九：模型升级自动受益。当下一个模型发布时，每个技能立即变得更好——潜在步骤中的判断改进，而确定性步骤保持完美可靠。如果你的Skill在模型升级后需要重写，说明你把应该放在确定性层的东西放进了Skill。"
+    },
+    {
+      "index": 112,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1382.2,
+      "end": 1392.2,
+      "duration": 10.0,
+      "text": "九个标准不是全部要满分。但标准四——验证确定性——和标准六——知识压缩——是必须过的硬门槛。其他七个是优化方向。"
+    },
+    {
+      "index": 113,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1392.2,
+      "end": 1399.1,
+      "duration": 6.9,
+      "text": "标准有了。现在回答最实际的问题：你脑子里有一套方法论，怎么把它变成Skill文件？五个步骤。"
+    },
+    {
+      "index": 114,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1399.1,
+      "end": 1410.6,
+      "duration": 11.5,
+      "text": "Step 1：识别重复。 如果同一件事问智能体两次就算失败。重复是信号。当你发现自己反复给智能体写同样的提示词，这些就是Skill的候选内容。"
+    },
+    {
+      "index": 115,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1410.6,
+      "end": 1428.5,
+      "duration": 17.9,
+      "text": "识别出候选内容后，过三个判断门。第一，边界清晰吗？如果你说不清楚\"这个Skill从哪开始到哪结束\"，它可能太模糊了。第二，高频吗？一年用一次的方法不值得固化。第三，已有Skill能覆盖吗？能参数化到现有Skill里的，不要新建。"
+    },
+    {
+      "index": 116,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1428.5,
+      "end": 1430.3,
+      "duration": 1.8,
+      "text": "Step 2：手动跑样本。"
+    },
+    {
+      "index": 117,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1430.3,
+      "end": 1447.0,
+      "duration": 16.7,
+      "text": "手动跑样本的目的是弄清楚两件事。第一，哪些步骤是判断，哪些是确定性。判断步骤写进Skill。确定性步骤写成代码。第二，边界情况有哪些。3到10个样本里，至少包含两三个边界情况。"
+    },
+    {
+      "index": 118,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1447.0,
+      "end": 1458.6,
+      "duration": 11.6,
+      "text": "Step 3：写Skill文件。 智能体全部\"智能\"封装到启动时加载的Markdown文件中，框架代码仅负责连接模型和工具，不承载业务逻辑。"
+    },
+    {
+      "index": 119,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1458.6,
+      "end": 1477.5,
+      "duration": 18.9,
+      "text": "结构用渐进式披露的三级。第一级，文件头配置信息——写name、description和触发条件。第二级，Skill M D正文——核心工作流和判断逻辑，保持5000词以内。第三级，references目录——详细参考文档，按需加载。"
+    },
+    {
+      "index": 120,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1477.5,
+      "end": 1480.2,
+      "duration": 2.7,
+      "text": "系统升级时只修改Markdown，不动代码。"
+    },
+    {
+      "index": 121,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1480.2,
+      "end": 1491.7,
+      "duration": 11.5,
+      "text": "Step 4：对抗测试。 官方技能开发指南说得很明确：\"最有效的做法是先针对单个挑战性任务迭代直到模型成功，再扩展至多个测试用例。\""
+    },
+    {
+      "index": 122,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1491.7,
+      "end": 1506.8,
+      "duration": 15.1,
+      "text": "注意：是\"挑战性任务\"，不是简单任务。用边界情况测试，用容易出错的场景测试。还要检查两个方向的触发——该触发的场景真的触发了吗？不该触发的场景有没有误触发？"
+    },
+    {
+      "index": 123,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1506.8,
+      "end": 1540.1,
+      "duration": 33.3,
+      "text": "这一步对应的是费曼技巧的核心——验证。学习观把学习分成三层：\"学习→理解→解释\"和\"记忆→记住→重述\"。你能重述Skill里写了什么，不代表Skill真的有效。只有当Skill面对从未见过的边界情况仍然能产出正确结果，才证明你写进去的是真正的知识，而不只是对已有案例的记忆。孔子说\"温故而知新，可以为师矣\"——能从旧例子推出新情况的应对方案，才叫学会了。Skill的对抗测试就是这个\"知新\"的过程。"
+    },
+    {
+      "index": 124,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1540.1,
+      "end": 1551.7,
+      "duration": 11.6,
+      "text": "Step 5：固化与复利。 你写的每个技能都是对你系统的永久升级。它永远不会退化。它永远不会忘记。它在凌晨3点你睡觉时运行。"
+    },
+    {
+      "index": 125,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1551.7,
+      "end": 1564.8,
+      "duration": 13.1,
+      "text": "固化不是终点。Skill文件需要持续校准——每周运行智能体并收集执行结果，根据实际结果对Skill文件进行校准，将校准后的规则写回Skill文件，部署更新。"
+    },
+    {
+      "index": 126,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1564.8,
+      "end": 1581.8,
+      "duration": 17.0,
+      "text": "任务执行遵循四步循环：读取、归整、判断、写回。代理跨来源阅读并做出判断的输出，将成为下一次运行的上下文，构建复合知识。首次运行缓慢且广泛，后续运行通过学习特定模式变得更敏锐。"
+    },
+    {
+      "index": 127,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1581.8,
+      "end": 1589.4,
+      "duration": 7.6,
+      "text": "这集给了你完整的武器库——理论、反模式、九个标准、五步方法。但知道和做到之间有一条沟。"
+    },
+    {
+      "index": 128,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1589.4,
+      "end": 1594.4,
+      "duration": 5.0,
+      "text": "问题不在于它是否有效。问题在于——你的Skill目录里现在有几个文件？"
+    },
+    {
+      "index": 129,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1594.4,
+      "end": 1610.5,
+      "duration": 16.1,
+      "text": "你现在手上一定有一件反复教智能体的事。那就是你的第一个Skill候选。打开你和智能体最近的对话记录，找到你重复输入超过两次的那段提示词。把它抽出来，按五步脑力蒸馏法，写成你的第一个Skill文件。"
+    },
+    {
+      "index": 130,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1610.5,
+      "end": 1618.3,
+      "duration": 7.8,
+      "text": "不需要完美，不需要覆盖所有场景。一个Skill，一个边界情况测试，一次验证通过。这就是从零到一。"
+    },
+    {
+      "index": 131,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1618.3,
+      "end": 1624.7,
+      "duration": 6.4,
+      "text": "三个月后，你会拥有一个别人追不上的系统。不是因为他们不懂架构——是因为他们还没动手。"
+    }
+  ],
+  "nlp_count": 132,
+  "tts_total": 1624.7,
+  "mp3_duration": 1632.63525,
+  "failed_segments": 0
+}

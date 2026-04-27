@@ -1,0 +1,650 @@
+{
+  "audio": "",
+  "nlp": "/Users/gaoyuan/Projects/r2-video/harness/module7/module7_draft_v1_nlp.json",
+  "nlp_timings": [
+    {
+      "index": 0,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 0.0,
+      "end": 10.6,
+      "duration": 10.6,
+      "text": "你让Claude Code帮你做一个完整的验证流程——从规格文档提取功能点，生成Test bench，生成R T L，跑覆盖率。四个步骤，一个对话里全做完。"
+    },
+    {
+      "index": 1,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 10.6,
+      "end": 28.7,
+      "duration": 18.1,
+      "text": "前两步很顺利。到第三步的时候，智能体开始混淆第一步提取的功能点和第二步生成的Test bench信号名。到第四步，上下文窗口快满了，智能体开始\"遗忘\"——你在第一步明确说过的寄存器定义，它现在引用错了。"
+    },
+    {
+      "index": 2,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 28.7,
+      "end": 49.3,
+      "duration": 20.6,
+      "text": "这不是智能体笨。是上下文污染。四个完全不同的任务——提取、生成测试平台、生成R T L、跑覆盖率——挤在同一个上下文窗口里，互相干扰。第三步生成R T L时，第二步Test bench的大量代码占着上下文空间，跟R T L生成毫无关系但消耗着注意力。"
+    },
+    {
+      "index": 3,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 49.3,
+      "end": 70.2,
+      "duration": 20.9,
+      "text": "手工转写一个C算法到可综合Verilog需要两周。R two C to R T L用自演化工作流做这件事——生成、验证、修正、再生成。但每轮迭代如果都在同一个上下文里，第三轮修正的信息会跟第一轮的错误混在一起。智能体不知道哪些是已经修正过的，哪些是还没修的。"
+    },
+    {
+      "index": 4,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 70.2,
+      "end": 82.7,
+      "duration": 12.5,
+      "text": "解法不是让智能体更聪明。是让复杂任务分解成独立的子任务，每个子任务由独立的子智能体执行，拥有自己的上下文，自己的记忆，不污染主智能体。"
+    },
+    {
+      "index": 5,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 82.7,
+      "end": 100.4,
+      "duration": 17.7,
+      "text": "这一集讲三件事。第一，子智能体、Skill、命令三者怎么选——不是什么都需要子智能体。第二，五条设计黄金法则。第三，R two的6个A I 智能体和6个自动化工具怎么分工——智能体做判断，工具做执行。"
+    },
+    {
+      "index": 6,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 100.4,
+      "end": 106.9,
+      "duration": 6.5,
+      "text": "命令是最简单的。用户输入一条指令，智能体执行，返回结果。一句话能说清楚的事。"
+    },
+    {
+      "index": 7,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 106.9,
+      "end": 115.9,
+      "duration": 9.0,
+      "text": "比如\"编译这个R T L文件\"。不需要上下文，不需要记忆，不需要独立环境。跑一个命令，返回成功或失败。命令够了。"
+    },
+    {
+      "index": 8,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 115.9,
+      "end": 126.1,
+      "duration": 10.2,
+      "text": "Skill是能力封装。模块 11讲了五种设计模式。Skill的核心特征是可复用、可组合——同一个Skill可以在不同项目里反复使用。"
+    },
+    {
+      "index": 9,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 126.1,
+      "end": 140.2,
+      "duration": 14.1,
+      "text": "S C B gen是Skill——标准化生成Score board，每个项目都能用。R two style是Skill——分析代码风格并应用，跨项目复用。Skill不需要独立上下文——它在主智能体的上下文里执行就够了。"
+    },
+    {
+      "index": 10,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 140.2,
+      "end": 148.1,
+      "duration": 7.9,
+      "text": "子智能体是独立执行体。它有自己的上下文窗口，自己的记忆系统，跟主智能体完全隔离。"
+    },
+    {
+      "index": 11,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 148.1,
+      "end": 151.1,
+      "duration": 3.0,
+      "text": "什么时候需要这种隔离？两种情况。"
+    },
+    {
+      "index": 12,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 151.1,
+      "end": 167.9,
+      "duration": 16.8,
+      "text": "第一种，任务太大。单个上下文窗口装不下。比如分析一个13000行的D M A控制器R T L——光代码就占满了上下文。你需要一个独立的子智能体，在自己的窗口里只看这段代码，不被其他任务的信息干扰。"
+    },
+    {
+      "index": 13,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 167.9,
+      "end": 182.7,
+      "duration": 14.8,
+      "text": "第二种，任务之间需要隔离。代码审查和代码修改不能在同一个上下文里——审查者知道了修改意图，就会失去客观性。分成两个子智能体：一个只读审查，一个负责修改，互不知道对方的上下文。"
+    },
+    {
+      "index": 14,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 182.7,
+      "end": 184.6,
+      "duration": 1.9,
+      "text": "收到一个任务，三步判断。"
+    },
+    {
+      "index": 15,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 184.6,
+      "end": 188.6,
+      "duration": 4.0,
+      "text": "第一步：一句话能说清吗？能——命令。"
+    },
+    {
+      "index": 16,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 188.6,
+      "end": 192.9,
+      "duration": 4.3,
+      "text": "第二步：需要封装为可复用能力吗？需要——Skill。"
+    },
+    {
+      "index": 17,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 192.9,
+      "end": 197.7,
+      "duration": 4.8,
+      "text": "第三步：需要独立上下文或任务隔离吗？需要——子智能体。"
+    },
+    {
+      "index": 18,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 197.7,
+      "end": 210.4,
+      "duration": 12.7,
+      "text": "大多数日常任务是命令。经验沉淀用Skill。复杂流程和需要隔离的场景用子智能体。不要什么都用子智能体——独立上下文有额外开销，简单任务用子智能体是浪费。"
+    },
+    {
+      "index": 19,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 210.4,
+      "end": 216.9,
+      "duration": 6.5,
+      "text": "不要定义\"后端工程师\"这样的泛化角色。要定义\"数据库迁移专家\"这样的专注角色。"
+    },
+    {
+      "index": 20,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 216.9,
+      "end": 229.5,
+      "duration": 12.6,
+      "text": "在芯片验证里，不要定义\"验证工程师智能体\"。要定义\"Score board生成智能体\"、\"覆盖率分析智能体\"、\"时序约束检查智能体\"。每个智能体做一件事，做到极致。"
+    },
+    {
+      "index": 21,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 229.5,
+      "end": 241.0,
+      "duration": 11.5,
+      "text": "为什么？因为智能体的注意力是有限的。角色越泛，它需要关注的上下文越多，犯错的概率越高。专业化的智能体，上下文更小，输出更精确。"
+    },
+    {
+      "index": 22,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 241.0,
+      "end": 244.5,
+      "duration": 3.5,
+      "text": "子智能体最大的价值不是并行——是隔离。"
+    },
+    {
+      "index": 23,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 244.5,
+      "end": 263.0,
+      "duration": 18.5,
+      "text": "R two的C to R T L工作流，每轮\"生成→验证→修正\"由独立子智能体执行。第一轮的子智能体完成后，它的上下文不会泄漏到第二轮。第二轮的子智能体拿到的是上一轮的产物——代码和错误报告——不是上一轮的整个思考过程。"
+    },
+    {
+      "index": 24,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 263.0,
+      "end": 276.0,
+      "duration": 13.0,
+      "text": "这就是Git Work tree隔离的思路。一个智能体，一个分支，完全隔离。子智能体在自己的Work tree里工作，改完了合回主分支。即使子智能体搞砸了，主分支不受影响。"
+    },
+    {
+      "index": 25,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 276.0,
+      "end": 281.1,
+      "duration": 5.1,
+      "text": "子智能体的记忆系统有三个层级——User、Project、Feedback。"
+    },
+    {
+      "index": 26,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 281.1,
+      "end": 298.6,
+      "duration": 17.5,
+      "text": "User层记住用户偏好——比如\"这个用户喜欢简洁的命名风格\"。Project层记住项目上下文——\"这个项目用A X I四协议，不是A X I3\"。Feedback层记住修正历史——\"上次生成的Score board比对逻辑漏了burst模式，已修正\"。"
+    },
+    {
+      "index": 27,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 298.6,
+      "end": 310.9,
+      "duration": 12.3,
+      "text": "三个层级跨会话持久化。今天的子智能体修正了一个错误，下周同一个子智能体再次执行时，它记得这个修正。这就是跨会话知识积累——智能体越用越准。"
+    },
+    {
+      "index": 28,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 310.9,
+      "end": 313.5,
+      "duration": 2.6,
+      "text": "子智能体的权限应该严格限制。"
+    },
+    {
+      "index": 29,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 313.5,
+      "end": 329.5,
+      "duration": 16.0,
+      "text": "代码审查智能体——只读权限。它能看代码，能写报告，但不能修改任何文件。这不是技术限制——是设计选择。审查者不应该有修改权，否则它可能直接\"修掉\"它发现的问题，绕过了人的审核。"
+    },
+    {
+      "index": 30,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 329.5,
+      "end": 343.1,
+      "duration": 13.6,
+      "text": "调试智能体——可以读代码、跑仿真、分析波形，但不能修改R T L。它的产出是调试报告，不是修复代码。修复由另一个有写权限的智能体负责，且修复后需要人确认。"
+    },
+    {
+      "index": 31,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 343.1,
+      "end": 346.8,
+      "duration": 3.7,
+      "text": "权限模式选择不是安全措施——是质量保证。"
+    },
+    {
+      "index": 32,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 346.8,
+      "end": 349.6,
+      "duration": 2.8,
+      "text": "最常见的错误：跳过规划模式。"
+    },
+    {
+      "index": 33,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 349.6,
+      "end": 362.1,
+      "duration": 12.5,
+      "text": "智能体收到一个复杂任务，直接开始执行。没有规划，没有分解，没有确认理解是否正确。结果是——做了一半发现方向错了，推倒重来，浪费了一半的上下文窗口。"
+    },
+    {
+      "index": 34,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 362.1,
+      "end": 376.2,
+      "duration": 14.1,
+      "text": "正确做法：收到复杂任务，先进入规划模式。分解任务，列出步骤，确认每一步的输入输出，然后再开始执行。规划模式的开销是几分钟，但避免的重来开销是几小时。"
+    },
+    {
+      "index": 35,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 376.2,
+      "end": 381.5,
+      "duration": 5.3,
+      "text": "R two的Veri Smart是6个A I 智能体和6个自动化工具的整合流程。"
+    },
+    {
+      "index": 36,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 381.5,
+      "end": 383.6,
+      "duration": 2.1,
+      "text": "\"能用A I\"不等于\"该用A I\"。"
+    },
+    {
+      "index": 37,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 383.6,
+      "end": 402.5,
+      "duration": 18.9,
+      "text": "gen R A L从H J S O N生成U V M R A L模型——纯模板替换。输入确定，规则确定，输出确定。让A I做反而引入不确定性。gen R A L是工具，不是智能体——智能体调用它，拿到确定性输出，再做需要判断力的事。"
+    },
+    {
+      "index": 38,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 402.5,
+      "end": 418.9,
+      "duration": 16.4,
+      "text": "整合流程的分工很清晰：自动化工具负责确定性执行，A I 智能体负责语义判断。智能体调用工具，工具返回结果，智能体基于结果做下一步决策——这就是模块 4讲的潜在空间与确定性空间分离在架构层面的落地。"
+    },
+    {
+      "index": 39,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 418.9,
+      "end": 424.6,
+      "duration": 5.7,
+      "text": "6个自动化工具，都是把传统E D A流程封装成智能体可以直接调用的C L I。"
+    },
+    {
+      "index": 40,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 424.6,
+      "end": 438.8,
+      "duration": 14.2,
+      "text": "第一，gen R A L。H J S O N到U V M R A L class。传统做法是Perl脚本跑模板，现在封装成一条C L I命令——智能体传入H J S O N路径，拿回R A L模型。"
+    },
+    {
+      "index": 41,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 438.8,
+      "end": 454.2,
+      "duration": 15.4,
+      "text": "第二，gen R T L C S R。H J S O N到Verilog C S R模块。寄存器的地址解码、读写逻辑、复位值——全是从H J S O N直接映射的，封装成C L I后智能体一条命令生成。"
+    },
+    {
+      "index": 42,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 454.2,
+      "end": 468.1,
+      "duration": 13.9,
+      "text": "第三，H J S O N lint检查。配置合规检查。传统靠人肉审查 H J S O N格式，现在是C L I跑一遍，字段名拼写、类型匹配、必填项缺失——秒级返回。"
+    },
+    {
+      "index": 43,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 468.1,
+      "end": 477.8,
+      "duration": 9.7,
+      "text": "第四，dep order。依赖拓扑排序。传统靠Make file手写依赖，现在C L I自动分析模块依赖关系，输出编译顺序。"
+    },
+    {
+      "index": 44,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 477.8,
+      "end": 489.7,
+      "duration": 11.9,
+      "text": "第五，compile run。编译流水线。封装E D A工具链的调用、错误收集、日志格式化——智能体一条命令触发编译，拿回结构化的错误报告。"
+    },
+    {
+      "index": 45,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 489.7,
+      "end": 500.3,
+      "duration": 10.6,
+      "text": "第六，sim run。仿真调度。封装仿真资源分配、启动、结果收集——智能体不需要知道仿真器怎么配置，调C L I就行。"
+    },
+    {
+      "index": 46,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 500.3,
+      "end": 519.8,
+      "duration": 19.5,
+      "text": "六个C L I，零A I。每个输出都是确定性的——给同样的输入，永远得到同样的输出。改装的关键是接口标准化：统一的输入格式、结构化的输出、明确的退出码。智能体不需要理解工具内部实现，只需要知道怎么调、怎么读结果。"
+    },
+    {
+      "index": 47,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 519.8,
+      "end": 521.6,
+      "duration": 1.8,
+      "text": "6个A I 智能体。"
+    },
+    {
+      "index": 48,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 521.6,
+      "end": 540.8,
+      "duration": 19.2,
+      "text": "第一，gen env。验证环境架构生成。读规格文档理解I P的功能边界，决定需要哪些智能体、Score board、Sequence。这需要语义理解——规格文档里写的\"支持A X I四Lite和A P B双总线\"，A I需要理解这意味着两套独立的验证路径。"
+    },
+    {
+      "index": 49,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 540.8,
+      "end": 547.5,
+      "duration": 6.7,
+      "text": "第二，S C B gen。Score board生成。模块 11讲了——Generator模式，三步流程。"
+    },
+    {
+      "index": 50,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 547.5,
+      "end": 553.6,
+      "duration": 6.1,
+      "text": "第三，SEQ gen。分层Sequence生成。Pipeline模式，四层递进。"
+    },
+    {
+      "index": 51,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 553.6,
+      "end": 560.2,
+      "duration": 6.6,
+      "text": "第四，C O V gen。覆盖率模型生成。Generator加审查者混合。"
+    },
+    {
+      "index": 52,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 560.2,
+      "end": 576.1,
+      "duration": 15.9,
+      "text": "第五，C O V anal。覆盖率分析。读覆盖率报告，识别缺口，生成补洞策略。这需要理解覆盖率缺口的语义——不是\"这个数字低\"，而是\"这个bin没被命中是因为需要特定的中断嵌套序列\"。"
+    },
+    {
+      "index": 53,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 576.1,
+      "end": 589.1,
+      "duration": 13.0,
+      "text": "第六，T B arch。Test bench顶层架构。决定整个验证环境的组织方式——层次结构、信号连接、配置参数。这是架构决策，需要全局语义理解。"
+    },
+    {
+      "index": 54,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 589.1,
+      "end": 598.1,
+      "duration": 9.0,
+      "text": "A I 智能体不是自由发挥——每个都有严格的输入格式、输出模板、审查标准。创造性是受约束的创造性。"
+    },
+    {
+      "index": 55,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 598.1,
+      "end": 616.1,
+      "duration": 18.0,
+      "text": "自动化工具的输出是A I 智能体的输入——gen R A L生成的R A L模型被S C B gen引用，gen R T L C S R生成的C S R模块被T B arch集成。工具产出确定性产物，智能体基于这些产物做需要判断力的事。"
+    },
+    {
+      "index": 56,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 616.1,
+      "end": 629.7,
+      "duration": 13.6,
+      "text": "隔离带来的好处：工具更新模板不影响智能体的行为，智能体的策略调整不影响工具的输出。工具升级是零风险的——因为输出是确定性的，改了就是改了，不会因为\"理解偏差\"产生副作用。"
+    },
+    {
+      "index": 57,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 629.7,
+      "end": 640.4,
+      "duration": 10.7,
+      "text": "6个智能体，6个工具，一个原则：确定性的事交给工具执行，需要理解的事交给智能体判断。智能体调用工具，不是工具假装智能体。"
+    },
+    {
+      "index": 58,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 640.4,
+      "end": 652.3,
+      "duration": 11.9,
+      "text": "有一个C算法实现——比如一个图像压缩算法。需要把它转成可综合的Verilog。手工转写需要两周，因为C的控制流和Verilog的时序逻辑之间有巨大的鸿沟。"
+    },
+    {
+      "index": 59,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 652.3,
+      "end": 660.0,
+      "duration": 7.7,
+      "text": "R two C to R T L的解法是自演化工作流。每一轮由一个独立的子智能体执行。"
+    },
+    {
+      "index": 60,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 660.0,
+      "end": 670.2,
+      "duration": 10.2,
+      "text": "第一轮子智能体：读C代码，生成初版Verilog。基础功能可能对，但时序约束、资源共享、流水线划分很可能有问题。"
+    },
+    {
+      "index": 61,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 670.2,
+      "end": 684.5,
+      "duration": 14.3,
+      "text": "第二轮子智能体：拿到第一轮的Verilog和验证报告。报告说哪些测试失败了，哪些时序违例了。这个子智能体只看这些产物——不看第一轮的思考过程。它修正错误，生成改进版。"
+    },
+    {
+      "index": 62,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 684.5,
+      "end": 691.5,
+      "duration": 7.0,
+      "text": "第三轮子智能体：继续。每一轮都学习上一轮的修改，但不继承上一轮的上下文噪声。"
+    },
+    {
+      "index": 63,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 691.5,
+      "end": 699.1,
+      "duration": 7.6,
+      "text": "这就是子智能体隔离的关键价值。每一轮都是干净的上下文，只传递产物，不传递噪声。"
+    },
+    {
+      "index": 64,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 699.1,
+      "end": 707.2,
+      "duration": 8.1,
+      "text": "第一次生成——基础功能正确。第二次生成——学习了上一次的修改。第N次生成——收敛到团队风格标准。"
+    },
+    {
+      "index": 65,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 707.2,
+      "end": 721.1,
+      "duration": 13.9,
+      "text": "收敛不是无限迭代。R two C O V的棘轮机制保证覆盖率只进不退。每一轮的改进被保留，退步被丢弃。Git记录每次有效进化。三到五轮通常就能收敛。"
+    },
+    {
+      "index": 66,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 721.1,
+      "end": 725.5,
+      "duration": 4.4,
+      "text": "不需要一次设计完美的智能体系统。从最小可用开始。"
+    },
+    {
+      "index": 67,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 725.5,
+      "end": 742.8,
+      "duration": 17.3,
+      "text": "最小可用智能体需要什么？一个front matter配置——名字、角色描述、权限范围。一个输入规范——这个智能体接受什么格式的输入。一个输出规范——这个智能体产出什么格式的输出。三个要素够了。"
+    },
+    {
+      "index": 68,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 742.8,
+      "end": 760.5,
+      "duration": 17.7,
+      "text": "不要一开始就设计记忆系统、钩子机制、Work tree隔离。先让智能体能跑起来，处理一个真实任务。然后根据实际问题逐步添加——上下文不够？加Work tree隔离。输出不稳定？加审查者模式。需要记住修正？加记忆系统。"
+    },
+    {
+      "index": 69,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 760.5,
+      "end": 766.3,
+      "duration": 5.8,
+      "text": "当你有了多个独立的子智能体，下一步是让它们协作。这就是智能体 Teams。"
+    },
+    {
+      "index": 70,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 766.3,
+      "end": 777.6,
+      "duration": 11.3,
+      "text": "智能体 Teams不是简单地把多个智能体放在一起。它是一个编排层——决定谁先执行、谁后执行、谁的输出传给谁、冲突时谁的优先级高。"
+    },
+    {
+      "index": 71,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 777.6,
+      "end": 794.4,
+      "duration": 16.8,
+      "text": "R two的Veri Smart就是一个智能体 Team——6个A I 智能体加6个自动化工具，一个编排器。编排器知道：先调用工具生成确定性产物，再让智能体基于这些产物做创造性判断，关键决策环节保留人审。"
+    },
+    {
+      "index": 72,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 794.4,
+      "end": 808.5,
+      "duration": 14.1,
+      "text": "模块 13会详细讲七种工作流编排模式。这一集你只需要知道：智能体 Teams是子智能体的自然延伸。单个子智能体解决隔离问题。智能体 Teams解决协作问题。"
+    },
+    {
+      "index": 73,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 808.5,
+      "end": 859.2,
+      "duration": 50.7,
+      "text": "R two的智能体架构遵循三个工业级设计原则。第一，引擎原生上下文——智能体不是通过外部包装器调用工具，而是直接访问验证引擎的内部状态。外部包装器拿不到的信息——设计结构、断言状态、覆盖率缺口的语义关联——引擎原生集成能拿到。这是智能体做出正确判断的前提。第二，持久感知——智能体在跨步骤、跨迭代的工作流中维持对关键工件之间关系的感知：设计结构、测试台、断言、验证计划、执行结果之间的映射不会因为会话切换而丢失。第三，有限动作边界——每个智能体的动作范围是明确受限的，需要人工批准的边界是预设的，不是运行时临时判断的。"
+    },
+    {
+      "index": 74,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 859.2,
+      "end": 865.8,
+      "duration": 6.6,
+      "text": "这三个原则让智能体 Teams从\"一群独立干活的A I\"变成\"一个有组织纪律的工程团队\"。"
+    },
+    {
+      "index": 75,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 865.8,
+      "end": 875.4,
+      "duration": 9.6,
+      "text": "子智能体不是让任务更复杂——是让复杂任务变得可控。独立上下文解决污染问题，记忆分层解决遗忘问题，权限最小化解决安全问题。"
+    },
+    {
+      "index": 76,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 875.4,
+      "end": 887.4,
+      "duration": 12.0,
+      "text": "三选一很简单。一句话说清——命令。经验封装复用——Skill。需要独立上下文——子智能体。不要什么都用子智能体，大多数任务Skill就够了。"
+    },
+    {
+      "index": 77,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 887.4,
+      "end": 903.6,
+      "duration": 16.2,
+      "text": "R two的6个A I 智能体加6个自动化工具是潜在空间与确定性空间分离的落地。工具执行确定性操作——零幻觉。智能体做需要语义理解的判断——不可替代。智能体调用工具，不是工具假装智能体。"
+    },
+    {
+      "index": 78,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 903.6,
+      "end": 918.1,
+      "duration": 14.5,
+      "text": "C to R T L证明了自演化工作流的威力。每轮独立子智能体，只传递产物不传递噪声，三到五轮收敛。这就是子智能体隔离的核心价值——不是并行加速，是质量保证。"
+    },
+    {
+      "index": 79,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 918.1,
+      "end": 930.2,
+      "duration": 12.1,
+      "text": "从最小可用开始——一个名字、一个输入规范、一个输出规范。先跑起来，再逐步加能力。下一集讲七种工作流编排模式——当你有了多个智能体，怎么让它们协作。"
+    }
+  ],
+  "nlp_count": 80,
+  "tts_total": 930.2,
+  "mp3_duration": 935.28825,
+  "failed_segments": 0
+}

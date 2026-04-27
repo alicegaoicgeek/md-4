@@ -1,0 +1,906 @@
+{
+  "audio": "/Users/gaoyuan/Projects/r2-video/verismart-module9/audio/module9_v4.mp3",
+  "nlp": "/Users/gaoyuan/Projects/r2-video/verismart-module9/module9_draft_v4_nlp.json",
+  "nlp_timings": [
+    {
+      "index": 0,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 0.0,
+      "end": 28.1,
+      "duration": 28.1,
+      "text": "回归测试跑完了。你看着覆盖率报告上终于全绿的百分之百，长舒一口气，自信地在签核文档上签了字。三个月后，流片回来的芯片在客户现场爆了一个边界场景的缺陷。你回头去查代码——这个场景在你的验证计划里根本就没有被定义过。百分之百覆盖率，覆盖的是你定义的范围。你没定义的部分，报告上连红色空洞都不会有——它是完全不可见的。"
+    },
+    {
+      "index": 1,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 28.1,
+      "end": 61.2,
+      "duration": 33.1,
+      "text": "你心想，下次我把覆盖率建模做得更细。于是你花了三周时间，把A X I burst length从1到256全部建模，跑完之后每个bin都亮了绿灯，你觉得这块可以收工了。直到Code 审查的时候，同事问了一句——\"这个覆盖组对应的检查器在哪？\"你愣住了。没有检查器。你花了大量算力跑测试，只是记录了traffic经过——数了一下经过的车辆，但根本没检查车里装的货对不对。那个百分之百的数字，只是心理安慰。"
+    },
+    {
+      "index": 2,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 61.2,
+      "end": 88.3,
+      "duration": 27.1,
+      "text": "痛定思痛，你决定从V Plan开始正经做。花了两周写了一份200页的验证计划，连每个覆盖点的bin值都写进去了。评审会上老板翻了两页就问——\"D U T到底要验什么？能拿出什么可演示的结果？\"你满篇写的是智能体怎么实现、Score board怎么比对、覆盖率怎么采样。老板想看的是D U T功能验到了什么程度。你写的和他要的，根本不在一个频道。"
+    },
+    {
+      "index": 3,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 88.3,
+      "end": 117.4,
+      "duration": 29.1,
+      "text": "更要命的是进度汇报。你在周会上指着S形的覆盖率曲线解释——\"前期慢是正常的，后期会加速\"。老板看着毫无起色的进度条说了一句——\"你上次也是这么说的。\"你无力反驳，因为你自己也不确定什么时候能收敛。覆盖率从百分之八十到百分之九十花了一周，从百分之九十到百分之九十五又花了一周，从百分之九十五到百分之百可能要花三周——而管理层只看见进度越来越慢。"
+    },
+    {
+      "index": 4,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 117.4,
+      "end": 129.5,
+      "duration": 12.1,
+      "text": "四个场景，四种死法。百分之百覆盖率是假的。有覆盖率没检查器是空的。V Plan写成了测试平台说明书没人读。S形曲线让管理层失去信任。"
+    },
+    {
+      "index": 5,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 129.5,
+      "end": 140.6,
+      "duration": 11.1,
+      "text": "怎么让V Plan真正管住验证的方向和质量？这一集解决这个问题。从心智模型到Feature分析到覆盖率建模到进度管理——\"规矩怎么定\"的完整方法论。"
+    },
+    {
+      "index": 6,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 140.6,
+      "end": 145.7,
+      "duration": 5.1,
+      "text": "为什么你的验证计划没人读？原因很简单——你用了错误的心智模型。"
+    },
+    {
+      "index": 7,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 145.7,
+      "end": 163.9,
+      "duration": 18.2,
+      "text": "测试平台环境虫构之后，你翻开自己写的V Plan，发现里面描述的智能体实现、Score board比对、覆盖率采样方式全变了——整份计划要重新写一遍。因为测试平台是整个验证环境中最频繁变化的部分，按测试平台实现写的计划注定\"维护不动\"。"
+    },
+    {
+      "index": 8,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 163.9,
+      "end": 171.0,
+      "duration": 7.1,
+      "text": "行业标杆验证方法论的核心洞察——V Plan应该用D U T心智模型，不是Test bench心智模型。"
+    },
+    {
+      "index": 9,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 171.0,
+      "end": 192.0,
+      "duration": 21.0,
+      "text": "什么叫Test bench心智模型？就是在计划里写\"智能体怎么实现\"、\"Score board怎么比对\"、\"覆盖率怎么采样\"。这是HOW——怎么验。什么叫D U T心智模型？就是在计划里写\"D U T应该能处理什么事务\"、\"在什么场景下应该有什么行为\"、\"哪些情况是非法的\"。这是WHAT和WHY——验什么、为什么验。"
+    },
+    {
+      "index": 10,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 192.0,
+      "end": 209.1,
+      "duration": 17.1,
+      "text": "具体对比。按测试平台组件分Feature——避免，应该按D U T功能分Feature。写太多实现细节——避免，应该做高层决策。列测试名单——避免，应该描述场景。指定具体覆盖率 bin值——避免，应该定义bin的类型和数量。"
+    },
+    {
+      "index": 11,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 209.1,
+      "end": 222.9,
+      "duration": 13.8,
+      "text": "一句话总结：V Plan的每一条都应该回答\"D U T应该做什么\"，而不是\"测试平台怎么验它\"。D U T功能是相对稳定的，测试平台实现是经常变的——这就是为什么按HOW写的计划\"维护不动\"。"
+    },
+    {
+      "index": 12,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 222.9,
+      "end": 233.1,
+      "duration": 10.2,
+      "text": "V Plan管战略，Implementation Plan管战术。怎么实现的细节可以单独写一份文档，但不是V Plan的核心。V Plan里只放WHAT和WHY。"
+    },
+    {
+      "index": 13,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 233.1,
+      "end": 241.4,
+      "duration": 8.3,
+      "text": "在动手写Feature之前，先写一句话。一句话定义你这次验证要干什么、不干什么。 结构化验证使命声明模板"
+    },
+    {
+      "index": 14,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 241.4,
+      "end": 253.5,
+      "duration": 12.1,
+      "text": "模板是这样的：我们的验证目标是，证明某芯片能够正确执行某核心功能列表，在某目标应用场景下满足某质量指标，不验证某明确排除项。"
+    },
+    {
+      "index": 15,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 253.5,
+      "end": 275.9,
+      "duration": 22.4,
+      "text": "举个R two实测的例子。G P I O控制器的使命声明：我们的验证目标是，证明G P I O控制器能够正确执行32位G P I O的读写、中断生成和方向控制，在目标S O C S O C的A P B总线环境下满足百分之百功能覆盖率，不验证P A D级电气特性和跨电压域时序。"
+    },
+    {
+      "index": 16,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 275.9,
+      "end": 302.4,
+      "duration": 26.5,
+      "text": "这句话做了三件极其关键的事。第一，明确了验证范围——32位G P I O读写、中断、方向控制。第二，明确了验证环境——A P B总线环境。第三，明确了排除项——P A D电气特性、跨电压域时序不验。有了排除项，后面就不会有人问\"为什么覆盖率没到百分之百\"——因为有些东西从一开始就不在范围内。有了排除项没人问为什么不是百分之百"
+    },
+    {
+      "index": 17,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 302.4,
+      "end": 310.3,
+      "duration": 7.9,
+      "text": "这个使命声明要贴在V Plan第一页。所有后续的Feature分析、场景分类、覆盖率建模都不能超出这个范围。"
+    },
+    {
+      "index": 18,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 310.3,
+      "end": 318.6,
+      "duration": 8.3,
+      "text": "有了使命声明定范围，接下来要理解一件关键的事：同一份规格文档的寄存器表，会被投影成三种完全不同的产物。"
+    },
+    {
+      "index": 19,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 318.6,
+      "end": 329.8,
+      "duration": 11.2,
+      "text": "拿G P I O控制器的ctrl、status、发送缓冲区寄存器来说。第一种投影是R T L——Verilog的always block，用case语句做地址解码。这是硬件怎么实现。"
+    },
+    {
+      "index": 20,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 329.8,
+      "end": 339.7,
+      "duration": 9.9,
+      "text": "第二种投影是Q O M（Q E M U Object Model）——C的struct加回调函数，用switch做地址分发。这是软件模型怎么模拟硬件。"
+    },
+    {
+      "index": 21,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 339.7,
+      "end": 358.6,
+      "duration": 18.9,
+      "text": "第三种投影是DOM（Document Object Model）——J S O N配置文件，定义测试参数和覆盖率配置。这是测试怎么配。DOM在R two Veri Smart里作为U V M环境的配置媒介。R two的工具链分别生成这三种投影——具体怎么生成下集M8会展开。"
+    },
+    {
+      "index": 22,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 358.6,
+      "end": 385.2,
+      "duration": 26.6,
+      "text": "三者的关系用一张表说清楚。R T L的表达形式是Verilog always block，描述的是硬件行为，数据源是规格文档寄存器表。Q O M的表达形式是C struct加回调，描述的是硬件的软件模型，数据源还是同一份规格文档寄存器表。DOM的表达形式是J S O N配置文件，描述的是测试参数，数据源依然是同一份规格文档寄存器表。"
+    },
+    {
+      "index": 23,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 385.2,
+      "end": 406.0,
+      "duration": 20.8,
+      "text": "同一份规格文档，三种投影。DOM是测试怎么配，Q O M是设备怎么模拟，R T L是硬件怎么实现。对V Plan来说，关键是理解三种投影各自回答不同的问题——V Plan定义的Feature最终要在R T L投影上验证正确性，用DOM投影配置测试参数，用Q O M投影做独立参照。"
+    },
+    {
+      "index": 24,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 406.0,
+      "end": 429.1,
+      "duration": 23.1,
+      "text": "理解三种投影为什么重要？因为它直接决定了你的V Plan该关注什么。V Plan关注的是D U T行为——也就是R T L投影要实现的东西。但你的测试配置——DOM投影——必须能够精确地激活你想验证的行为。而Q E M U的Q O M投影给你提供了一个独立参照系。三种投影互相校验，才是完整的验证闭环。"
+    },
+    {
+      "index": 25,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 429.1,
+      "end": 435.4,
+      "duration": 6.3,
+      "text": "有了使命声明和三种投影的认知，接下来具体怎么拆Feature。四步法，一步步走。"
+    },
+    {
+      "index": 26,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 435.4,
+      "end": 445.2,
+      "duration": 9.8,
+      "text": "第一步，Feature Isolation——隔离聚焦。不要试图一次性分析整个D U T。先隔离，聚焦到D U T的一个部分。"
+    },
+    {
+      "index": 27,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 445.2,
+      "end": 473.5,
+      "duration": 28.3,
+      "text": "六个隔离维度，按优先级排列。第一，按设计规格书——规格文档的每个章节通常对应一个功能域。第二，按R T L模块——每个模块是一个自然的隔离单元。第三，按大规模特性——有些特性跨多个模块，比如D M A通道、中断系统，需要单独拎出来。第四，按用例场景。第五，按风险等级。第六，按特殊案例——边界条件、异常场景。"
+    },
+    {
+      "index": 28,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 473.5,
+      "end": 493.8,
+      "duration": 20.3,
+      "text": "用G P I O控制器来演示。80页规格文档，R two的规格文档X工具自动提取出107个功能点。人工审查后按功能域隔离——读写控制是一个单元，中断生成是一个单元，方向控制是一个单元。每个单元边界清晰，可以被独立覆盖和验证。"
+    },
+    {
+      "index": 29,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 493.8,
+      "end": 514.2,
+      "duration": 20.4,
+      "text": "反例是什么样？你对着规格文档里的寄存器列表一行行写测试，把每个bit都翻转了一遍。跑完了所有寄存器读写测试后，一到系统联调，芯片在最基础的\"上电→配置→传数据\"的真实业务流上直接跑飞。你测的全是孤立的死节点，唯独漏了芯片真实运作的逻辑。"
+    },
+    {
+      "index": 30,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 514.2,
+      "end": 523.3,
+      "duration": 9.1,
+      "text": "第二步，D I T L——Day In The Life。站在芯片的用户视角，描述芯片在一天的实际工作中会经历什么。"
+    },
+    {
+      "index": 31,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 523.3,
+      "end": 548.9,
+      "duration": 25.6,
+      "text": "G P I O控制器的D I T L是这样的。上电复位——所有寄存器归位。配置方向寄存器——哪些pin做输入、哪些做输出。写输出寄存器——驱动外部设备。读输入寄存器——采集外部信号。外部信号变化触发中断——C P U响应。清除中断状态——为下一次中断做准备。关机下电——所有输出归零。"
+    },
+    {
+      "index": 32,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 548.9,
+      "end": 565.3,
+      "duration": 16.4,
+      "text": "为什么要画这个流程？因为用户不是按寄存器用芯片的。用户是按\"上电→配置→传数据→处理中断→关机\"这样的流程用芯片的。D I T L捕捉的就是这个流程。很多规格文档按寄存器列表组织，但寄存器列表不是用户的使用方式。"
+    },
+    {
+      "index": 33,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 565.3,
+      "end": 575.5,
+      "duration": 10.2,
+      "text": "把D I T L压缩成10到15条迷你D I T L要点。每条要点是一个可验证的行为描述。这10到15条就是你验证的骨架。"
+    },
+    {
+      "index": 34,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 575.5,
+      "end": 580.2,
+      "duration": 4.7,
+      "text": "第三步，Scenario Classification——每个Feature的场景分四类。"
+    },
+    {
+      "index": 35,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 580.2,
+      "end": 599.5,
+      "duration": 19.3,
+      "text": "第一类，Isolated Features——独立特性。逐个分析关键行为，适合增量进度、调试和sanity回归（sanity就是最基本的冒烟测试）。G P I O控制器的独立特性包括：单个pin的输出驱动、单个pin的输入读取、单个中断源的触发和清除。"
+    },
+    {
+      "index": 36,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 599.5,
+      "end": 620.8,
+      "duration": 21.3,
+      "text": "第二类，Mixed Features——混合特性。独立特性的关键组合，往往对应实际的use case。G P I O控制器的混合特性：同时配置多个pin的方向然后读写、中断触发同时发生读操作、方向切换过程中的数据完整性。组合爆炸是真实的——不可能验所有组合，必须选最有价值的。"
+    },
+    {
+      "index": 37,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 620.8,
+      "end": 640.0,
+      "duration": 19.2,
+      "text": "第三类，Legal Exceptions——合法异常。规格文档明确说\"支持\"的异常情况。G P I O控制器的合法异常：软复位后寄存器恢复、在中断处理过程中重新配置方向。关键词是\"supported by design\"——规格文档必须描述这些情况下D U T的行为。"
+    },
+    {
+      "index": 38,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 640.0,
+      "end": 660.5,
+      "duration": 20.5,
+      "text": "第四类，Illegal Scenarios——非法场景。规格文档明确说\"不支持\"的情况。G P I O控制器的非法场景：向只读状态寄存器写入、访问未定义的地址空间。D U T要么忽略它，要么通过复位恢复。你故意给非法输入，看D U T是不是真的能优雅降级。"
+    },
+    {
+      "index": 39,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 660.5,
+      "end": 666.6,
+      "duration": 6.1,
+      "text": "第四步，In规格文档t Weaknesses——用三把刀审视每个Feature。"
+    },
+    {
+      "index": 40,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 666.6,
+      "end": 680.5,
+      "duration": 13.9,
+      "text": "第一把刀，Correctness——正确性。技术上可行吗？D U T实现了这个选项吗？行为被完整规定了吗？我们关心吗？如果任何一个答案是\"不\"，这条Feature应该移除或降低优先级。"
+    },
+    {
+      "index": 41,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 680.5,
+      "end": 694.3,
+      "duration": 13.8,
+      "text": "第二把刀，Precision——精确性。具体在验什么？值范围、事件时序、吞吐量、访问权限——这些都必须明确。Feature之间的依赖关系是什么？让Feature失效的条件是什么？"
+    },
+    {
+      "index": 42,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 694.3,
+      "end": 715.3,
+      "duration": 21.0,
+      "text": "第三把刀，Completeness——完整性。这是最难也最关键的一把刀。三种分析方法。变量影响分析——列出所有影响D U T的变量，分析每个变量怎么影响D U T。场景期望分析——对每个场景，明确期望什么、不期望什么。特性交叉分析——分类所有特性组合和唯一结果。"
+    },
+    {
+      "index": 43,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 715.3,
+      "end": 730.0,
+      "duration": 14.7,
+      "text": "这里有一句话要刻在墙上：模型缺失的部分不会显示为覆盖率空洞——它完全不可见。你看到百分之百覆盖率，不代表验完了，只代表你定义的范围内验完了。范围本身对不对，就靠这四步法来保证。"
+    },
+    {
+      "index": 44,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 730.0,
+      "end": 733.0,
+      "duration": 3.0,
+      "text": "四步法说起来抽象，看R two的实测数据。"
+    },
+    {
+      "index": 45,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 733.0,
+      "end": 751.5,
+      "duration": 18.5,
+      "text": "G P I O控制器：80页规格文档，R two的规格文档X工具15分钟自动提取出107个功能点，token成本5美元。传统手动提取至少3天。107个F P覆盖了G P I O读写、中断、方向控制、复位行为的所有关键场景。"
+    },
+    {
+      "index": 46,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 751.5,
+      "end": 773.0,
+      "duration": 21.5,
+      "text": "A P B桥：50页规格文档，规格文档X提取出70个功能点。其中功能点55——读后缓冲写场景——在后续T D D验证中捕获了一个真实的总线死锁缺陷。这个缺陷正是四步法中Mixed Feature类型的典型案例——读和缓冲写的组合触发了隐藏的状态机缺陷。"
+    },
+    {
+      "index": 47,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 773.0,
+      "end": 794.8,
+      "duration": 21.8,
+      "text": "规格文档X提取的F P不是最终版——必须经过人审。为什么？因为F P定义了\"什么是正确的行为\"。如果F P本身是错的，后面的覆盖率模型会忠实地度量一个错误的目标——百分之百覆盖率，覆盖的是错误的定义。这比覆盖率不够更危险，因为报告上不会有任何红色警告。"
+    },
+    {
+      "index": 48,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 794.8,
+      "end": 814.9,
+      "duration": 20.1,
+      "text": "所以Feature分析四步法的最后有一个Checkpoint：人审确认D I T L描述准确、场景分类完整、弱点检查覆盖三个维度。这个Checkpoint不能省、不能让A I替代。R two Veri Smart里规格文档X自动提取是效率工具，但人审是质量门控。"
+    },
+    {
+      "index": 49,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 814.9,
+      "end": 818.6,
+      "duration": 3.7,
+      "text": "Feature分析完了，接下来建模覆盖率。三个准则。"
+    },
+    {
+      "index": 50,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 818.6,
+      "end": 829.3,
+      "duration": 10.7,
+      "text": "第一，Accurate——准确。触发事件和采样必须精确捕获期望的状态和转换。采样不准等于数据造假——你以为验了，其实没验。"
+    },
+    {
+      "index": 51,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 829.3,
+      "end": 853.2,
+      "duration": 23.9,
+      "text": "第二，Representative——代表性。不可能覆盖所有场景，必须基于项目商业目标做ruthless prioritization（残酷的优先级排序）。怎么排？用Risk和Value两个维度画一个2乘2矩阵。High Risk加High Value——先做。Low Risk加High Value——其次。High Risk加Low Value——避免。Low Risk加Low Value——最后做。"
+    },
+    {
+      "index": 52,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 853.2,
+      "end": 866.5,
+      "duration": 13.3,
+      "text": "八二法则——早期百分之二十的工作量带来百分之八十的收益。过早追求完美模型是false economy（虚假经济）。不应因低优先级项实现简单而先于高优先级项处理。"
+    },
+    {
+      "index": 53,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 866.5,
+      "end": 875.5,
+      "duration": 9.0,
+      "text": "第三，Complete——完整。在选定范围内，特征列表必须collectively exhaustive——合起来完整覆盖目标空间。"
+    },
+    {
+      "index": 54,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 875.5,
+      "end": 883.1,
+      "duration": 7.6,
+      "text": "怎么保证完整？用M E C E分解法。M E C E是管理咨询界发明的分析框架，在芯片验证里完全适用。"
+    },
+    {
+      "index": 55,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 883.1,
+      "end": 892.7,
+      "duration": 9.6,
+      "text": "Mutually Exclusive——互斥。Feature分解后彼此独立，不重复计算。一个事件不能同时属于两个bin，否则覆盖率虚高。"
+    },
+    {
+      "index": 56,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 892.7,
+      "end": 907.7,
+      "duration": 15.0,
+      "text": "Collectively Exhaustive——完全穷尽。所有定义合起来必须完整覆盖目标空间。注意，目标不是穷尽整个功能空间——那通常不可能。目标是在你选定的优先级范围内，覆盖率模型是完整的。"
+    },
+    {
+      "index": 57,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 907.7,
+      "end": 921.3,
+      "duration": 13.6,
+      "text": "M E C E的关键价值：帮你发现盲区。如果你的分解不是collectively exhaustive的，缺失的部分不会显示为覆盖率空洞——它根本不存在于你的模型里，你永远不知道你漏了什么。"
+    },
+    {
+      "index": 58,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 921.3,
+      "end": 931.1,
+      "duration": 9.8,
+      "text": "覆盖率建模最硬的一条铁律：每个功能覆盖率片段必须关联一个对应的检查。仅收集统计数据而无对应正确性检查是无用的。"
+    },
+    {
+      "index": 59,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 931.1,
+      "end": 949.4,
+      "duration": 18.3,
+      "text": "回到A段的A X I burst length例子。你的覆盖组说\"A X I burst length覆盖了1到256\"，但如果你没有检查器在验证\"burst length为256时数据是否正确传输\"，那这个覆盖率数字毫无意义——你只是看到了traffic经过，不知道traffic是否正确处理。"
+    },
+    {
+      "index": 60,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 949.4,
+      "end": 964.4,
+      "duration": 15.0,
+      "text": "典型失误有三种。第一，由不了解检查器能力的人独立开发覆盖率。第二，继承V I P覆盖率但无法映射到项目相关的检查。第三，检查器和覆盖率分属不同人或不同团队，互不知情。"
+    },
+    {
+      "index": 61,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 964.4,
+      "end": 983.8,
+      "duration": 19.4,
+      "text": "解法：V Plan的每个功能章节必须同时包含两列——覆盖率定义和对应的检查器。缺任何一列都不算完成。R two Veri Smart的流程化环境里，脚本引擎生成骨架时就自动为每个覆盖组预留检查器接口——从结构上防止\"有覆盖没检查\"的问题。"
+    },
+    {
+      "index": 62,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 983.8,
+      "end": 997.0,
+      "duration": 13.2,
+      "text": "传统做法是用System Verilog硬编码定向测试——每新增一个测试场景，就要改代码、重新编译。编译一次几分钟到十几分钟，24个I P的定向测试加起来，光编译时间就能耗掉一天。"
+    },
+    {
+      "index": 63,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 997.0,
+      "end": 1020.8,
+      "duration": 23.8,
+      "text": "嘉琪的解法是DOM配置驱动。DOM把业务流程和配置完全分离。case只描述业务流程——\"先配置、再传数据、再检查中断\"。配置参数放在J S O N文件里——\"ctrl寄存器值0x01，burst长度16\"。遇到定向测试，只需要改配置文件，不需要改一行流程代码，不需要重新编译。"
+    },
+    {
+      "index": 64,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1020.8,
+      "end": 1040.7,
+      "duration": 19.9,
+      "text": "这跟B.3讲的三种投影直接对应。DOM投影就是测试参数的J S O N配置。case描述的是业务流程，DOM配置的是具体参数值。两者组合就是一个完整的测试场景。你想覆盖10种配置？写10个J S O N文件，代码一行不改。"
+    },
+    {
+      "index": 65,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1040.7,
+      "end": 1067.9,
+      "duration": 27.2,
+      "text": "更关键的是，DOM可以作为定向功能覆盖率配置的导入导出媒介。在定向功能覆盖率生成阶段，R two Veri Smart分析覆盖率空洞，找出哪些bin还没被命中，自动生成对应的DOM配置文件。执行阶段把事件流（业务流程）和配置文件组合，精准命中空洞。不是盲目跑随机，是分析覆盖率空洞后定向补洞。"
+    },
+    {
+      "index": 66,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1067.9,
+      "end": 1070.9,
+      "duration": 3.0,
+      "text": "覆盖率不是一个数字，是多个维度的组合。"
+    },
+    {
+      "index": 67,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1070.9,
+      "end": 1079.7,
+      "duration": 8.8,
+      "text": "功能覆盖率——从功能点直接映射到cover group。107个F P，每个F P至少一个cover group。这是覆盖率的主体。"
+    },
+    {
+      "index": 68,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1079.7,
+      "end": 1094.5,
+      "duration": 14.8,
+      "text": "交叉覆盖率——Feature组合的笛卡尔积。不是所有组合都要覆盖——用Risk Value矩阵筛选高价值组合。比如G P I O的\"方向配置\"和\"中断触发\"的交叉——在方向切换过程中触发中断，D U T行为是否正确？"
+    },
+    {
+      "index": 69,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1094.5,
+      "end": 1112.8,
+      "duration": 18.3,
+      "text": "翻转覆盖率——寄存器位的翻转验证。但要注意A段讲的教训：寄存器覆盖本质近似toggle 覆盖率。控制寄存器所有值被覆盖，不等于对应功能被激活并验证。翻转覆盖率只是辅助指标，不能替代功能覆盖率。"
+    },
+    {
+      "index": 70,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1112.8,
+      "end": 1142.8,
+      "duration": 30.0,
+      "text": "R two的G P I O控制器实测数据——覆盖率四阶段进化。第一阶段，骨架生成后自动覆盖率百分之四十四——这是脚本引擎贡献的基线。第二阶段，A I注入基础Sequence后百分之六十三——A I把独立特性的常规场景跑了一遍。第三阶段，定向补洞加交叉覆盖后百分之八十五——DOM配置驱动定向测试精准命中空洞。第四阶段，持续P C I变量微循环迭代接近目标——每轮分析空洞、补充约束、再跑回归。"
+    },
+    {
+      "index": 71,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1142.8,
+      "end": 1159.5,
+      "duration": 16.7,
+      "text": "从百分之四十四到百分之八十五，不是靠换更强的模型——是靠方法论。覆盖率建模的三准则保证方向对，M E C E保证不遗漏，检查器铁律保证不造假，DOM配置驱动保证补洞效率，多维构建保证维度完整。"
+    },
+    {
+      "index": 72,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1159.5,
+      "end": 1168.8,
+      "duration": 9.3,
+      "text": "覆盖率模型建好了，还有一个陷阱——假阳性。覆盖率报告说百分之百，但实际上没验到位。五大假阳性来源。"
+    },
+    {
+      "index": 73,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1168.8,
+      "end": 1186.4,
+      "duration": 17.6,
+      "text": "第一，贪婪采样。你为了让覆盖率数据好看，把采样事件设成每个时钟周期触发。结果功能操作还没跑完，检查器还在处理数据，但覆盖组已经错误地记录了\"已覆盖\"。bin递增的那一刻，功能逻辑连一半都没跑完。"
+    },
+    {
+      "index": 74,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1186.4,
+      "end": 1206.1,
+      "duration": 19.7,
+      "text": "第二，条件融合。(A or B) implies C作为单一值采样。如果只覆盖了A implies C但从未覆盖B implies C，覆盖率显示百分之百但B的路径从未验证。那个致命的缺陷就藏在从未触发的B分支里，却被满绿的报告完美掩盖。"
+    },
+    {
+      "index": 75,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1206.1,
+      "end": 1226.1,
+      "duration": 20.0,
+      "text": "第三，寄存器遍历的空欢喜。所有控制寄存器的值都遍历到了，但仅仅是写入了寄存器值，并不等于对应的功能逻辑真的被激活并验证了。寄存器覆盖本质近似toggle 覆盖率——那些全绿的覆盖率条，可能对应着一堆从未被激活的死逻辑。"
+    },
+    {
+      "index": 76,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1226.1,
+      "end": 1239.7,
+      "duration": 13.6,
+      "text": "第四，抽象层混淆。将不同层级的关注点放在同一个覆盖组——比如低功耗状态和A X I READ操作混在一起。不同抽象层的事件采样节奏不同，强行混合会制造虚假覆盖。"
+    },
+    {
+      "index": 77,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1239.7,
+      "end": 1252.3,
+      "duration": 12.6,
+      "text": "第五，脱离上下文采样。路径切换时的操作脱离系统行为单独采样，创造虚假覆盖。一个操作在隔离环境里被覆盖了，不代表在真实系统上下文里行为是正确的。"
+    },
+    {
+      "index": 78,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1252.3,
+      "end": 1255.5,
+      "duration": 3.2,
+      "text": "怎么防？五条核心审查准则。"
+    },
+    {
+      "index": 79,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1255.5,
+      "end": 1270.9,
+      "duration": 15.4,
+      "text": "第一，验证计划映射。覆盖率审查必须与R T L和测试平台代码审查同等重要，作为签核标准。已实现但不属于验证计划的覆盖率，必须确认不被纳入的正当理由。"
+    },
+    {
+      "index": 80,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1270.9,
+      "end": 1279.7,
+      "duration": 8.8,
+      "text": "第二，覆盖率加检查器配对。D.3讲的铁律在审查时再验证一遍——每个覆盖率片段是否都有对应的检查？"
+    },
+    {
+      "index": 81,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1279.7,
+      "end": 1288.4,
+      "duration": 8.7,
+      "text": "第三，采样与分箱质量。审查采样时机防止贪婪采样。审查bin的大小——既能捕捉边角场景又不过于细碎。"
+    },
+    {
+      "index": 82,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1288.4,
+      "end": 1302.6,
+      "duration": 14.2,
+      "text": "第四，对齐业务目标。覆盖率必须与功能规格和商业目标对齐。重点关注两类模块：相比前代版本新代码占比最高的模块，和对终端客户最为关键的模块。"
+    },
+    {
+      "index": 83,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1302.6,
+      "end": 1318.4,
+      "duration": 15.8,
+      "text": "第五，跨职能参与。验证计划和覆盖率实现是A S I C开发的关键签核标准，软件、硬件、系统所有利益相关方都应参与审查。这不是验证团队自己的事——是整个项目的事。"
+    },
+    {
+      "index": 84,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1318.4,
+      "end": 1336.1,
+      "duration": 17.7,
+      "text": "R two Veri Smart里，自动化流水线能抓住一部分格式层面的假阳性——比如采样事件是否绑定了正确的触发条件。但深层的假阳性——比如条件融合和抽象层混淆——仍然需要人审。覆盖率的真实性，是人审时间里最值得花的部分。"
+    },
+    {
+      "index": 85,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1336.1,
+      "end": 1345.5,
+      "duration": 9.4,
+      "text": "方法论讲完了——怎么定范围、怎么拆Feature、怎么建模覆盖率、怎么防假阳性。但还有一个致命问题：怎么让外部看得懂你的进度。"
+    },
+    {
+      "index": 86,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1345.5,
+      "end": 1356.3,
+      "duration": 10.8,
+      "text": "你在周会上汇报\"智能体 coding 百分之八十 done\"。百分之八十是80个什么？设计一变，\"已完成的百分之八十\"现在可能只值百分之六十了，而且你算不出来。"
+    },
+    {
+      "index": 87,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1356.3,
+      "end": 1362.7,
+      "duration": 6.4,
+      "text": "解法是把验证工作组织成Deliverable（可交付物）。每个Deliverable包含三个要素。"
+    },
+    {
+      "index": 88,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1362.7,
+      "end": 1382.6,
+      "duration": 19.9,
+      "text": "第一，Definition of Done——完成定义。用Action（动作）描述，不用State（状态）。好的例子：发送单个数据包通过D U T、检查所有寄存器复位值、加密一个A E S传输。坏的例子：智能体 coding 百分之八十 done。前者可演示可验证，后者是百分比幻觉。"
+    },
+    {
+      "index": 89,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1382.6,
+      "end": 1392.2,
+      "duration": 9.6,
+      "text": "第二，Work List——工作清单。完成这个Deliverable需要的所有任务。关键原则：移除对该Deliverable非必需的所有工作。"
+    },
+    {
+      "index": 90,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1392.2,
+      "end": 1401.1,
+      "duration": 8.9,
+      "text": "第三，Effort Estimate——工作量估算。按具体工作项估算工时，汇总所有Deliverable形成初步进度。"
+    },
+    {
+      "index": 91,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1401.1,
+      "end": 1405.8,
+      "duration": 4.7,
+      "text": "交付物定义好了，怎么排序？用Linear Progress——线性进度。"
+    },
+    {
+      "index": 92,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1405.8,
+      "end": 1422.7,
+      "duration": 16.9,
+      "text": "传统覆盖率曲线是S形——前期缓慢上升、中期快速爬坡、后期长尾收敛。管理层在前半段看到进度缓慢会恐慌，在后半段看到收敛变慢更恐慌。验证团队说\"再等等就好了\"，管理层说\"你上次也是这么说的\"。"
+    },
+    {
+      "index": 93,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1422.7,
+      "end": 1438.9,
+      "duration": 16.2,
+      "text": "四个原则把S形变成直线。第一，将Deliverable调整为均匀大小。第二，设定均匀间隔的交付日期。第三，团队每次只聚焦一个Deliverable协同工作。第四，后面的Deliverable build在前面的之上。"
+    },
+    {
+      "index": 94,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1438.9,
+      "end": 1452.2,
+      "duration": 13.3,
+      "text": "排序策略分两种。Depth first——逐个完成主要Feature，适合R T L按Feature交付的情况。Breadth first——先做简单实现再逐步添加Feature，适合多设计师并行工作的情况。"
+    },
+    {
+      "index": 95,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1452.2,
+      "end": 1467.8,
+      "duration": 15.6,
+      "text": "线性进度的价值：进度曲线从S形变成直线。所有团队都知道什么完成了什么没完成。固定节奏产出，可预测。对比计划和实际就知道提前还是滞后。管理层不再恐慌，因为进度是透明的。"
+    },
+    {
+      "index": 96,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1467.8,
+      "end": 1471.4,
+      "duration": 3.6,
+      "text": "每个阶段怎么判断\"够了\"？五要素验收法。"
+    },
+    {
+      "index": 97,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1471.4,
+      "end": 1495.6,
+      "duration": 24.2,
+      "text": "第一，Case完成状态——所有计划内的测试是否都跑完了。第二，代码覆盖率——可选指标，不是必须百分之百但要有合理解释。第三，功能覆盖率——必须达标，这是核心指标。第四，事件流覆盖率——Case的事件序列是否覆盖了D I T L定义的关键路径。第五，断言覆盖率——关键断言是否都被触发并验证了。"
+    },
+    {
+      "index": 98,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1495.6,
+      "end": 1507.3,
+      "duration": 11.7,
+      "text": "五要素全部达标才能宣布阶段关闭。功能覆盖率必须达到，代码覆盖率为可选参考。这个优先级很重要——不要让代码覆盖率绑架你的签核决策。"
+    },
+    {
+      "index": 99,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1507.3,
+      "end": 1510.9,
+      "duration": 3.6,
+      "text": "这套调度方法论怎么跟R two Veri Smart对接？"
+    },
+    {
+      "index": 100,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1510.9,
+      "end": 1538.0,
+      "duration": 27.1,
+      "text": "V Plan的四大Checkpoint直接对应R two的流程节点。Checkpoint 1需求确认——对应H J S O N锁定和规格文档X提取F P后的人审。Checkpoint 2场景评审——对应Feature分析四步法完成后的评审。Checkpoint 3架构确认——对应骨架生成后A I注入前的检查。Checkpoint 4计划定稿——对应签核回归前的最终审查。"
+    },
+    {
+      "index": 101,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1538.0,
+      "end": 1557.4,
+      "duration": 19.4,
+      "text": "层乘以阶段矩阵是V Plan调度的天然框架。纵轴是验证层次——从寄存器级到系统级，横轴是项目阶段——从冒烟到签核。矩阵的每个单元格对应一个Deliverable，每个Deliverable有明确的完成定义和验收标准。这张矩阵就是Linear Progress的可视化载体。"
+    },
+    {
+      "index": 102,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1557.4,
+      "end": 1573.7,
+      "duration": 16.3,
+      "text": "每个I P就是一个Deliverable。24个I P排成Linear Progress——L one外设批量化一天搞定建立信心，L two串行深挖每天两个建立节奏，L three重点投入每周一个保证质量。进度是线性的、可预测的、可汇报的。"
+    },
+    {
+      "index": 103,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1573.7,
+      "end": 1576.0,
+      "duration": 2.3,
+      "text": "回到开篇段的三个痛点。"
+    },
+    {
+      "index": 104,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1576.0,
+      "end": 1592.4,
+      "duration": 16.4,
+      "text": "百分之百覆盖率是假的——因为覆盖率模型本身有盲区。解法：M E C E分解保证不遗漏，覆盖率必配检查器保证不造假，五大假阳性审查保证不自欺。 模型缺失部分不会显示为覆盖率空洞"
+    },
+    {
+      "index": 105,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1592.4,
+      "end": 1611.7,
+      "duration": 19.3,
+      "text": "V Plan没人读——因为用了测试平台心智模型写成了实现文档。解法：D U T心智模型只写WHAT和WHY，使命声明一句话定范围，三种投影（R T L/Q O M/DOM）理解同一份规格文档的不同切面。V Plan每一条回答D U T应该做什么"
+    },
+    {
+      "index": 106,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1611.7,
+      "end": 1631.8,
+      "duration": 20.1,
+      "text": "S形曲线让管理层失去信任——因为用百分比幻觉汇报进度。解法：交付物三要素把模糊的百分比变成可演示的动作，Linear Progress把S形变成直线，阶段关闭五要素给签核一个明确的标准。 前者可演示可验证后者是百分比幻觉"
+    },
+    {
+      "index": 107,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1631.8,
+      "end": 1653.6,
+      "duration": 21.8,
+      "text": "三个模块讲的是同一件事的三个层面。模块 9三权分立解决\"谁做什么\"——人定规矩、A I执行、自动化裁判。模块 7也就是这一集解决\"规矩怎么定\"——Feature分析、覆盖率建模、调度签核。模块 14解决\"定好规矩后怎么跑\"——48小时作战地图、三级引擎、五维复用。"
+    },
+    {
+      "index": 108,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1653.6,
+      "end": 1677.4,
+      "duration": 23.8,
+      "text": "R two的实测数据串起来。G P I O控制器：80页规格文档，规格文档X 15分钟提取107个功能点，token成本5美元。覆盖率从百分之四十四到百分之六十三到百分之八十五四阶段进化。A P B桥：70个F P，功能点55捕获真实总线死锁缺陷。这些不是理论推算——是已经验证过的实际数字。"
+    },
+    {
+      "index": 109,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1677.4,
+      "end": 1698.0,
+      "duration": 20.6,
+      "text": "这一集的方法论在R two里怎么落地？使命声明定范围对应H J S O N锁定后的第一个Checkpoint。四步法拆Feature对应规格文档X自动提取加人审。DOM配置驱动对应定向测试零代码改动。阶段关闭五要素对应签核回归的验收标准。每一步都有工具支撑，每一步都有人审把关。"
+    },
+    {
+      "index": 110,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1698.0,
+      "end": 1715.1,
+      "duration": 17.1,
+      "text": "这一集回答的核心问题是：人那百分之十的时间到底花在哪？答案是四个动作——写使命声明定范围、用四步法拆Feature、审覆盖率模型防假阳性、看五要素判签核。这四个动作就是V Plan方法论的全部。"
+    },
+    {
+      "index": 111,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1715.1,
+      "end": 1723.4,
+      "duration": 8.3,
+      "text": "下一集我们讲项目实战——从规格文档到验证闭环，48小时作战地图怎么把这一集的方法论在真实I P上跑起来。"
+    }
+  ],
+  "nlp_count": 112,
+  "tts_total": 1723.4,
+  "mp3_duration": 1730.36025,
+  "failed_segments": 0
+}

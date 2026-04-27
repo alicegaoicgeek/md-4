@@ -1,0 +1,1362 @@
+{
+  "audio": "",
+  "nlp": "/Users/gaoyuan/Projects/r2-video/r2-autoresearch/script/autoresearch_draft_v1_nlp.json",
+  "nlp_timings": [
+    {
+      "index": 0,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 0.0,
+      "end": 6.4,
+      "duration": 6.4,
+      "text": "副标题：五层自学习技术栈 — 让智能体系统记住成功、理解失败、自主进化"
+    },
+    {
+      "index": 1,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 6.4,
+      "end": 20.3,
+      "duration": 13.9,
+      "text": "你用前面几集搭了一条完整的R two流水线。版本控制管代码，七层架构拆解复杂度，Skills封装领域经验，子智能体们分工协作，编排层把它们串成流水线。架构优雅，流程完整。"
+    },
+    {
+      "index": 2,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 20.3,
+      "end": 22.2,
+      "duration": 1.9,
+      "text": "然后你开始验证第一个I P。"
+    },
+    {
+      "index": 3,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 22.2,
+      "end": 45.6,
+      "duration": 23.4,
+      "text": "某系列L two缓存控制器，8 way set associative，E C C可选，两万行R T L。R two C O V跑起来，从百分之五十三覆盖率开始爬。你发现L two缓存驱逐需要8个不同地址映射到同一set才能触发way全填满。你手动调整策略，换了三次方向，48小时后覆盖率闭合到百分之百。"
+    },
+    {
+      "index": 4,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 45.6,
+      "end": 47.4,
+      "duration": 1.8,
+      "text": "不错。下一个I P。"
+    },
+    {
+      "index": 5,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 47.4,
+      "end": 78.4,
+      "duration": 31.0,
+      "text": "第二版——同系列cache控制器，不同参数化。way数不一样，替换策略从L R U变成了P L R U，E C C路径在单socket配置下不激活。你打开新会话，智能体用默认的\"你好，有什么可以帮你\"迎接你——48小时的经验全部消失了。L two缓存驱逐需要8路fill sequence——它不记得。A P B断言需要2周期margin——它不记得。团队用P L R U不是L R U——它不记得。你得从头说起。"
+    },
+    {
+      "index": 6,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 78.4,
+      "end": 82.6,
+      "duration": 4.2,
+      "text": "第5个I P。同架构系列。还是48小时。"
+    },
+    {
+      "index": 7,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 82.6,
+      "end": 99.8,
+      "duration": 17.2,
+      "text": "你的剪贴板里存了三段\"项目上下文\"——每次新会话都得粘贴一遍。10M token的对话历史里可能有你需要的信息，但session search的关键词匹配找不到，memory点M D里智能体没记。这不是A I助手，是需要你手动喂记忆的工具。"
+    },
+    {
+      "index": 8,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 99.8,
+      "end": 118.3,
+      "duration": 18.5,
+      "text": "\"31个I P不需要从零做31次\"。模块 11教你设计Skill——成功策略固化复用。模块 13教你编排——学习循环让覆盖率缺口自动匹配策略。但how？谁写Skills？谁更新Memory？谁判断什么有效什么无效？"
+    },
+    {
+      "index": 9,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 118.3,
+      "end": 122.2,
+      "duration": 3.9,
+      "text": "答案是——你。手动。每次。"
+    },
+    {
+      "index": 10,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 122.2,
+      "end": 144.6,
+      "duration": 22.4,
+      "text": "模块 3给了你版本控制。模块 11给了你Skills做经验封装。模块 12给了你子智能体们做分工协作。模块 13给了你编排做流程串联。但没人回答一个问题：这些容器里的内容——Memory里该写什么、Skills该怎么进化、什么策略有效什么策略无效——谁来维护？"
+    },
+    {
+      "index": 11,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 144.6,
+      "end": 147.5,
+      "duration": 2.9,
+      "text": "这就是auto research要解决的问题。"
+    },
+    {
+      "index": 12,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 147.5,
+      "end": 160.3,
+      "duration": 12.8,
+      "text": "这一集揭示五层自学习技术栈——把前面搭建的系统，从你操作的工具，变成自己运转的系统。不是教你搭架子，是教架子里填什么、怎么让填的东西自己变好。"
+    },
+    {
+      "index": 13,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 160.3,
+      "end": 171.0,
+      "duration": 10.7,
+      "text": "这一集讲五件事。不是五个功能——五个层。每层解决自学习问题的一个环节。缺任何一层，系统就退化回\"你手动操作的工具\"。"
+    },
+    {
+      "index": 14,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 171.0,
+      "end": 171.8,
+      "duration": 0.8,
+      "text": "先看全景。"
+    },
+    {
+      "index": 15,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 171.8,
+      "end": 204.4,
+      "duration": 32.6,
+      "text": "| 层 | 名称 | 解决什么 | 一句话 | |----|------|---------|--------| | L one | 动态系统提示词 | 智能体此刻该看到什么 | 运行时组装的上下文操作系统 | | L two | 四层记忆架构 | 智能体跨会话该记住什么 | 四种信息、四种存储、四种生命周期 | | L three | Skills系统 | 智能体知道怎么做 | 活的、自更新的过程记忆 | | L four | 学习循环 | 智能体何时、如何学习 | 异步后台复盘——连接L two和L three的写入机制 | | L five | S"
+    },
+    {
+      "index": 16,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 204.4,
+      "end": 210.3,
+      "duration": 5.9,
+      "text": "elf Evolution | 智能体怎么可量化地变好 | 读执行trace的反思式进化搜索 |"
+    },
+    {
+      "index": 17,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 210.3,
+      "end": 213.4,
+      "duration": 3.1,
+      "text": "五层的关系不是并列的——是递进的。"
+    },
+    {
+      "index": 18,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 213.4,
+      "end": 232.1,
+      "duration": 18.7,
+      "text": "L one到L three是知识基础设施——智能体知道什么、看到什么、会做什么。模块 3的进度文件是L two最原始的形式。模块 11的Skills是L three，但手写的、静态的。模块 4的七层架构是脚手架——这一集往里填活的、会进化的内容。"
+    },
+    {
+      "index": 19,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 232.1,
+      "end": 245.2,
+      "duration": 13.1,
+      "text": "L four是反思机制——智能体何时学习。学习循环不是一个功能，是连接L two（记忆）和L three（技能）的写入管道。没有L four，L two和L three就只有你手动往里写。"
+    },
+    {
+      "index": 20,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 245.2,
+      "end": 259.7,
+      "duration": 14.5,
+      "text": "L five是优化引擎——智能体怎么可测量地变好。学习循环能增加知识（写Memory、创建Skill），但不能告诉你\"新版Skill比旧版好吗？\"L five用进化搜索回答这个问题。"
+    },
+    {
+      "index": 21,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 259.7,
+      "end": 261.9,
+      "duration": 2.2,
+      "text": "为什么R two需要这五层？"
+    },
+    {
+      "index": 22,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 261.9,
+      "end": 293.9,
+      "duration": 32.0,
+      "text": "R two C O V的覆盖率分析之所以越来越准，是因为每个I P的成功策略通过L four写入L three，通过L five优化，通过L two记住。R two T D D的断言质量之所以跨I P提升，是因为断言模板在L three里进化。C to R T L的收敛之所以越来越快，是因为L two记住了哪些转换路径有效。top gen的架构生成之所以参数化越来越灵活，是因为L one在验证A X I I P时自动加载A X I协议知识，验证A P B时自动切换。"
+    },
+    {
+      "index": 23,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 293.9,
+      "end": 298.5,
+      "duration": 4.6,
+      "text": "这不是概念。是上层所有模块的共同底座。"
+    },
+    {
+      "index": 24,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 298.5,
+      "end": 301.4,
+      "duration": 2.9,
+      "text": "接下来，从L one开始，逐层深入。"
+    },
+    {
+      "index": 25,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 301.4,
+      "end": 313.0,
+      "duration": 11.6,
+      "text": "大多数智能体的系统提示词是一段静态文本——你写完，它就固定了。不同用户看到同一段话，不同项目看到同一段话，工具可不可用都看到同一段话。"
+    },
+    {
+      "index": 26,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 313.0,
+      "end": 314.3,
+      "duration": 1.3,
+      "text": "Hermes不是这样。"
+    },
+    {
+      "index": 27,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 314.3,
+      "end": 326.6,
+      "duration": 12.3,
+      "text": "Hermes的系统提示词是运行时组装的。不是一段提示词，是一组动态层。14层。每一层根据当前会话的状态决定是否注入、注入什么内容。"
+    },
+    {
+      "index": 28,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 326.6,
+      "end": 328.0,
+      "duration": 1.4,
+      "text": "走一遍这14层。"
+    },
+    {
+      "index": 29,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 328.0,
+      "end": 348.2,
+      "duration": 20.2,
+      "text": "第一层，soul点M D——智能体的长期人格。不是写死在代码里的角色设定，是用户可编辑的文件，存在`~/.hermes/soul点M D`。你想让智能体更直接、更有判断力、能指出你的问题，改这个文件就行。人格可配置、可迁移、可演化。"
+    },
+    {
+      "index": 30,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 348.2,
+      "end": 364.3,
+      "duration": 16.1,
+      "text": "第二层，工具行为指南。这是一条铁律——工具存在，才注入对应规则。memory工具可用，才告诉智能体怎么保存记忆。session search可用，才告诉智能体怎么查历史。工具不存在？对应规则也不存在。"
+    },
+    {
+      "index": 31,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 364.3,
+      "end": 382.0,
+      "duration": 17.7,
+      "text": "为什么这条铁律重要？因为如果提示词里提到不存在的工具，模型就会幻觉调用。它自信地说\"让我搜索一下\"，然后卡住——因为浏览器工具在这个部署环境里根本不存在。工具与提示词的一致性，不是nice to have，是防幻觉的基础设施。"
+    },
+    {
+      "index": 32,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 382.0,
+      "end": 388.5,
+      "duration": 6.5,
+      "text": "第三到第五层是环境适配——订阅状态、工具强制规则、用户传入的system message。"
+    },
+    {
+      "index": 33,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 388.5,
+      "end": 394.7,
+      "duration": 6.2,
+      "text": "第六到第八层是核心上下文——Memory快照、User Profile、外部memory 提供者注入。"
+    },
+    {
+      "index": 34,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 394.7,
+      "end": 412.1,
+      "duration": 17.4,
+      "text": "第九层是Skills索引。智能体在这一层看到所有已安装技能的摘要列表——name、description、category。这是模块 11讲的渐进披露的Level 0入口——约3k tokens，智能体根据这个列表判断是否需要加载完整Skill。"
+    },
+    {
+      "index": 35,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 412.1,
+      "end": 427.8,
+      "duration": 15.7,
+      "text": "第十到第十四层是运行时信息——项目上下文文件、会话元信息（时间/Session I D/模型/提供者）、提供者身份修正、环境提示（不同操作系统适配）、平台提示（命令行/即时通讯等多端适配）。"
+    },
+    {
+      "index": 36,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 427.8,
+      "end": 441.9,
+      "duration": 14.1,
+      "text": "还有一个隐藏层——临时指令层。不存入缓存，不写入会话数据库，每次调用临时拼接到系统提示词后面。用途是临时影响智能体行为，又不破坏缓存前缀。"
+    },
+    {
+      "index": 37,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 441.9,
+      "end": 476.5,
+      "duration": 34.6,
+      "text": "R two的14层包含芯片专属上下文——D U T架构描述、E D A工具可用性、团队代码风格规范。R two C O V跑A X I I P时，第十层自动加载A X I协议知识——burst类型、read模式、outstanding transactions。跑A P B I P时，自动换成A P B协议知识——transfer类型、wait states、error response。不需要你手动切换，14层动态组装自动适配。这是模块 4\"渐进披露\"的具体实现。"
+    },
+    {
+      "index": 38,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 476.5,
+      "end": 491.6,
+      "duration": 15.1,
+      "text": "A段讲了痛点——48小时经验消失，新会话从零开始。根因不是智能体不记东西，是你以为记忆是录音机——录下一切、随时调取。但Hermes的记忆是笔记本——智能体自己决定记什么。"
+    },
+    {
+      "index": 39,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 491.6,
+      "end": 495.2,
+      "duration": 3.6,
+      "text": "而且不是一个笔记本——是四个，每个有不同的规则。"
+    },
+    {
+      "index": 40,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 495.2,
+      "end": 529.8,
+      "duration": 34.6,
+      "text": "Layer 1: 提示词 Memory（热层）。两个小文件——memory点M D约800 tokens存长期事实，user点M D约500 tokens存用户画像。加起来约1,300 tokens。会话开始时做冻结快照注入系统提示词——同一会话内不刷新。为什么故意这么小？因为要保护缓存前缀（系统提示词不变的部分可以被缓存复用）。系统提示词越稳定，A P I调用越便宜、越快。写入是即时持久化到磁盘的，但要下次新会话才会进入系统提示词。"
+    },
+    {
+      "index": 41,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 529.8,
+      "end": 544.2,
+      "duration": 14.4,
+      "text": "限制很明确：1,300 token的预算，超限了工具直接返回错误，智能体必须自己整合或删除旧条目才能写入新的。这意味着智能体得做取舍——什么值得占这1,300 token的位置。"
+    },
+    {
+      "index": 42,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 544.2,
+      "end": 558.6,
+      "duration": 14.4,
+      "text": "Layer 2: Session Archive（冷层）。全部命令行和消息会话存本地数据库。通过session search工具按需查询。基于关键词匹配加模型摘要。不占系统提示词空间，需要时才查。"
+    },
+    {
+      "index": 43,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 558.6,
+      "end": 574.2,
+      "duration": 15.6,
+      "text": "但关键词匹配有天然缺陷。你说\"认证服务\"，存的是\"authentication microservice uses cache for session tokens\"——断链。换个说法就查不到。没有实体识别——\"Alice\"和\"我的同事Alice from engineering\"是两个世界。"
+    },
+    {
+      "index": 44,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 574.2,
+      "end": 595.4,
+      "duration": 21.2,
+      "text": "Layer 3: Skills（过程记忆）。模块 11的焦点。但这里要强调一个认知升级——Skills也是记忆。Memory记事实（\"L two C用P L R U替换策略\"），Skills记方法（\"怎么闭合L two C覆盖率\"）。事实性记忆和过程性记忆，分开存、分开访问、分开进化。"
+    },
+    {
+      "index": 45,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 595.4,
+      "end": 605.3,
+      "duration": 9.9,
+      "text": "Layer 4: External 提供者（可选扩展层）。可插拔的外部记忆后端。7个提供者可选，每个解决内置系统的不同限制。"
+    },
+    {
+      "index": 46,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 605.3,
+      "end": 623.7,
+      "duration": 18.4,
+      "text": "重点说亥恩得赛特——在行业记忆基准测试中，10M token规模排名第一，百分之六十四点一。第二名百分之四十点六。超出二十三点五个百分点。一千万token——直接塞进上下文物理上不可能，必须靠结构化检索。G段会深入展开。"
+    },
+    {
+      "index": 47,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 623.7,
+      "end": 651.0,
+      "duration": 27.3,
+      "text": "内置系统有五个明确限制。第一，提示词 memory空间太小，1,300 token存不了多少。第二，session search只做关键词匹配，不懂语义。第三，没有实体识别，同一个人不同称呼被当成两个实体。第四，上下文压缩前有一次记忆刷写机会，但刷写时智能体没觉得值得记的事实就永远丢了——不可逆。第五，短会话可能什么都不记，完全依赖智能体判断。"
+    },
+    {
+      "index": 48,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 651.0,
+      "end": 669.8,
+      "duration": 18.8,
+      "text": "这五个限制不是缺陷——是设计权衡。小、透明、本地、可检查。但如果你要做31个I P的大规模验证，这些限制就会成为瓶颈。这就是为什么需要L four 学习循环来系统性写入，需要L five External 提供者来突破检索能力。"
+    },
+    {
+      "index": 49,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 669.8,
+      "end": 702.3,
+      "duration": 32.5,
+      "text": "R two怎么用这四层？L one等价于进度文件——智能体此刻该知道的事实。L two等价于版本历史——历史可查但不常驻。L three等价于Veri Smart的24个验证Skill——S C B gen、SEQ gen、C O V gen。L four将是亥恩得赛特的验证知识图谱——entities是寄存器、接口、协议类型、覆盖率策略，relationships是\"控制.mode控制D M A通道\"、\"N C E L two C五百用P L R U替换策略\"。"
+    },
+    {
+      "index": 50,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 702.3,
+      "end": 717.1,
+      "duration": 14.8,
+      "text": "模块 11讲了五种Skill设计模式——Tool Wrapper、Generator、审查者、Orchestrator、Diagnostic。讲了三个核心Skill——S C B gen、SEQ gen、C O V gen。这些都是设计Skill。"
+    },
+    {
+      "index": 51,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 717.1,
+      "end": 720.7,
+      "duration": 3.6,
+      "text": "但有一个问题模块 11没有回答：Skill写完之后呢？"
+    },
+    {
+      "index": 52,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 720.7,
+      "end": 731.8,
+      "duration": 11.1,
+      "text": "你的代码评审Skill用了三个月没动过。项目变了、标准变了、智能体的评审越来越不对路——但你不知道怎么改能变好，改了也没法量化验证。"
+    },
+    {
+      "index": 53,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 731.8,
+      "end": 747.3,
+      "duration": 15.5,
+      "text": "你的部署Skill还是三个月前的版本。C I流水线已经改了，加了一个lint检查检查步骤。智能体按旧Skill执行，跳过了新增的lint检查，部署的代码没过检查。Skill的Pitfalls段也没提到这个变更。"
+    },
+    {
+      "index": 54,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 747.3,
+      "end": 758.7,
+      "duration": 11.4,
+      "text": "Skill是静态文档。Skill点M D写了When to Use、Procedure、Pitfalls、Verification四段，但没有机制感知外部变更。世界变了，Skill不知道。"
+    },
+    {
+      "index": 55,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 758.7,
+      "end": 766.9,
+      "duration": 8.2,
+      "text": "这一段不重讲模块 11的设计模式。讲的是Skill作为活文档——怎么被发现、怎么被加载、怎么保持鲜活。"
+    },
+    {
+      "index": 56,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 766.9,
+      "end": 769.4,
+      "duration": 2.5,
+      "text": "发现机制：三级渐进加载。"
+    },
+    {
+      "index": 57,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 769.4,
+      "end": 784.6,
+      "duration": 15.2,
+      "text": "Level 0：Skills list。返回所有已安装Skill的摘要——name、description、category。约3k tokens。始终在系统提示词第九层可见。智能体在这一层做匹配判断——当前任务需要哪个Skill？"
+    },
+    {
+      "index": 58,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 784.6,
+      "end": 793.9,
+      "duration": 9.3,
+      "text": "Level 1：Skill view(name)。智能体判断需要某Skill后，调用此方法加载完整内容和元数据。token消耗按Skill大小。"
+    },
+    {
+      "index": 59,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 793.9,
+      "end": 804.3,
+      "duration": 10.4,
+      "text": "Level 2：Skill view(name, path)。加载Skill引用的特定参考文件——配置模板、示例代码、D U T架构描述。按需最小化。"
+    },
+    {
+      "index": 60,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 804.3,
+      "end": 817.2,
+      "duration": 12.9,
+      "text": "Progressive disclosure省了token，但也意味着description就是唯一的匹配入口。描述不精确，智能体就无法在Level 0判断是否需要加载——写得差的Skill，等于没装。"
+    },
+    {
+      "index": 61,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 817.2,
+      "end": 820.2,
+      "duration": 3.0,
+      "text": "条件激活：自动显示和隐藏。"
+    },
+    {
+      "index": 62,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 820.2,
+      "end": 822.9,
+      "duration": 2.7,
+      "text": "四个字段控制Skill的可见性。"
+    },
+    {
+      "index": 63,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 822.9,
+      "end": 841.2,
+      "duration": 18.3,
+      "text": "备选降级——当某工具集可用时隐藏此Skill，不可用时自动显示。典型案例：免费搜索Skill配了备选降级规则。你有付费搜索接口，付费工具可用，免费搜索隐藏。接口没配？免费搜索自动出现作为替代。"
+    },
+    {
+      "index": 64,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 841.2,
+      "end": 845.7,
+      "duration": 4.5,
+      "text": "前置依赖——当某工具集不可用时隐藏此Skill。"
+    },
+    {
+      "index": 65,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 845.7,
+      "end": 852.4,
+      "duration": 6.7,
+      "text": "平台适配——不兼容平台上自动隐藏。某平台专属的通讯Skill，其他平台上看不到。"
+    },
+    {
+      "index": 66,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 852.4,
+      "end": 873.0,
+      "duration": 20.6,
+      "text": "但条件激活是主动声明的——不声明任何条件字段的Skill默认始终可见。如果你有付费搜索也有自定义搜索Skill，但自定义Skill没配备选降级规则，智能体就看到两个搜索入口，行为不一致。技能冲突的根源不是系统缺能力，是Skill作者没用这些字段。"
+    },
+    {
+      "index": 67,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 873.0,
+      "end": 876.6,
+      "duration": 3.6,
+      "text": "生命周期问题：静态文档 versus 活文档。"
+    },
+    {
+      "index": 68,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 876.6,
+      "end": 887.2,
+      "duration": 10.6,
+      "text": "模块 11教你设计Skill。但世界变了谁更新？C I改了谁通知Skill？新I P引入了之前没见过的覆盖率模式，谁创建新Skill？"
+    },
+    {
+      "index": 69,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 887.2,
+      "end": 904.9,
+      "duration": 17.7,
+      "text": "R two的24个Skill遵循Skill点M D格式——When to Use、Procedure、Pitfalls、Verification。当I P需要库里没有的新类型Score board时，系统需要创建新Skill。A X I专用Skill在验证A P B I P时通过条件激活自动隐藏。"
+    },
+    {
+      "index": 70,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 904.9,
+      "end": 916.6,
+      "duration": 11.7,
+      "text": "但创建、更新、进化——这些动作不是Skill系统自己能完成的。静态文档是模块 11。活的、自更新的文档——需要学习循环。"
+    },
+    {
+      "index": 71,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 916.6,
+      "end": 923.3,
+      "duration": 6.7,
+      "text": "模块 11留了一个问题：谁写Skill？谁更新Memory？答案不是你——是学习循环。"
+    },
+    {
+      "index": 72,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 923.3,
+      "end": 935.4,
+      "duration": 12.1,
+      "text": "学习循环不是模型训练。不是强化学习。不是人类反馈对齐。不是梯度下降。它更像一个后台复盘系统——一个工程化的外部记忆维护机制。"
+    },
+    {
+      "index": 73,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 935.4,
+      "end": 936.4,
+      "duration": 1.0,
+      "text": "机制是这样的。"
+    },
+    {
+      "index": 74,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 936.4,
+      "end": 945.1,
+      "duration": 8.7,
+      "text": "第一步，主智能体完成用户任务，正常返回回复。用户看到回复，继续工作。到这里为止，跟普通智能体一样。"
+    },
+    {
+      "index": 75,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 945.1,
+      "end": 954.6,
+      "duration": 9.5,
+      "text": "第二步，系统检查是否达到复盘阈值。注意——memory和Skill有各自独立的触发阈值。不是每次对话都触发。"
+    },
+    {
+      "index": 76,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 954.6,
+      "end": 959.6,
+      "duration": 5.0,
+      "text": "第三步，如果达到阈值，后台分裂出一个临时复盘智能体。"
+    },
+    {
+      "index": 77,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 959.6,
+      "end": 974.9,
+      "duration": 15.3,
+      "text": "这个复盘智能体本身就是模块 12讲的子智能体——分裂、隔离、临时。它回顾刚才的对话，做两个判断：有内容值得保存到Memory吗？有内容值得创建或更新Skill吗？"
+    },
+    {
+      "index": 78,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 974.9,
+      "end": 980.3,
+      "duration": 5.4,
+      "text": "第四步，如果有价值内容，复盘智能体写入Memory或Skills文件。"
+    },
+    {
+      "index": 79,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 980.3,
+      "end": 981.4,
+      "duration": 1.1,
+      "text": "三个关键属性。"
+    },
+    {
+      "index": 80,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 981.4,
+      "end": 989.6,
+      "duration": 8.2,
+      "text": "异步——不阻塞主回复。用户看到智能体回复的时候，复盘智能体在后台默默工作。不增加用户等待时间。"
+    },
+    {
+      "index": 81,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 989.6,
+      "end": 996.8,
+      "duration": 7.2,
+      "text": "透明——复盘智能体的内部对话不发给用户。用户不知道复盘在发生。不会收到\"我正在保存记忆\"这样的消息。"
+    },
+    {
+      "index": 82,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 996.8,
+      "end": 1006.7,
+      "duration": 9.9,
+      "text": "独立阈值——memory复盘和Skill复盘分别触发。智能体可能判断\"这次对话里有值得记的事实，但没有值得创建的Skill\"，或者反过来。"
+    },
+    {
+      "index": 83,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1006.7,
+      "end": 1019.0,
+      "duration": 12.3,
+      "text": "反模式要避免两种。每次对话都触发——记忆污染，垃圾信息淹没有价值的内容。触发太少——经验丢失，回到A段的痛点。阈值是质量门控，不是开关。"
+    },
+    {
+      "index": 84,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1019.0,
+      "end": 1026.6,
+      "duration": 7.6,
+      "text": "学习循环的真正力量不在于复盘智能体本身——在于它连接了L two（记忆）和L three（技能）。"
+    },
+    {
+      "index": 85,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1026.6,
+      "end": 1029.5,
+      "duration": 2.9,
+      "text": "四类长期信息，四条更新路径。"
+    },
+    {
+      "index": 86,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1029.5,
+      "end": 1047.8,
+      "duration": 18.3,
+      "text": "| 信息类型 | 存储位置 | 注入方式 | 学习循环怎么写 | |---------|---------|---------|-------------------| | 长期事实 | memory点M D | 系统提示词快照 | 复盘智能体判断值得记→写入 | | 用户画像 | user点M D | 系统提示词快照 | 复盘智能体提取用户偏好→写入 | | 历史对话 | session D B | session search实时查 | 自动存储，"
+    },
+    {
+      "index": 87,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1047.8,
+      "end": 1053.8,
+      "duration": 6.0,
+      "text": "不需要Loop | | 可复用方法 | Skills | 按需加载 | 复盘智能体判断值得固化→创建/更新 |"
+    },
+    {
+      "index": 88,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1053.8,
+      "end": 1070.0,
+      "duration": 16.2,
+      "text": "Memory记事实——\"L two C way fill需要8个地址映射到同一set\"。Skills记方法——\"闭合L two C覆盖率的策略：先触发all way fill，再用驱逐+窥探组合攻击corner case\"。事实进Memory，方法进Skills。"
+    },
+    {
+      "index": 89,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1070.0,
+      "end": 1077.6,
+      "duration": 7.6,
+      "text": "学习循环是写入这两层的机制。没有它，L two和L three就是空容器——或者只有你手动往里填的内容。"
+    },
+    {
+      "index": 90,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1077.6,
+      "end": 1079.8,
+      "duration": 2.2,
+      "text": "R two怎么用学习循环？"
+    },
+    {
+      "index": 91,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1079.8,
+      "end": 1112.4,
+      "duration": 32.6,
+      "text": "R two C O V成功闭合L two缓存覆盖率后，复盘智能体做两件事。第一，写Memory：\"L two C way fill需要8个地址映射到同一set，P L R U替换策略下驱逐顺序与L R U不同，E C C路径在单socket配置下不激活\"。第二，创建或更新Skill：cache I P的覆盖率缺口策略——先确定性填满所有way，再用地址碰撞触发驱逐，再用窥探请求在驱逐中间制造一致性 corner case。"
+    },
+    {
+      "index": 92,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1112.4,
+      "end": 1121.0,
+      "duration": 8.6,
+      "text": "下次遇到类似cache I P，这个策略直接可用。不需要你粘贴上下文，不需要你重新解释48小时的经验。"
+    },
+    {
+      "index": 93,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1121.0,
+      "end": 1147.3,
+      "duration": 26.3,
+      "text": "> [素材：S6 Error Driven Context Refinement — 来源：魏依承《从第一性原理思考 智能体ic Engineering》] > 软件工程界把这个机制公式化为Error Driven Context Refinement：犯错→诊断根因→检索现有知识→创建或更新Rule/Skill→预防复发。复盘智能体的写入逻辑与这个公式完全同构——每次I P闭合后的经验沉淀，就是这个公式的生产级实现。"
+    },
+    {
+      "index": 94,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1147.3,
+      "end": 1163.1,
+      "duration": 15.8,
+      "text": "覆盖率 v4说的\"学习循环——覆盖率缺口自动匹配策略\"就是这个。策略不是硬编码的——复盘智能体每做完一个I P就写更好的Skill。覆盖率 v4在概念层介绍了这个能力，现在你看到了how。"
+    },
+    {
+      "index": 95,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1163.1,
+      "end": 1171.8,
+      "duration": 8.7,
+      "text": "E段的学习循环解决了\"谁写Memory、谁创建Skill\"。但它解决不了一个更深的问题——怎么知道写的是好是坏？"
+    },
+    {
+      "index": 96,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1171.8,
+      "end": 1190.1,
+      "duration": 18.3,
+      "text": "学习循环增加知识。它往Memory里写事实，往Skills里创建工作流。但它基于单次对话的判断。跑完10个I P，你可能有10个版本的覆盖率策略Skill——每个是某次对话后复盘智能体写的。哪个最好？学习循环不告诉你。"
+    },
+    {
+      "index": 97,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1190.1,
+      "end": 1193.6,
+      "duration": 3.5,
+      "text": "积累但不优化。这是L four的天花板。"
+    },
+    {
+      "index": 98,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1193.6,
+      "end": 1209.1,
+      "duration": 15.5,
+      "text": "你的代码评审Skill用了三个月。项目变了，标准变了，智能体的评审越来越不对路。你知道Skill要改——但手动改完没法验证是变好了还是变差了。你能做的只有凭感觉改、凭感觉评估。"
+    },
+    {
+      "index": 99,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1209.1,
+      "end": 1212.6,
+      "duration": 3.5,
+      "text": "L five解决的就是这个问题：可量化的进化。"
+    },
+    {
+      "index": 100,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1212.6,
+      "end": 1216.1,
+      "duration": 3.5,
+      "text": "反思式进化优化框架——开源，M I T许可证。"
+    },
+    {
+      "index": 101,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1216.1,
+      "end": 1224.8,
+      "duration": 8.7,
+      "text": "它的全称是\"基因-帕累托提示词进化\"。但名字不重要——重要的是它跟之前所有优化器的核心区别。"
+    },
+    {
+      "index": 102,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1224.8,
+      "end": 1239.9,
+      "duration": 15.1,
+      "text": "之前的优化器看到结果——成功或失败——然后调整。统计相关性。反思式进化读执行记录，理解为什么失败，然后提出定向改进。不是随机变异碰运气，是基于失败原因的反思式搜索。"
+    },
+    {
+      "index": 103,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1239.9,
+      "end": 1241.4,
+      "duration": 1.5,
+      "text": "六步优化循环。"
+    },
+    {
+      "index": 104,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1241.4,
+      "end": 1248.2,
+      "duration": 6.8,
+      "text": "第一步，选择优化目标。一个Skill点M D文件、一个工具描述、一段系统提示词。"
+    },
+    {
+      "index": 105,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1248.2,
+      "end": 1258.5,
+      "duration": 10.3,
+      "text": "第二步，构建评估数据集。两个来源——从session D B挖掘真实对话历史，或者用强模型读Skill文本合成测试用例。15到30个样本。"
+    },
+    {
+      "index": 106,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1258.5,
+      "end": 1270.3,
+      "duration": 11.8,
+      "text": "第三步，包装为优化模块。Skill文本变成可优化签名——系统提示词就是Skill内容，输入是任务描述，输出是执行结果。工作流可以包装为推理-行动链。"
+    },
+    {
+      "index": 107,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1270.3,
+      "end": 1280.0,
+      "duration": 9.7,
+      "text": "第四步，运行进化优化器。5到10次迭代。每次迭代读取执行记录，分析为什么失败，生成针对性变异，评估新版本。"
+    },
+    {
+      "index": 108,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1280.0,
+      "end": 1291.1,
+      "duration": 11.1,
+      "text": "第五步，评估对比。在保留测试集上对比原版和进化版。做统计显著性检查——不是\"看起来好了\"，是\"统计上显著好了\"。"
+    },
+    {
+      "index": 109,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1291.1,
+      "end": 1299.7,
+      "duration": 8.6,
+      "text": "第六步，部署。自动创建版本分支加代码审查。人类审核合并。可回滚。永不直接提交。"
+    },
+    {
+      "index": 110,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1299.7,
+      "end": 1312.6,
+      "duration": 12.9,
+      "text": "关键数据：不需要G P U。纯文本变异加A P I调用评估。每次优化$2到$10。最少3个样本就能启动。超越强化学习和之前所有同类优化器。"
+    },
+    {
+      "index": 111,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1312.6,
+      "end": 1322.0,
+      "duration": 9.4,
+      "text": "反思式进化能优化什么？不只是Skill。整个智能体的可优化表面分五层——按风险从低到高、价值从高到低排序。"
+    },
+    {
+      "index": 112,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1322.0,
+      "end": 1335.9,
+      "duration": 13.9,
+      "text": "Phase one——Skill Files。 已实现。纯文本过程指令，最容易变异和评估。直接衡量——智能体按这个Skill做，任务完成了吗？这是第一阶段，因为最安全、最直接、最有价值。"
+    },
+    {
+      "index": 113,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1335.9,
+      "end": 1363.0,
+      "duration": 27.1,
+      "text": "Phase two——Tool Descriptions。 计划中。工具schema的description字段。工具选择本质是分类问题——给定任务描述，选一个最匹配的工具。你让智能体搜代码，它每次都用grep而不是search_files。纠正了五次还是犯。问题不是智能体笨——是工具描述写得模糊，模型在边界情况分不清。反思式进化优化工具描述文本，用实际任务做评估，直到选对率最高。"
+    },
+    {
+      "index": 114,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1363.0,
+      "end": 1378.7,
+      "duration": 15.7,
+      "text": "Phase three——系统提示词 Sections。 计划中。参数化提示词_builder各section为可优化签名，离线优化后部署为新版本。有一个硬约束——不能破坏缓存前缀。只能离线优化，不能会话中途变更。"
+    },
+    {
+      "index": 115,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1378.7,
+      "end": 1392.2,
+      "duration": 13.5,
+      "text": "Phase four——Code Evolution。 计划中。用达尔文式进化器（基于版本控制的代码有机体）进化工具实现代码。风险最高——代码改错直接crash。需要强测试套件做护栏。"
+    },
+    {
+      "index": 116,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1392.2,
+      "end": 1399.4,
+      "duration": 7.2,
+      "text": "Phase five——Continuous Loop。 自动化流水线无人值守运行。需要前四阶段全部验证通过。"
+    },
+    {
+      "index": 117,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1399.4,
+      "end": 1408.7,
+      "duration": 9.3,
+      "text": "阶段是顺序的——每个必须证明自己有效才能推进到下一个。如果某阶段没有产出有意义的改进，停下来重新评估。不盲目推进。"
+    },
+    {
+      "index": 118,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1408.7,
+      "end": 1419.2,
+      "duration": 10.5,
+      "text": "进化搜索是双刃剑。进化可能产出测试得分更高但实际有害的变体——缓存机制失效，A P I成本涨百分之三十，行为微妙偏移。"
+    },
+    {
+      "index": 119,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1419.2,
+      "end": 1420.6,
+      "duration": 1.4,
+      "text": "所以有五道护栏。"
+    },
+    {
+      "index": 120,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1420.6,
+      "end": 1426.2,
+      "duration": 5.6,
+      "text": "第一道，测试套件门控——自动化测试百分之百通过，不允许任何回归。"
+    },
+    {
+      "index": 121,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1426.2,
+      "end": 1434.5,
+      "duration": 8.3,
+      "text": "第二道，大小限制——Skill不超过15K B，工具描述不超过500字符。防止进化产出臃肿的版本。"
+    },
+    {
+      "index": 122,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1434.5,
+      "end": 1442.2,
+      "duration": 7.7,
+      "text": "第三道，缓存兼容性——不允许mid conversation变更系统提示词。只能离线优化后部署新版本。"
+    },
+    {
+      "index": 123,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1442.2,
+      "end": 1449.9,
+      "duration": 7.7,
+      "text": "第四道，语义保持——进化后的版本不能偏离原始目的。通过评估集中的边界case检测。"
+    },
+    {
+      "index": 124,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1449.9,
+      "end": 1458.6,
+      "duration": 8.7,
+      "text": "第五道，强制代码审查——所有变更走版本分支加审查流程，人类审核后合并。永不自动直接提交。"
+    },
+    {
+      "index": 125,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1458.6,
+      "end": 1463.5,
+      "duration": 4.9,
+      "text": "这不是\"自动部署进化结果\"。是\"自动搜索加人工把关\"。"
+    },
+    {
+      "index": 126,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1463.5,
+      "end": 1487.9,
+      "duration": 24.4,
+      "text": "R two怎么用？Phase one直接应用于R two的24个验证Skill。跑完10个I P后，反思式进化优化C O V gen的Skill文本——产出更好的覆盖率策略。评估指标很具体：覆盖率闭合更快？手动干预更少？48小时能压到多少？它不猜——它读执行记录看为什么卡在某个覆盖率缺口上，然后改Skill的策略描述。"
+    },
+    {
+      "index": 127,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1487.9,
+      "end": 1504.2,
+      "duration": 16.3,
+      "text": "F段讲了反思式进化——让Skill可量化进化。但进化需要数据，数据需要记忆。如果记忆系统本身有瓶颈——关键词匹配断链、实体识别缺失、1,300 token预算限制——进化从哪来数据？"
+    },
+    {
+      "index": 128,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1504.2,
+      "end": 1506.3,
+      "duration": 2.1,
+      "text": "亥恩得赛特填的就是这个缺口。"
+    },
+    {
+      "index": 129,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1506.3,
+      "end": 1527.3,
+      "duration": 21.0,
+      "text": "回顾C.2的痛点。内置记忆是智能体策展的——智能体自己决定记什么。你提到的project name、同事名字、技术偏好，这些智能体不会主动记。session search是关键词匹配——\"认证服务\"和\"authentication microservice\"断链。压缩前flush可能漏掉关键事实——不可逆丢失。"
+    },
+    {
+      "index": 130,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1527.3,
+      "end": 1532.8,
+      "duration": 5.5,
+      "text": "亥恩得赛特的解法不是修补这些限制——是在上面叠加一层结构化提取。"
+    },
+    {
+      "index": 131,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1532.8,
+      "end": 1533.7,
+      "duration": 0.9,
+      "text": "两个钩子。"
+    },
+    {
+      "index": 132,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1533.7,
+      "end": 1551.2,
+      "duration": 17.5,
+      "text": "预取（响应前）：每轮对话开始前，亥恩得赛特从历史会话检索与当前消息相关的记忆——语义搜索加关键词匹配加实体图遍历加重排序。检索结果注入系统提示词。模型看到用户消息之前，就已经拥有历史上下文。"
+    },
+    {
+      "index": 133,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1551.2,
+      "end": 1562.3,
+      "duration": 11.1,
+      "text": "你提过一次product launch deadline。一周后，新会话，完全不同的话题——Hermes已经知道了。你没重复自己，没粘贴上下文，是预取自动召回的。"
+    },
+    {
+      "index": 134,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1562.3,
+      "end": 1571.7,
+      "duration": 9.4,
+      "text": "留存（响应后）：每轮对话结束后，后台提取对话中的facts、entities、relationships。结构化存储。下一轮就可检索。"
+    },
+    {
+      "index": 135,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1571.7,
+      "end": 1579.6,
+      "duration": 7.9,
+      "text": "设计约束：当前轮说的内容，下一轮才可检索。不在当前轮可见。这是有意的——保持每次调用速度。"
+    },
+    {
+      "index": 136,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1579.6,
+      "end": 1581.9,
+      "duration": 2.3,
+      "text": "三种Memory Mode控制注入方式。"
+    },
+    {
+      "index": 137,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1581.9,
+      "end": 1593.8,
+      "duration": 11.9,
+      "text": "hybrid（默认）——自动注入加三个工具（亥恩得赛特 recall/retain/reflect）暴露给模型。智能体既被动接收上下文，也能主动搜索、保存、合成。"
+    },
+    {
+      "index": 138,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1593.8,
+      "end": 1603.5,
+      "duration": 9.7,
+      "text": "context——仅自动注入，不暴露任何工具。模型完全不知道记忆系统的存在，只是\"自然地\"拥有历史上下文。最简单、最透明。"
+    },
+    {
+      "index": 139,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1603.5,
+      "end": 1613.1,
+      "duration": 9.6,
+      "text": "tools——仅工具，不自动注入。模型必须主动调用亥恩得赛特 recall才能获取记忆。完全控制何时检索、检索什么。"
+    },
+    {
+      "index": 140,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1613.1,
+      "end": 1614.4,
+      "duration": 1.3,
+      "text": "两种预取 Method。"
+    },
+    {
+      "index": 141,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1614.4,
+      "end": 1619.4,
+      "duration": 5.0,
+      "text": "recall——语义搜索、关键词匹配、实体图遍历、重排序。快。"
+    },
+    {
+      "index": 142,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1619.4,
+      "end": 1633.1,
+      "duration": 13.7,
+      "text": "reflect——模型跨所有相关记忆合成连贯摘要。慢，但对复杂上下文更有用。这是记忆层最接近真正自我改进的机制——系统不只是检索，是跨记忆合成高阶洞察。"
+    },
+    {
+      "index": 143,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1633.1,
+      "end": 1649.2,
+      "duration": 16.1,
+      "text": "行业记忆基准测试。10M token规模——一千万token，直接塞进上下文物理上不可能。亥恩得赛特 百分之六十四点一。第二名百分之四十点六。超出二十三点五个百分点。这是唯一有公开测试结果的记忆方案。"
+    },
+    {
+      "index": 144,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1649.2,
+      "end": 1666.8,
+      "duration": 17.6,
+      "text": "部署灵活——本地模式和云模式用同一A P I。切换是配置文件的一个字段从\"local\"改为\"cloud\"，一行改动，无数据迁移。本地模式数据不出机器，内嵌数据库，首次启动需要一分钟初始化。云模式跨机器持久化，多实例共享。"
+    },
+    {
+      "index": 145,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1666.8,
+      "end": 1668.6,
+      "duration": 1.8,
+      "text": "R two怎么用亥恩得赛特？"
+    },
+    {
+      "index": 146,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1668.6,
+      "end": 1674.7,
+      "duration": 6.1,
+      "text": "亥恩得赛特为R two存储结构化验证知识图谱。不是文本chunk——是structured knowledge。"
+    },
+    {
+      "index": 147,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1674.7,
+      "end": 1686.1,
+      "duration": 11.4,
+      "text": "Entities：I P名（N C E L two C五百）、寄存器字段（控制.mode）、协议类型（A X I四、A P B）、覆盖率策略（way fill sequence）。"
+    },
+    {
+      "index": 148,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1686.1,
+      "end": 1700.4,
+      "duration": 14.3,
+      "text": "Relationships：\"N C E L two C五百用P L R U替换策略\"、\"A X I burst驱逐需要way fill序列\"、\"E C C路径在单socket配置下不激活\"、\"控制.mode控制D M A通道选择\"。"
+    },
+    {
+      "index": 149,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1700.4,
+      "end": 1719.5,
+      "duration": 19.1,
+      "text": "新cache I P进入流水线——预取自动检索所有cache相关验证知识。包括N C E L two C五百的87个排除原因——哪些覆盖点是物理不可达的、为什么不可达、怎么追溯到R T L设计。不需要你粘贴，不需要你告诉智能体去查。"
+    },
+    {
+      "index": 150,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1719.5,
+      "end": 1740.6,
+      "duration": 21.1,
+      "text": "覆盖率 v4说的\"Memory+版本控制——覆盖率只进不退\"——Memory就是亥恩得赛特的留存钩子，版本控制保存每一步成果。每轮迭代跑完，覆盖率涨了就提交，亥恩得赛特 留存自动提取成功策略。覆盖率退了就丢弃。成果永不丢失。"
+    },
+    {
+      "index": 151,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1740.6,
+      "end": 1744.6,
+      "duration": 4.0,
+      "text": "五层讲完了。用\"不是X——是Y\"收束每一层。"
+    },
+    {
+      "index": 152,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1744.6,
+      "end": 1757.1,
+      "duration": 12.5,
+      "text": "L one——不是静态提示词。是运行时组装的上下文操作系统。14层动态拼接，工具存在才注入规则，临时指令层不破坏缓存。"
+    },
+    {
+      "index": 153,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1757.1,
+      "end": 1771.9,
+      "duration": 14.8,
+      "text": "L two——不是一个记忆。四层——热层1,300 token快照、冷层本地数据库关键词搜索、过程层Skills按需加载、扩展层可插拔提供者。不同持久性、不同访问模式、不同限制。"
+    },
+    {
+      "index": 154,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1771.9,
+      "end": 1786.7,
+      "duration": 14.8,
+      "text": "L three——不是文档库。活的、自更新的过程记忆。三级渐进披露省token，条件激活避冲突，四段式标准格式让智能体能理解。但静态文档不会自己变好——需要学习循环。"
+    },
+    {
+      "index": 155,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1786.7,
+      "end": 1799.7,
+      "duration": 13.0,
+      "text": "L four——不是模型训练。工程化的外部记忆维护系统。异步、透明、独立阈值。复盘智能体是L two和L three的写入管道——没有它，知识容器是空的。"
+    },
+    {
+      "index": 156,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1799.7,
+      "end": 1810.8,
+      "duration": 11.1,
+      "text": "L five——不是随机变异。读执行trace理解为什么失败的反思式搜索。五道护栏防止进化出有害变体。自动搜索，人工把关。"
+    },
+    {
+      "index": 157,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1810.8,
+      "end": 1813.3,
+      "duration": 2.5,
+      "text": "五层叠在一起，产生飞轮效应。"
+    },
+    {
+      "index": 158,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1813.3,
+      "end": 1839.4,
+      "duration": 26.1,
+      "text": "第1个I P：冷启动。 通用Skill，空Memory，亥恩得赛特知识图谱没有验证历史。智能体从通用知识出发，覆盖率爬坡靠人类指导。48小时。学习循环在闭合后写Memory——\"L two C way fill需要8路fill sequence\"、\"P L R U替换策略下驱逐顺序不同\"。创建初始Skill——cache覆盖率策略v1。"
+    },
+    {
+      "index": 159,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1839.4,
+      "end": 1853.0,
+      "duration": 13.6,
+      "text": "第5个I P：温启动。 亥恩得赛特 预取自动召回cache相关验证知识。Skill部分匹配——同类cache但参数不同。学习循环在每个I P闭合后改进Skill。24小时。"
+    },
+    {
+      "index": 160,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1853.0,
+      "end": 1877.3,
+      "duration": 24.3,
+      "text": "第15个I P：热启动。 反思式进化优化过的Skill——Phase one跑完10个I P的数据，进化出更好的策略描述。亥恩得赛特知识图谱里有丰富的entities和relationships——15个cache I P的验证经验全部结构化存储。智能体不需要人类指导，预取给它历史，Skill给它方法，Memory给它事实。8小时。"
+    },
+    {
+      "index": 161,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1877.3,
+      "end": 1884.1,
+      "duration": 6.8,
+      "text": "\"31个I P不需要31次冷启动\"不是愿望——是五层复合的数学结果。"
+    },
+    {
+      "index": 162,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1884.1,
+      "end": 1918.9,
+      "duration": 34.8,
+      "text": "每一层单独拿出来都有价值——14层dynamic 提示词防幻觉、四层记忆分治存储、Skills渐进披露省token、学习循环自动写入、反思式进化可量化优化。但真正的力量在复合：学习循环（L four）往Memory（L two）和Skills（L three）里写入，反思式进化（L five）拿L four写入的数据做进化评估，亥恩得赛特（L fiveb）让L two的检索突破关键词匹配的限制，进化后的Skills（L three）通过L one的dynamic 提示词自动注入给智能体。"
+    },
+    {
+      "index": 163,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1918.9,
+      "end": 1943.8,
+      "duration": 24.9,
+      "text": "上层模块——R two T D D的断言越写越准、R two C O V的覆盖率闭合越来越快、C to R T L的收敛越来越稳、规格文档X的规格理解越来越深、top gen的架构生成越来越灵活、Veri Smart的24个验证资产越来越精准——不是五个独立的\"越来越好\"。是同一个五层自学习栈在不同验证问题上的投射。"
+    },
+    {
+      "index": 164,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1943.8,
+      "end": 1963.4,
+      "duration": 19.6,
+      "text": "前面几集教你搭建。这一集教搭建的东西怎么学习。上层模块——R two T D D、R two C O V、R two C to R T L、规格文档X、top gen——是这个自学习栈在具体芯片验证问题上的应用。每个上层模块的\"越做越好\"，底层都是这五层在工作。"
+    },
+    {
+      "index": 165,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1963.4,
+      "end": 1968.7,
+      "duration": 5.3,
+      "text": "模块 3说过一句话——\"Skill是系统的永久升级——不退化、不遗忘。\""
+    },
+    {
+      "index": 166,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1968.7,
+      "end": 1987.2,
+      "duration": 18.5,
+      "text": "现在你知道了写这些Skill的机制——学习循环。 知道了测试它们、让它们变好的机制——反思式进化。 知道了让记忆突破关键词匹配的机制——亥恩得赛特。 知道了把所有这些组装成运行时上下文的机制——14层Dynamic 提示词。"
+    },
+    {
+      "index": 167,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1987.2,
+      "end": 1992.5,
+      "duration": 5.3,
+      "text": "系统不只是记住。它反思。它进化。它越做越好。"
+    },
+    {
+      "index": 168,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1992.5,
+      "end": 1999.5,
+      "duration": 7.0,
+      "text": "这就是auto research——不是另一个功能模块，是让所有模块都能自学习的底层引擎。"
+    }
+  ],
+  "nlp_count": 169,
+  "tts_total": 1999.5,
+  "mp3_duration": 2010.102,
+  "failed_segments": 0
+}

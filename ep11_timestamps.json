@@ -1,0 +1,530 @@
+{
+  "audio": "",
+  "nlp": "/Users/gaoyuan/Projects/r2-video/harness/module6/module6_draft_v2_nlp.json",
+  "nlp_timings": [
+    {
+      "index": 0,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 0.0,
+      "end": 18.4,
+      "duration": 18.4,
+      "text": "你用Claude Code写了一个Score board。跑通了，测试也过了，心情不错。第二天另一个I P也需要Score board，你打开对话框，从头开始描述需求。第三天又来了一个。你发现自己在重复同样的指令，同样的上下文铺垫，同样的错误纠正。"
+    },
+    {
+      "index": 1,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 18.4,
+      "end": 22.7,
+      "duration": 4.3,
+      "text": "这不是智能体的问题——是你没有把成功经验固化下来。"
+    },
+    {
+      "index": 2,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 22.7,
+      "end": 32.9,
+      "duration": 10.2,
+      "text": "经验资产化——从老员工口传到Skill调用——这是Skills的真正意义，让A I代替人干活儿且人走知识不走。"
+    },
+    {
+      "index": 3,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 32.9,
+      "end": 41.5,
+      "duration": 8.6,
+      "text": "但Skill到底是什么？Skill不是命令本身，而是路由决策。它决定智能体听到你的话后，走哪条路。"
+    },
+    {
+      "index": 4,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 41.5,
+      "end": 45.3,
+      "duration": 3.8,
+      "text": "你有一个工具箱，里面要放各种工具。你怎么分类？"
+    },
+    {
+      "index": 5,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 45.3,
+      "end": 57.9,
+      "duration": 12.6,
+      "text": "方案A：不分，全扔进去。螺丝刀、扳手、钳子、锤子，全堆一起。找一个十字小螺丝刀，你得翻半天。智能体也是这样——Skill太多太杂，它找不对。"
+    },
+    {
+      "index": 6,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 57.9,
+      "end": 75.2,
+      "duration": 17.3,
+      "text": "方案B：分到极致，每个工具一个盒子。十字小号螺丝刀专用盒、十字大号螺丝刀专用盒、8毫米扳手专用盒……100个盒子。箱子占满一整个房间，找个锤子要开100个盒子看。智能体也是这样——200个Skill，准确率掉到百分之二十。"
+    },
+    {
+      "index": 7,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 75.2,
+      "end": 88.6,
+      "duration": 13.4,
+      "text": "方案C：合理的分层。螺丝刀类、扳手类、钳子类、锤子类，每类内部再细分。找十字小螺丝刀——打开螺丝刀类——拿到。智能体也是这样——20个以内Skill，准确率百分之九十。"
+    },
+    {
+      "index": 8,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 88.6,
+      "end": 97.1,
+      "duration": 8.5,
+      "text": "这就是分类学。界、门、纲、目、科、属、种——生物不是直接跳到\"种\"，而是层层往下找。"
+    },
+    {
+      "index": 9,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 97.1,
+      "end": 98.7,
+      "duration": 1.6,
+      "text": "数据说得更直接："
+    },
+    {
+      "index": 10,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 98.7,
+      "end": 112.0,
+      "duration": 13.3,
+      "text": "| Skill数量 | 准确率 | 速度 | token消耗 | |----------|--------|------|----------| | < 20 | ~百分之九十 | 快 | 正常 | | 30+ | 下降 | 变慢 | 增加 | | 200 | ~百分之二十 | 极慢 | 爆炸 |"
+    },
+    {
+      "index": 11,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 112.0,
+      "end": 119.3,
+      "duration": 7.3,
+      "text": "关键问题是：怎么设计一个好的Skill？Skill输出不稳定的根因不在格式，而在内容设计。"
+    },
+    {
+      "index": 12,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 119.3,
+      "end": 131.5,
+      "duration": 12.2,
+      "text": "这一集讲两件事。第一，分类标准——按什么维度组织Skill。第二，设计方法——每个Skill内部怎么实现。分类标准解决\"建什么\"，设计方法解决\"怎么建\"。"
+    },
+    {
+      "index": 13,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 131.5,
+      "end": 153.0,
+      "duration": 21.5,
+      "text": "验证领域有很多重复出现的问题。怎么检查仲裁器公平性？怎么让测试平台同时跑仿真和硬件加速？聪明的人已经总结出了最佳解决方案。但这些经验散落在各个论文、P P T、老员工脑子里，没有统一格式，很难搜索。所以要建一个\"验证模式库\"，把套路标准化、可搜索化。"
+    },
+    {
+      "index": 14,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 153.0,
+      "end": 154.9,
+      "duration": 1.9,
+      "text": "论文把验证模式分成两大类："
+    },
+    {
+      "index": 15,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 154.9,
+      "end": 159.8,
+      "duration": 4.9,
+      "text": "第一类：规范模式，规范模式。解决\"怎么写断言\"的问题。"
+    },
+    {
+      "index": 16,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 159.8,
+      "end": 171.9,
+      "duration": 12.1,
+      "text": "发生属性——某个事件必须发生或绝对不能发生。Absence：某个坏事绝对不能出现。Existence：某个好事必须出现。Universality：某个条件永远成立。"
+    },
+    {
+      "index": 17,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 171.9,
+      "end": 181.4,
+      "duration": 9.5,
+      "text": "顺序属性——事件之间先后顺序的约束。Precedence：A必须在B之前发生。Response：如果A发生了，B必须跟着发生。"
+    },
+    {
+      "index": 18,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 181.4,
+      "end": 186.3,
+      "duration": 4.9,
+      "text": "第二类：实现模式，实现模式。解决\"怎么搭平台\"的问题。"
+    },
+    {
+      "index": 19,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 186.3,
+      "end": 205.4,
+      "duration": 19.1,
+      "text": "环境模式——测试平台的骨架。B F M Proxy Pair：让同一个测试平台既能跑仿真、又能跑硬件加速。Resource Sharing：多个组件共享配置和接口资源。Facade：给复杂系统提供一个简单接口。组件配置：标准化组件配置方式。"
+    },
+    {
+      "index": 20,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 205.4,
+      "end": 212.2,
+      "duration": 6.8,
+      "text": "激励模式——怎么给设计\"喂\"测试数据。Layering Sequence：分层产生测试序列。"
+    },
+    {
+      "index": 21,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 212.2,
+      "end": 217.6,
+      "duration": 5.4,
+      "text": "分析模式——怎么检查结果。Walking Pattern：逐步分析覆盖率。"
+    },
+    {
+      "index": 22,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 217.6,
+      "end": 225.8,
+      "duration": 8.2,
+      "text": "这本身就是一套完美的Skill分类学。如果你要把验证经验封装成A I Skill，完全可以照搬这个结构："
+    },
+    {
+      "index": 23,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 225.8,
+      "end": 237.6,
+      "duration": 11.8,
+      "text": "验证规范Skill——断言生成。验证环境Skill——测试平台搭建。验证激励Skill——测试序列生成。验证分析Skill——覆盖率检查。"
+    },
+    {
+      "index": 24,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 237.6,
+      "end": 246.5,
+      "duration": 8.9,
+      "text": "4个顶层Skill，每个内部3-4个分支。总共不到20个，智能体准确率百分之九十以上，完美落在甜蜜区。"
+    },
+    {
+      "index": 25,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 246.5,
+      "end": 252.2,
+      "duration": 5.7,
+      "text": "分类标准解决了\"建什么Skill\"。接下来的问题是：每个Skill内部怎么设计？"
+    },
+    {
+      "index": 26,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 252.2,
+      "end": 253.7,
+      "duration": 1.5,
+      "text": "第一种模式最简单。"
+    },
+    {
+      "index": 27,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 253.7,
+      "end": 262.3,
+      "duration": 8.6,
+      "text": "痛点：智能体的上下文窗口是有限的。如果你把所有知识一股脑塞进去，两个问题——浪费token，知识之间互相干扰。"
+    },
+    {
+      "index": 28,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 262.3,
+      "end": 278.3,
+      "duration": 16.0,
+      "text": "Tool Wrapper的做法：把知识包装在Skill里，只在调用这个工具时才加载对应的知识。比如你有一个协议规范，不需要一开始就全部加载——当智能体需要处理这个协议时，Skill自动把规范加载进上下文。用完即走。"
+    },
+    {
+      "index": 29,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 278.3,
+      "end": 282.4,
+      "duration": 4.1,
+      "text": "像查字典，需要时才翻。不需要把整本字典背下来。"
+    },
+    {
+      "index": 30,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 282.4,
+      "end": 284.0,
+      "duration": 1.6,
+      "text": "第二种模式是最常用的。"
+    },
+    {
+      "index": 31,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 284.0,
+      "end": 298.8,
+      "duration": 14.8,
+      "text": "痛点：你让智能体生成一个Score board，每次出来的格式、结构、命名都不一样。今天叫check_data，明天叫verify_result，后天又变成compare_output。代码能跑，但风格混乱，维护成本高。"
+    },
+    {
+      "index": 32,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 298.8,
+      "end": 309.0,
+      "duration": 10.2,
+      "text": "Generator模式的核心职责：标准化输出过程。不管输入是什么，输出的格式、结构、命名规范都是确定的。模板驱动，质量内建。"
+    },
+    {
+      "index": 33,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 309.0,
+      "end": 323.9,
+      "duration": 14.9,
+      "text": "R two的S C B gen就是Generator模式。输入是V Plan的检查点描述，输出是标准格式的U V M Score board。不管你给它A X I的检查点还是A P B的检查点，出来的Score board结构一致、接口一致、命名规范一致。"
+    },
+    {
+      "index": 34,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 323.9,
+      "end": 339.4,
+      "duration": 15.5,
+      "text": "C O V gen也是Generator。输入是reg map点J S O N，输出是标准的cover group。每个功能点对应一个cover group，格式固定。功能覆盖、交叉覆盖、翻转覆盖，三种覆盖类型从J S O N来，不是人抄的。"
+    },
+    {
+      "index": 35,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 339.4,
+      "end": 342.0,
+      "duration": 2.6,
+      "text": "第三种模式解决一个非常具体的痛苦。"
+    },
+    {
+      "index": 36,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 342.0,
+      "end": 354.2,
+      "duration": 12.2,
+      "text": "痛点：智能体生成了一段代码，你发现问题，让它改。结果它不是修改——是重新生成。你刚才确认过的好的部分也被改掉了。来来回回三轮，你比自己写还累。"
+    },
+    {
+      "index": 37,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 354.2,
+      "end": 363.3,
+      "duration": 9.1,
+      "text": "审查者模式把生成和审查分成两个阶段。第一阶段生成初稿。第二阶段审查初稿，只修改有问题的部分，保留好的部分。"
+    },
+    {
+      "index": 38,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 363.3,
+      "end": 365.3,
+      "duration": 2.0,
+      "text": "不推倒重来，只补缺口。"
+    },
+    {
+      "index": 39,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 365.3,
+      "end": 368.4,
+      "duration": 3.1,
+      "text": "第四种模式解决智能体最大的坏习惯。"
+    },
+    {
+      "index": 40,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 368.4,
+      "end": 380.7,
+      "duration": 12.3,
+      "text": "痛点：信息不够的时候，智能体不会说\"我不知道\"——它会自信地猜。你给它一个不完整的规格文档，它会帮你补全。听起来很贴心，但补的全是幻觉。"
+    },
+    {
+      "index": 41,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 380.7,
+      "end": 392.9,
+      "duration": 12.2,
+      "text": "Inversion模式反转了控制流。当信息不足时，Skill不是往前猜——而是停下来，向用户提问。\"我需要知道这个寄存器的复位值，规格文档里没有写，请确认。\""
+    },
+    {
+      "index": 42,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 392.9,
+      "end": 411.4,
+      "duration": 18.5,
+      "text": "这个模式在芯片验证里特别关键。因为规格文档的模糊地带太多了。一个中断控制器的优先级规则，规格文档可能只写了\"按优先级仲裁\"，没说是固定优先级还是轮询。智能体默认猜一个，写出的R T L可能功能上看着对，但仲裁行为完全错了。"
+    },
+    {
+      "index": 43,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 411.4,
+      "end": 417.9,
+      "duration": 6.5,
+      "text": "Inversion模式的Skill会在这里停下来：这个字段的优先级策略是固定还是轮询？请明确。"
+    },
+    {
+      "index": 44,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 417.9,
+      "end": 420.5,
+      "duration": 2.6,
+      "text": "第五种模式解决长流程的问题。"
+    },
+    {
+      "index": 45,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 420.5,
+      "end": 433.7,
+      "duration": 13.2,
+      "text": "痛点：你用一段提示词描述一个复杂的五步流程。智能体跑到第三步开始偷懒——跳过检查直接到第五步，或者把第三步和第四步合并了。结果不完整但看起来像完整的。"
+    },
+    {
+      "index": 46,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 433.7,
+      "end": 441.2,
+      "duration": 7.5,
+      "text": "Pipeline模式把流程拆成顺序阶段，每个阶段必须完成才能进入下一个。机械强制，不允许跳步。"
+    },
+    {
+      "index": 47,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 441.2,
+      "end": 462.3,
+      "duration": 21.1,
+      "text": "R two的SEQ gen就是Pipeline模式。Sequence生成分四层递进——第一层Basic单操作，第二层Composed组合操作，第三层Stress极限测试，第四层Boundary边界条件。必须先写完Basic才能写Composed，必须先写完Composed才能写Stress。因为后面的层依赖前面的层。"
+    },
+    {
+      "index": 48,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 462.3,
+      "end": 496.4,
+      "duration": 34.1,
+      "text": "具体来说：第一层，一次读，一次写，一次中断触发，每个操作定义清楚入参、出参、时序约束。第二层，先写后读检查数据一致性，写中断使能寄存器然后触发中断检查响应。第三层，连续写入直到F I F O满，然后再写一次看D U T怎么处理，同时触发所有中断看优先级仲裁是否正确。第四层，地址的最大值、最小值、非对齐访问，数据的全0、全1、单bit翻转，时钟域交叉点的精确时序。"
+    },
+    {
+      "index": 49,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 496.4,
+      "end": 505.2,
+      "duration": 8.8,
+      "text": "你不可能跳过单次读写直接写极限压力测试——连基础操作都没定义，极限测试写给谁看？Pipeline模式保证了这一点。"
+    },
+    {
+      "index": 50,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 505.2,
+      "end": 536.0,
+      "duration": 30.8,
+      "text": "拿时序优化举例。一个团队把时序优化的Skill写成了纯Generator模式——\"请优化这个模块的时序\"。智能体一次生成\"优化后的R T L\"，但它不知道综合器实际报出了哪条关键路径、slack值是多少。正确做法是先读S T A报告找到W N S最差的3条path，再定向修改这些path经过的R T L模块。Generator假设智能体已经知道答案；先诊断再行动，承认智能体需要先读反馈。"
+    },
+    {
+      "index": 51,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 536.0,
+      "end": 560.2,
+      "duration": 24.2,
+      "text": "另一个例子。一个团队把应该用Pipeline的任务用了纯Generator。四步验证流程被压缩成一次生成。结果呢？智能体确实一次生成了四步的产物——但第三步的输出引用了第一步里不存在的信号名。因为Generator模式没有强制顺序执行，第三步不知道第一步实际产出了什么，它自己猜了一个信号名。"
+    },
+    {
+      "index": 52,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 560.2,
+      "end": 579.4,
+      "duration": 19.2,
+      "text": "另一个团队在需要Inversion的地方用了Generator。智能体遇到规格文档里没写的细节，默默地按自己的理解补全了。生成的R T L编译通过、仿真通过，但功能不是规格文档要求的。因为Generator模式不会停下来问你——它的职责是生成，不是质疑。"
+    },
+    {
+      "index": 53,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 579.4,
+      "end": 582.9,
+      "duration": 3.5,
+      "text": "用对模式不是锦上添花——是决定成败的选择。"
+    },
+    {
+      "index": 54,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 582.9,
+      "end": 587.0,
+      "duration": 4.1,
+      "text": "五种模式不是互斥的。一个Skill可以同时用多种模式。"
+    },
+    {
+      "index": 55,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 587.0,
+      "end": 599.5,
+      "duration": 12.5,
+      "text": "模式叠加的原则：每种模式解决一个维度的问题。Generator解决输出格式。Pipeline解决执行顺序。审查者解决质量闭环。叠加就是同时在多个维度上施加约束。"
+    },
+    {
+      "index": 56,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 599.5,
+      "end": 602.3,
+      "duration": 2.8,
+      "text": "想新建一个Skill之前，问自己三个问题。"
+    },
+    {
+      "index": 57,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 602.3,
+      "end": 612.0,
+      "duration": 9.7,
+      "text": "第一个问题：这个场景有没有明确的边界？\"写点好代码\"——边界模糊，不能建。\"生成U V M Score board\"——边界清晰，可以考虑。"
+    },
+    {
+      "index": 58,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 612.0,
+      "end": 621.1,
+      "duration": 9.1,
+      "text": "第二个问题：这个场景会高频复现吗？\"每年春节写一次贺卡\"——太低频，不值得。\"每次验证I P都要写Monitor\"——高频，值得。"
+    },
+    {
+      "index": 59,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 621.1,
+      "end": 627.9,
+      "duration": 6.8,
+      "text": "第三个问题：它能归属进已有的Skill里吗？能——塞进去，不新建。不能——建新Skill。"
+    },
+    {
+      "index": 60,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 627.9,
+      "end": 632.9,
+      "duration": 5.0,
+      "text": "三个都通过了，才建新Skill。否则：合并到已有的里，或者不建。"
+    },
+    {
+      "index": 61,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 632.9,
+      "end": 645.9,
+      "duration": 13.0,
+      "text": "五种设计模式不是理论。Tool Wrapper解决知识加载，Generator解决输出标准化，审查者解决质量审查，Inversion解决信息不足，Pipeline解决流程完整性。每种模式解决一种痛点。"
+    },
+    {
+      "index": 62,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 645.9,
+      "end": 655.2,
+      "duration": 9.3,
+      "text": "学会五种模式，你就能自己设计新的验证Skill。这就是为什么设计模式比Skill本身更重要——Skill是具体的，模式是通用的。"
+    },
+    {
+      "index": 63,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 655.2,
+      "end": 666.5,
+      "duration": 11.3,
+      "text": "Skill不是越多越好，是分类越清晰越好。找到最合适的颗粒度——顶层分大类，内部再细分。20个以内，三条评估，奥卡姆剃刀。"
+    },
+    {
+      "index": 64,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 666.5,
+      "end": 679.4,
+      "duration": 12.9,
+      "text": "从今天起，每次你手动完成一个验证任务，问自己一个问题——这个经验值得封装成Skill吗？如果值得，选一个模式，写下来。这就是经验资产化的起点。"
+    }
+  ],
+  "nlp_count": 65,
+  "tts_total": 679.4,
+  "mp3_duration": 683.328,
+  "failed_segments": 0
+}

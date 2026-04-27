@@ -1,0 +1,730 @@
+{
+  "audio": "",
+  "nlp": "/Users/gaoyuan/Projects/r2-video/harness/module8/module8_draft_v2_nlp.json",
+  "nlp_timings": [
+    {
+      "index": 0,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 0.0,
+      "end": 12.3,
+      "duration": 12.3,
+      "text": "模块 11讲了怎么设计Skill。模块 12讲了怎么用子智能体隔离复杂任务。现在你手上有12个智能体——6个脚本引擎，6个A I引擎。每个都能独立干活。"
+    },
+    {
+      "index": 1,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 12.3,
+      "end": 36.4,
+      "duration": 24.1,
+      "text": "问题来了。你让S C B gen生成Score board，让SEQ gen生成Sequence，让C O V gen生成覆盖率。三个智能体各自跑完了。但Score board里比对用的Transaction字段名跟Sequence里产生的Transaction字段名对不上。覆盖率里监测的事件跟Monitor采样的事务类型不一致。三个产物各自正确，组合在一起不工作。"
+    },
+    {
+      "index": 2,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 36.4,
+      "end": 52.8,
+      "duration": 16.4,
+      "text": "这不是智能体的问题——是编排的问题。没有人告诉它们\"先统一Interface和Transaction定义，三个智能体都基于同一份契约生成——Score board引用这份契约做比对，Sequence引用这份契约产生激励，覆盖率引用这份契约定义覆盖点\"。"
+    },
+    {
+      "index": 3,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 52.8,
+      "end": 84.3,
+      "duration": 31.5,
+      "text": "这还只是三个智能体的协作问题。想象一下更大的场景——一颗商业级RISC five处理器I P，带Vector扩展，17个外设，48份P D F规格书精确到bit级寄存器定义。你要对它做需求变更——比如把向量单元的V LEN从256改成512。改C P U core的智能体、改cache的智能体、改总线的智能体、跑验证的智能体——十几个智能体同时工作，任何一个的改动都可能破坏别人的结果。编排的复杂度不是加法，是乘法。"
+    },
+    {
+      "index": 4,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 84.3,
+      "end": 120.2,
+      "duration": 35.9,
+      "text": "选对编排模式比写好单个智能体更关键。一个普通的智能体配上正确的编排，效果远超一个优秀的智能体配上错误的编排。Anthropic在2026年总结了五种多智能体协作模式——编排者-子智能体、生成-验证器、智能体 Teams、共享状态、消息总线。这五种是理论框架，告诉你多智能体系统有哪几类协作关系。R two在芯片验证实战中，从这五种理论衍生出九种可操作的编排模式。理论框架告诉你有哪些积木，实战经验告诉你怎么搭。"
+    },
+    {
+      "index": 5,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 120.2,
+      "end": 130.4,
+      "duration": 10.2,
+      "text": "这一集讲九种工作流编排模式。每种解决不同的协作问题。最后给你一个四步选择指南——回答四个问题就能定位最适合你的模式。"
+    },
+    {
+      "index": 6,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 130.4,
+      "end": 147.1,
+      "duration": 16.7,
+      "text": "Anthropic把这类模式叫编排者-子智能体。一个主智能体拆任务、派任务、收结果。R two的前三种模式都是它的实践变体——区别在于子智能体之间的关系：串行、并行、还是分阶段。"
+    },
+    {
+      "index": 7,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 147.1,
+      "end": 152.9,
+      "duration": 5.8,
+      "text": "模式一：经典三层架构。命令到智能体到Skill。最简单的编排。"
+    },
+    {
+      "index": 8,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 152.9,
+      "end": 182.0,
+      "duration": 29.1,
+      "text": "用户发出命令——\"帮我把这个寄存器H J S O N生成R A L模型并验证能编译\"。主智能体接收命令，分解任务，按顺序调用Skill——先调H J S O N lint检查确认H J S O N格式合规，再调gen R A L从H J S O N生成U V M R A L class，最后调compile run编译确认没有语法错误。三步全是确定性操作，前一步的输出就是下一步的输入。"
+    },
+    {
+      "index": 9,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 182.0,
+      "end": 190.2,
+      "duration": 8.2,
+      "text": "三层之间是严格的调用关系。命令不直接调Skill——必须经过智能体。智能体是唯一的编排者。"
+    },
+    {
+      "index": 10,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 190.2,
+      "end": 200.8,
+      "duration": 10.6,
+      "text": "什么时候用？一句话能说清目标，步骤明确，每一步的输入就是上一步的输出，不需要并行。大多数日常确定性任务用这个模式就够了。"
+    },
+    {
+      "index": 11,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 200.8,
+      "end": 209.7,
+      "duration": 8.9,
+      "text": "局限：如果某一步需要很长时间——比如仿真跑了两小时——整个流程阻塞在那里。智能体等着仿真结果，什么都不能做。"
+    },
+    {
+      "index": 12,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 209.7,
+      "end": 216.2,
+      "duration": 6.5,
+      "text": "模式二：并行智能体研究模式。多个智能体同时工作，各自独立研究。"
+    },
+    {
+      "index": 13,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 216.2,
+      "end": 224.5,
+      "duration": 8.3,
+      "text": "你有一个新的S O C项目，需要评估五个候选I P。每个I P的规格文档有一百多页。串行评估需要五天。"
+    },
+    {
+      "index": 14,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 224.5,
+      "end": 237.4,
+      "duration": 12.9,
+      "text": "并行研究模式：启动五个子智能体，每个读一份规格文档，独立输出评估报告。五个智能体同时工作，一天出齐五份报告。主智能体汇总五份报告，做最终决策。"
+    },
+    {
+      "index": 15,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 237.4,
+      "end": 244.6,
+      "duration": 7.2,
+      "text": "关键约束：五个智能体之间不通信。各自独立，互不依赖。主智能体只在最后汇总时介入。"
+    },
+    {
+      "index": 16,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 244.6,
+      "end": 254.1,
+      "duration": 9.5,
+      "text": "什么时候用？多个独立的分析任务，彼此之间没有数据依赖。I P评估、代码审查多个模块、并行阅读多份文档——都适合。"
+    },
+    {
+      "index": 17,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 254.1,
+      "end": 270.6,
+      "duration": 16.5,
+      "text": "局限：如果任务之间有依赖——比如第二个I P的评估结果取决于第一个I P的接口定义——并行研究模式就不行了。还有一种情况并行研究也不够：任务需要多轮推进、持续积累上下文。这时候并行研究要升级成智能体 Teams——后面模式六会专门讲。"
+    },
+    {
+      "index": 18,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 270.6,
+      "end": 280.7,
+      "duration": 10.1,
+      "text": "模式三：R P I工作流。Research、Plan、Implement——研究、规划、实现。三个阶段，每个阶段由独立的子智能体负责。"
+    },
+    {
+      "index": 19,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 280.7,
+      "end": 292.2,
+      "duration": 11.5,
+      "text": "第一阶段研究智能体：读规格文档，读已有代码，收集所有相关信息。产出是一份研究报告——\"这个I P有80个寄存器、3个中断源、支持D M A\"。"
+    },
+    {
+      "index": 20,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 292.2,
+      "end": 301.1,
+      "duration": 8.9,
+      "text": "第二阶段规划智能体：拿到研究报告，制定验证计划。产出是V Plan——功能点列表、优先级排序、测试策略。"
+    },
+    {
+      "index": 21,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 301.1,
+      "end": 308.1,
+      "duration": 7.0,
+      "text": "第三阶段实现智能体：拿到V Plan，执行实现。生成Test bench、R T L、覆盖率。"
+    },
+    {
+      "index": 22,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 308.1,
+      "end": 331.8,
+      "duration": 23.7,
+      "text": "为什么分三个智能体而不是一个智能体走完三步？因为三个阶段需要不同的思维模式。Research需要广度——尽可能多地收集信息。Plan需要判断力——在众多功能点中排优先级。Implement需要精确性——生成的代码必须严格符合Plan。一个智能体同时做三件事，很容易在Plan阶段就开始写代码——跳过了深思熟虑。"
+    },
+    {
+      "index": 23,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 331.8,
+      "end": 342.1,
+      "duration": 10.3,
+      "text": "什么时候用？任务需要先调研再决策再执行。新I P的完整验证流程、从零搭建验证环境、架构设计评审——都适合R P I。"
+    },
+    {
+      "index": 24,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 342.1,
+      "end": 366.0,
+      "duration": 23.9,
+      "text": "芯片里的R P I长什么样？给一颗C P U加一条自定义指令。研究智能体读I S A手册确认编码空间，读现有decoder逻辑理解扩展点。规划智能体制定变更计划——改decoder、改A L U、写指令级测试、确认覆盖率目标。实现智能体按计划改R T L、写测试、跑验证。三个阶段，三种思维，三个独立上下文。"
+    },
+    {
+      "index": 25,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 366.0,
+      "end": 368.4,
+      "duration": 2.4,
+      "text": "模式四：自演化工作流"
+    },
+    {
+      "index": 26,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 368.4,
+      "end": 379.2,
+      "duration": 10.8,
+      "text": "Anthropic把这类模式叫生成-验证器。一个智能体生成，另一个智能体验证，不合格就再来一轮。R two的自演化工作流就是它的实践形态。"
+    },
+    {
+      "index": 27,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 379.2,
+      "end": 385.3,
+      "duration": 6.1,
+      "text": "模块 12讲了C to R T L的例子。自演化是这九种模式里最强大的一种。"
+    },
+    {
+      "index": 28,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 385.3,
+      "end": 393.1,
+      "duration": 7.8,
+      "text": "核心循环：生成→验证→修正→再生成。每一轮由独立子智能体执行，每一轮的质量比上一轮更好。"
+    },
+    {
+      "index": 29,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 393.1,
+      "end": 400.5,
+      "duration": 7.4,
+      "text": "跟模式一的区别：模式一是线性的——做完就结束。自演化是循环的——做完检查，不合格就再来一轮。"
+    },
+    {
+      "index": 30,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 400.5,
+      "end": 411.7,
+      "duration": 11.2,
+      "text": "跟人工迭代的区别：人工迭代依赖工程师的判断力——他看到错误报告，决定怎么改。自演化把判断力编码到智能体里——智能体看到错误报告，自己决定怎么改。"
+    },
+    {
+      "index": 31,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 411.7,
+      "end": 428.0,
+      "duration": 16.3,
+      "text": "什么时候用？目标明确但路径不确定的任务。你知道最终要什么——可综合的Verilog、百分之百覆盖率、零时序违例——但不知道需要几轮迭代才能达到。自演化模式自动迭代，直到目标达成或达到轮次上限。"
+    },
+    {
+      "index": 32,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 428.0,
+      "end": 437.7,
+      "duration": 9.7,
+      "text": "R two的覆盖率闭环就是自演化——R two C O V分析缺口，生成补洞pattern，跑仿真，再分析——直到覆盖率达标。"
+    },
+    {
+      "index": 33,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 437.7,
+      "end": 450.4,
+      "duration": 12.7,
+      "text": "自演化做到极致是什么样？芯片验证有一条铁律：改了任何东西，都必须证明没有破坏已有功能。在一颗商业级C P U上，自演化不是一层闭环，是四层叠加。"
+    },
+    {
+      "index": 34,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 450.4,
+      "end": 479.8,
+      "duration": 29.4,
+      "text": "第一层，模块级：改完D M A控制器，先跑D M A自己的test bench。第二层，集成级：跑整机仿真，用I S A参考模型逐指令比对——每条指令的结果必须和参考模型完全一致。第三层，波形调试：不一致就分析V C D波形，转C S V用Python定位根因，修完再验。第四层，回归加覆盖率：17个外设全量回归不退化，新功能覆盖率达标。"
+    },
+    {
+      "index": 35,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 479.8,
+      "end": 504.7,
+      "duration": 24.9,
+      "text": "举个例子。你把向量单元的V LEN从256改成512。R T L智能体改完Vector单元，验证智能体用Spike逐指令比对。发现某条向量指令结果不对，分析波形定位到pipeline第三级的数据通路宽度没改全，修完再跑——这个\"改→验→调→再验\"的循环，就是自演化嵌套在集成测试节点上。"
+    },
+    {
+      "index": 36,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 504.7,
+      "end": 519.5,
+      "duration": 14.8,
+      "text": "还有一个关键机制：棘轮。每轮改完，覆盖率只能升不能降。退化的部分必须修复后才能合入。Git记录每次有效进化。不是看一次就完，是每轮都验、只进不退。"
+    },
+    {
+      "index": 37,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 519.5,
+      "end": 529.3,
+      "duration": 9.8,
+      "text": "有规格文档就有验证标准，有验证标准就能加自演化闭环。很多项目缺的不是智能体能力，是写清楚了的验收标准。"
+    },
+    {
+      "index": 38,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 529.3,
+      "end": 539.2,
+      "duration": 9.9,
+      "text": "模式五：Pipeline流水线。Pipeline是编排者-子智能体的流水线变体——子智能体串行接力，数据单向流动。"
+    },
+    {
+      "index": 39,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 539.2,
+      "end": 544.5,
+      "duration": 5.3,
+      "text": "不是模块 11讲的Skill设计模式Pipeline。这是工作流级别的Pipeline。"
+    },
+    {
+      "index": 40,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 544.5,
+      "end": 550.5,
+      "duration": 6.0,
+      "text": "Skill级Pipeline：一个Skill内部的多步执行——SEQ gen的四层递进。"
+    },
+    {
+      "index": 41,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 550.5,
+      "end": 564.5,
+      "duration": 14.0,
+      "text": "工作流级Pipeline：多个智能体串行协作——智能体 A的输出是智能体 B的输入，智能体 B的输出是智能体 C的输入。每个智能体是独立的子智能体，有自己的上下文。"
+    },
+    {
+      "index": 42,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 564.5,
+      "end": 588.6,
+      "duration": 24.1,
+      "text": "R two的端到端流水线就是工作流Pipeline：P D F to M D把规格文档转成Markdown→规格提取器提取功能点和寄存器定义→R two T D D生成测试平台和R T L→R two C O V跑覆盖率→R two P R生成物理实现报告。五个智能体串行执行，每个智能体的输出严格是下一个智能体的输入。"
+    },
+    {
+      "index": 43,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 588.6,
+      "end": 597.9,
+      "duration": 9.3,
+      "text": "什么时候用？任务有明确的阶段性，每个阶段有明确的输入输出格式。数据从前到后单向流动，没有回路。"
+    },
+    {
+      "index": 44,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 597.9,
+      "end": 615.0,
+      "duration": 17.1,
+      "text": "跟R P I的区别：R P I是Pipeline的一种特化——针对不确定性任务，用研究-规划-实现三阶段递减不确定性。通用Pipeline不限阶段数，也不限语义——纯数据流水线、质量门串联、跨团队交接都是Pipeline。"
+    },
+    {
+      "index": 45,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 615.0,
+      "end": 634.9,
+      "duration": 19.9,
+      "text": "前五种模式，智能体之间的关系都比较简单——要么串行、要么并行、要么循环。但当系统规模上去之后，会出现两个新问题：智能体需要长期驻留一个领域，以及智能体之间需要实时共享中间发现。Anthropic把这两种模式分别叫智能体 Teams和共享状态。"
+    },
+    {
+      "index": 46,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 634.9,
+      "end": 651.3,
+      "duration": 16.4,
+      "text": "模式六：智能体 Teams，领域驻留。并行研究模式的升级版。并行研究是一次性派遣——五个智能体各跑一轮，汇总完就解散。智能体 Teams是长期驻留——每个Team守一个领域，越改越熟。"
+    },
+    {
+      "index": 47,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 651.3,
+      "end": 674.2,
+      "duration": 22.9,
+      "text": "一颗C P U做大规模变更——C P U核心、cache子系统、外设集群、总线互联，四个领域可以并行，但每个领域不是跑一轮就完的。Team C（外设集群）第一轮改完D M A，第二轮改Timer的时候，它已经知道了D M A改动对中断控制器的影响——这个上下文如果丢了，第二轮就会重蹈覆辙。"
+    },
+    {
+      "index": 48,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 674.2,
+      "end": 684.9,
+      "duration": 10.7,
+      "text": "什么时候用？任务可以按领域分区，但每个分区需要多轮推进、持续积累上下文。一次性派遣搞不定的长期协作，用智能体 Teams。"
+    },
+    {
+      "index": 49,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 684.9,
+      "end": 708.6,
+      "duration": 23.7,
+      "text": "模式七：共享状态，共享工作台。你在改D M A控制器的突发传输逻辑。R T L智能体改了D M A的状态机。但这个改动影响了总线矩阵的仲裁时序——验证智能体跑集成测试时发现了死锁。如果这个发现只存在验证智能体的上下文里，R T L智能体下一轮修改还是会犯同样的错。"
+    },
+    {
+      "index": 50,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 708.6,
+      "end": 727.0,
+      "duration": 18.4,
+      "text": "解法是共享状态——所有智能体围着同一份\"变更影响图\"协作。验证智能体发现死锁，立刻写进变更影响图。R T L智能体下一步就知道：改D M A必须同时检查总线仲裁。规格文档智能体读到新的接口约束，也实时写进去。"
+    },
+    {
+      "index": 51,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 727.0,
+      "end": 734.2,
+      "duration": 7.2,
+      "text": "共享状态不是可选的增强——在模块之间有隐含依赖的系统里，它是没有就会出事的基础设施。"
+    },
+    {
+      "index": 52,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 734.2,
+      "end": 744.4,
+      "duration": 10.2,
+      "text": "什么时候用？一个智能体的中间发现会立刻影响其他智能体的下一步。智能体之间不只是传递最终产物，还要传递中间发现。"
+    },
+    {
+      "index": 53,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 744.4,
+      "end": 772.5,
+      "duration": 28.1,
+      "text": "消息总线：为什么不讲？Anthropic第五种模式是消息总线——用发布-订阅机制路由不可预测的事件流。R two不用。芯片验证的变更流程是确定的——读规格文档→改R T L→验证→收敛，不存在不可预测的事件流。编排者模式足够。如果你的系统要同时处理需求变更、线上缺陷、覆盖率告警、客户紧急需求四种不同来源的事件流，那才需要消息总线。"
+    },
+    {
+      "index": 54,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 772.5,
+      "end": 774.4,
+      "duration": 1.9,
+      "text": "模式八：人审查模式"
+    },
+    {
+      "index": 55,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 774.4,
+      "end": 778.8,
+      "duration": 4.4,
+      "text": "人审查不是一种固定模式——它是流程成熟度的指示器。"
+    },
+    {
+      "index": 56,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 778.8,
+      "end": 793.9,
+      "duration": 15.1,
+      "text": "流程成熟度低的环节，人在环路的比例高。智能体生成的产出你不放心，每一步都要审。流程成熟度高的环节，自动化接管，人只看最终结果。同一条流水线里，不同环节的人审比例可以完全不同。"
+    },
+    {
+      "index": 57,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 793.9,
+      "end": 812.9,
+      "duration": 19.0,
+      "text": "R two的演进路径就是这样。早期R two T D D生成断言，工程师逐条审；跑了几十个I P之后，断言生成的Skill成熟了，工程师只审覆盖率报告里的排除项。从逐条审到抽查审到只审高风险决策——人审比例随成熟度递减。"
+    },
+    {
+      "index": 58,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 812.9,
+      "end": 830.3,
+      "duration": 17.4,
+      "text": "投资方向：找人审比例最高、重复度也最高的环节——那就是R O I最高的自动化投资点。把那个环节的Skill写扎实、质量门建好、反馈闭环闭合，人审比例就降下来。每解放一个环节的双手，流程成熟度上一个台阶。"
+    },
+    {
+      "index": 59,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 830.3,
+      "end": 845.8,
+      "duration": 15.5,
+      "text": "签核前的排除分析、架构级决策——用A X I还是A P B——这些环节成熟度天然低，人审比例高，也应该高。不是所有环节都要追求无人化，是把有限的人力投在真正需要判断力的地方。"
+    },
+    {
+      "index": 60,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 845.8,
+      "end": 848.0,
+      "duration": 2.2,
+      "text": "模式九：混合模式"
+    },
+    {
+      "index": 61,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 848.0,
+      "end": 853.2,
+      "duration": 5.2,
+      "text": "真实项目不会只用一种模式。混合模式是把前八种按需组合。"
+    },
+    {
+      "index": 62,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 853.2,
+      "end": 855.7,
+      "duration": 2.5,
+      "text": "R two的Veri Smart就是混合模式。"
+    },
+    {
+      "index": 63,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 855.7,
+      "end": 876.6,
+      "duration": 20.9,
+      "text": "第一步用Pipeline——P D F to M D到规格提取器到R two T D D，线性流水线。第二步切到并行——多个智能体同时生成Score board、Sequence、覆盖率。第三步用自演化——覆盖率补洞循环，直到达标。第四步在排除分析和最终签核这些成熟度低的环节，人审比例拉高。"
+    },
+    {
+      "index": 64,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 876.6,
+      "end": 887.3,
+      "duration": 10.7,
+      "text": "四种模式在一个项目里无缝切换。Pipeline保证流程顺序，并行提升效率，自演化保证质量，人审比例随环节成熟度动态调整。"
+    },
+    {
+      "index": 65,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 887.3,
+      "end": 902.2,
+      "duration": 14.9,
+      "text": "混合模式不是随便混。每种模式在哪个阶段介入，是经过设计的。关键原则：确定性阶段用Pipeline，独立任务用并行，需要迭代的用自演化，成熟度低的环节保留人审、成熟度高的环节释放人力。"
+    },
+    {
+      "index": 66,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 902.2,
+      "end": 916.0,
+      "duration": 13.8,
+      "text": "所以工业级的混合模式其实是五层积木：Pipeline跑主线，并行提效率，自演化保质量，共享状态传发现，人审查守签核。模式是积木，不是菜单。"
+    },
+    {
+      "index": 67,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 916.0,
+      "end": 918.5,
+      "duration": 2.5,
+      "text": "回答四个问题，定位你的编排模式。"
+    },
+    {
+      "index": 68,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 918.5,
+      "end": 920.6,
+      "duration": 2.1,
+      "text": "第一个问题：任务之间有依赖吗？"
+    },
+    {
+      "index": 69,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 920.6,
+      "end": 925.4,
+      "duration": 4.8,
+      "text": "没有依赖——并行研究模式。五个I P评估互不相关，同时跑。"
+    },
+    {
+      "index": 70,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 925.4,
+      "end": 927.4,
+      "duration": 2.0,
+      "text": "有依赖——进入第二个问题。"
+    },
+    {
+      "index": 71,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 927.4,
+      "end": 929.7,
+      "duration": 2.3,
+      "text": "第二个问题：需要迭代收敛吗？"
+    },
+    {
+      "index": 72,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 929.7,
+      "end": 936.1,
+      "duration": 6.4,
+      "text": "需要迭代——自演化工作流。目标明确但路径不确定，自动循环直到达标。"
+    },
+    {
+      "index": 73,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 936.1,
+      "end": 937.9,
+      "duration": 1.8,
+      "text": "不需要迭代——进入第三个问题。"
+    },
+    {
+      "index": 74,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 937.9,
+      "end": 941.1,
+      "duration": 3.2,
+      "text": "第三个问题：需要人介入关键决策吗？"
+    },
+    {
+      "index": 75,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 941.1,
+      "end": 945.4,
+      "duration": 4.3,
+      "text": "需要——人审查模式。高风险、不可逆的决策必须有人确认。"
+    },
+    {
+      "index": 76,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 945.4,
+      "end": 947.4,
+      "duration": 2.0,
+      "text": "不需要——进入第四个问题。"
+    },
+    {
+      "index": 77,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 947.4,
+      "end": 951.6,
+      "duration": 4.2,
+      "text": "第四个问题：智能体之间需要共享中间发现吗？"
+    },
+    {
+      "index": 78,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 951.6,
+      "end": 963.5,
+      "duration": 11.9,
+      "text": "需要——加共享状态层。一个智能体的中间结果会立刻影响其他智能体的下一步。改了D M A发现总线死锁，这个发现必须实时传给改总线的智能体。"
+    },
+    {
+      "index": 79,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 963.5,
+      "end": 969.4,
+      "duration": 5.9,
+      "text": "不需要——Pipeline或经典三层。线性流程用Pipeline，简单任务用经典三层。"
+    },
+    {
+      "index": 80,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 969.4,
+      "end": 973.4,
+      "duration": 4.0,
+      "text": "如果一个项目的不同阶段需要不同模式——用混合模式。"
+    },
+    {
+      "index": 81,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 973.4,
+      "end": 983.9,
+      "duration": 10.5,
+      "text": "从Pipeline开始，在独立任务处切并行，在质量关卡处切自演化，在签核点处切人审查。这就是R two Veri Smart的做法。"
+    },
+    {
+      "index": 82,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 983.9,
+      "end": 990.8,
+      "duration": 6.9,
+      "text": "不要为了用模式而用模式。如果经典三层就能解决，不要硬上混合模式。复杂度是有成本的。"
+    },
+    {
+      "index": 83,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 990.8,
+      "end": 1026.0,
+      "duration": 35.2,
+      "text": "怎么判断该上多少复杂度？看你要处理的对象本身。一颗C P U的17个外设天然形成了复杂度梯度——G P I O是十分之二，Timer是十分之四，U A R T是十分之六，D M A是十分之七，C P U core是十分之八。G P I O用经典三层就够了。D M A需要自演化。C P U core需要智能体 Teams加共享状态。按复杂度分级编排，而不是一刀切。让真实瓶颈驱动演进，不要让架构焦虑驱动过度设计。"
+    },
+    {
+      "index": 84,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1026.0,
+      "end": 1057.9,
+      "duration": 31.9,
+      "text": "九种模式，九种协作方式。经典三层——最简单，线性调用。并行研究——独立任务同时跑。R P I——研究、规划、实现三阶段。自演化——循环迭代直到达标。Pipeline——多智能体串行协作。智能体 Teams——领域长期驻留，越改越熟。共享状态——所有智能体围着同一份真相协作。人审查——成熟度低的环节人确认。混合——按需组合。"
+    },
+    {
+      "index": 85,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1057.9,
+      "end": 1071.0,
+      "duration": 13.1,
+      "text": "四步选择。有依赖吗？需要迭代吗？需要人介入吗？需要共享中间发现吗？四个问题，定位你的模式。任务需要多轮推进、长期积累上下文——上智能体 Teams。"
+    },
+    {
+      "index": 86,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1071.0,
+      "end": 1077.6,
+      "duration": 6.6,
+      "text": "Anthropic五种理论框架告诉你有哪些积木，R two九种实践编排告诉你怎么搭。"
+    },
+    {
+      "index": 87,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1077.6,
+      "end": 1090.0,
+      "duration": 12.4,
+      "text": "R two的Veri Smart是混合模式的最佳实践。Pipeline保证流程、并行提升效率、自演化保证质量、人审查保证安全。四种模式在一个项目里无缝切换。"
+    },
+    {
+      "index": 88,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1090.0,
+      "end": 1109.9,
+      "duration": 19.9,
+      "text": "选对编排模式比写好单个智能体更关键。模块 11教了你怎么设计Skill。模块 12教了你怎么用子智能体隔离。这一集教了你怎么让多个智能体协作。三集连起来——从单个能力到系统级编排。这就是Harness Engineering的完整链路。"
+    },
+    {
+      "index": 89,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1109.9,
+      "end": 1139.0,
+      "duration": 29.1,
+      "text": "最后记住一句话。模式是积木，不是菜单。一颗C P U的17个外设，就是17块不同大小的积木。每块积木用多少模式，取决于它的复杂度，不取决于你的架构焦虑。从最简单的外设开始跑通编排主线，在第一次改出缺陷时叠加验证闭环，在第一次发现\"A的改动破坏了B\"时引入共享状态。让瓶颈驱动演进——这就是工业级编排的直觉。"
+    }
+  ],
+  "nlp_count": 90,
+  "tts_total": 1139.0,
+  "mp3_duration": 1144.58175,
+  "failed_segments": 0
+}

@@ -1,0 +1,666 @@
+{
+  "audio": "/Users/gaoyuan/Projects/r2-video/c2rtl-module/audio/c2rtl_v5.mp3",
+  "nlp": "/Users/gaoyuan/Projects/r2-video/c2rtl-module/c2rtl_draft_v5_nlp.json",
+  "nlp_timings": [
+    {
+      "index": 0,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 0.0,
+      "end": 23.1,
+      "duration": 23.1,
+      "text": "你有一个算法，C代码跑通了，功能验证过了。现在要把它变成可综合的Verilog——手写，一个模块几个小时，一个I P几周到几个月。写完还不放心，因为你不知道自己有没有漏掉什么边界条件。让A I写呢？试过——几百行的小模块还行，但超过500行不拆分直接生成，反复改几十轮也很难收敛。"
+    },
+    {
+      "index": 1,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 23.1,
+      "end": 40.6,
+      "duration": 17.5,
+      "text": "今天我做一个演示：不是一次性扔给A I，而是把C代码拆成一个个小函数，逐个让A I生成Verilog，逐个验证——小模块穷举每一个输入，大模块用形式化等价验证。看完这期，你会知道这条路走不走得通，卡在哪，怎么突破。"
+    },
+    {
+      "index": 2,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 40.6,
+      "end": 54.3,
+      "duration": 13.7,
+      "text": "就用这段C代码。Berkeley Soft Float的F16 add——半精度浮点加法器，这是RISC five F P U也在用的开源基准，Formal R T L论文同样选用了它。R two复现了这个实验。"
+    },
+    {
+      "index": 3,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 54.3,
+      "end": 82.4,
+      "duration": 28.1,
+      "text": "第一步，用编译器分析C代码的结构，提取函数调用图——谁调用了谁。F16 add依赖9个函数——add mags F16处理同号加法、sub mags F16处理异号、round pack to F16做舍入、count leading zeros 16数前导零、propagate NaN处理异常。编译器把依赖关系排好顺序：最底层的工具函数先生成，最顶层的主函数最后。"
+    },
+    {
+      "index": 4,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 82.4,
+      "end": 113.4,
+      "duration": 31.0,
+      "text": "第二步，从叶子开始。count leading zeros 16——16位输入，65536种可能，穷举全部跑完，0错误。这种简单的工具函数，L L M几乎一次就对。soft float round pack to F16——涉及舍入、溢出、下溢，更复杂，同样穷举通过。pack to F16——第一次生成大概率有错，但经过错题调试，最终也通过了。每通过一层，往上走一层。"
+    },
+    {
+      "index": 5,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 113.4,
+      "end": 164.4,
+      "duration": 51.0,
+      "text": "第三步，到了add mags F16——同号浮点加法。L L M第一次生成的Verilog跑出了mismatch。验证工具告诉我们：输入零X零四零零加零X零四零零，C输出零X零八零零，R T L输出零X零四零零。这就是一道错题——哪道题错了、正确答案是什么、它答了什么，全在里面。差在对阶后的尾数进位——指数相同时两个尾数相加，进位应该让指数加1，R T L漏掉了这步。把这道错题送回L L M修复。第二轮，进位修好了，但subnormal边界又出错——当两个subnormal数相加结果恰好跨过normal边界时，指数域的处理逻辑不对。再送错题。第三轮通过。"
+    },
+    {
+      "index": 6,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 164.4,
+      "end": 175.6,
+      "duration": 11.2,
+      "text": "这就是错题驱动调试——不是告诉A I\"错了重做\"，是告诉它\"这道题你答错了，正确答案是零X零八零零，你答了零X零四零零，你改\"。"
+    },
+    {
+      "index": 7,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 175.6,
+      "end": 198.9,
+      "duration": 23.3,
+      "text": "我们先用一个简单的函数验证了这条流水线：F16 round to int，浮点取整。65536种输入乘6种舍入模式，393216个组合——每一个都跑了，C的输出和Verilog的输出逐个比对。验证工具跑完不到2秒。0 mismatch。这是穷举——真的每一个输入都试过了。"
+    },
+    {
+      "index": 8,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 198.9,
+      "end": 240.6,
+      "duration": 41.7,
+      "text": "第四步，F16 add顶层。两个16位输入，6种舍入模式。65536乘65536乘6，约250亿个组合。一个一个跑？要跑几十个小时。这时候换一种方法——形式化等价验证。不是一个一个跑，是用SAT求解器判定：不存在任何一组输入能让C和Verilog给出不同的答案。这跟芯片公司的商业验证工具是同一类方法——基于SAT求解的完备性检查，不是抽样。证明通过，250亿个组合逻辑完备覆盖——但求解时间取决于电路复杂度，不是\"一步\"就完事。"
+    },
+    {
+      "index": 9,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 240.6,
+      "end": 253.2,
+      "duration": 12.6,
+      "text": "C代码进去，经过验证的Verilog出来。小模块用穷举，大模块用形式化等价验证——手段不同，目标一样：每一个子模块的正确性都有确凿的证据。"
+    },
+    {
+      "index": 10,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 253.2,
+      "end": 288.0,
+      "duration": 34.8,
+      "text": "我们设计了两条引擎：一条是A I引擎——L L M理解C语义，生成人可读的R T L，这是Path A；另一条是确定性引擎——把C代码做同构映射，每一个C语句精确对应一段R T L，变量名保留、结构保留、人能逐行审查。A I引擎有创造力但需要验证兜底，确定性引擎没有歧义但覆盖范围受限。两条引擎共享同一个验证框架。这是R two和H L S套壳方案的根本区别。后面还会讲到另外两条路径。"
+    },
+    {
+      "index": 11,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 288.0,
+      "end": 330.0,
+      "duration": 42.0,
+      "text": "确定性引擎具体做什么？它不是H L S——不做不可控的指令调度，不插入你没写过的流水线。它是R T L的C加加方言，做三件事。第一，精确时序映射：你在C加加里用Reg T描述跨周期状态，用wait clock定义时钟边界，编译器把它映射为always F F和非阻塞赋值。你写了3个wait clock，R T L就是3个时钟周期——工具不自作聪明。第二，结构化接口展开：你用C加加 struct定义A X I或A P B总线协议，编译器递归展开为标准Verilog端口列表，位宽自动对齐，彻底消除手动连线时的信号遗漏。"
+    },
+    {
+      "index": 12,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 330.0,
+      "end": 341.9,
+      "duration": 11.9,
+      "text": "第三，自动存储资源推断：你用数组语法写寄存器堆，编译器根据容量自动决定——小数组生成Decoder加MUX，大数组预留Block RAM接口。"
+    },
+    {
+      "index": 13,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 341.9,
+      "end": 347.3,
+      "duration": 5.4,
+      "text": "用L L M把C代码变成硬件，这条路走得通——但有硬条件。"
+    },
+    {
+      "index": 14,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 347.3,
+      "end": 382.6,
+      "duration": 35.3,
+      "text": "为什么要走这条路？传统R T L开发有三大瓶颈。第一，效率：用Verilog写复杂状态机，代码量是C的5到10倍，简单改动需要伤筋动骨的R T L虫构。第二，一致性：算法团队交付C模型，硬件团队手写R T L，等价性完全依赖人工理解——\"算法对，硬件错\"的低级失误反复出现。第三，验证建模滞后：R T L没写完，验证没有参考模型，验证左移根本做不到。这三个问题不是管理问题，是手写R T L这条路的结构性缺陷。"
+    },
+    {
+      "index": 15,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 382.6,
+      "end": 417.5,
+      "duration": 34.9,
+      "text": "学术界在2025年发表了Formal R T L，用形式化方法验证L L M生成的R T L——A S T分解、错题驱动调试、等价验证，R two在这个学术原型基础上做了三点工程扩展：第一，接入商用E D A工具链，自研桥接层把工业级诊断报告翻译成L L M可处理的结构化格式；第二，设计了双引擎架构——A I引擎加确定性引擎，覆盖不同类型的模块；第三，建立了跨设计的经验积累机制，让每次执行的教训成为下一次的起点。"
+    },
+    {
+      "index": 16,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 417.5,
+      "end": 435.7,
+      "duration": 18.2,
+      "text": "第一个条件：必须有干净的C参考模型。我们做过对比：同一个设计，有C参考模型时，对每个子模块逐个验证、逐个纠错，成功率很高。去掉C参考模型，让L L M只靠自然语言规格书生成——直接崩溃。"
+    },
+    {
+      "index": 17,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 435.7,
+      "end": 454.0,
+      "duration": 18.3,
+      "text": "为什么？C代码不只是\"起点\"——它是验证的锚。有了C参考模型，你能对每个子模块独立验证，错了能从错题里提取精确信息。没有C参考模型，你只能把整个设计当一坨去调试，设计一大就完全失控。"
+    },
+    {
+      "index": 18,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 454.0,
+      "end": 471.4,
+      "duration": 17.4,
+      "text": "但不是任何C代码都能当锚。C语言有一类叫\"未定义行为\"的陷阱——某些写法在不同编译器上会给出不同结果。如果C参考模型本身踩了这种陷阱，那C代码自己都不确定正确答案是什么，你还拿什么去比对R T L的输出？"
+    },
+    {
+      "index": 19,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 471.4,
+      "end": 499.7,
+      "duration": 28.3,
+      "text": "我们用两个工具把它量化。U B San做运行时检测：跑一遍C代码，signed溢出、移位越界、未初始化变量，任何一种触发都会报错。C B M C做静态分析：不需要跑，直接推导所有路径上有没有未定义行为。两个都过了，C参考模型才算干净。任何一种未定义行为都会让golden model带病，后面所有验证都建在沙子上。这是硬前提，不过不进。"
+    },
+    {
+      "index": 20,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 499.7,
+      "end": 522.7,
+      "duration": 23.0,
+      "text": "我们自己的实验也印证了这一点。F16 add的9个依赖函数，每一个都有对应的C参考实现，每一个都能独立验证。如果只有一份自然语言规格书——\"实现I triple E 754半精度浮点加法\"——你连subnormal边界该怎么处理都要猜。可执行的C代码是\"什么是正确的\"这个问题的唯一权威来源。"
+    },
+    {
+      "index": 21,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 522.7,
+      "end": 564.7,
+      "duration": 42.0,
+      "text": "第二个条件：必须拆到单函数粒度。刚才的F16 add就是例子。9个函数，Clang按依赖关系排成拓扑序，从叶子往上逐个生成。count leading zeros 16——最简单的叶子，16位输入，逻辑清晰，L L M几乎一次就对。sub mags F16——复杂的中间层，涉及对阶、尾数运算、subnormal处理，L L M第一次生成大概率有错。但拆到单函数之后，错题调试能救回来——因为输入空间小，穷举能跑完，错在哪一目了然。如果把9个函数合成一坨让L L M一次生成，错了你都不知道错在哪个函数里。"
+    },
+    {
+      "index": 22,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 564.7,
+      "end": 582.4,
+      "duration": 17.7,
+      "text": "R two的解法：用编译器A S T分析函数依赖，自动拆成单函数任务，按拓扑序从叶子往上逐个生成。顶层模块的成功率比叶子高。原因很简单：到顶层时，所有依赖项都已验证通过，L L M的负担最小。"
+    },
+    {
+      "index": 23,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 582.4,
+      "end": 606.9,
+      "duration": 24.5,
+      "text": "第三个条件：反馈必须精确。缺陷定位怎么做？这里必须说清楚一件事：不是L L M自己推理出缺陷在哪。是外部工具。我们自研了两个关键组件：错误定位器——解析验证工具的诊断报告，定位到具体信号和行号。诊断压缩器——把验证工具吐出来的几百行诊断信息，压缩到20行以内。"
+    },
+    {
+      "index": 24,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 606.9,
+      "end": 627.2,
+      "duration": 20.3,
+      "text": "我们做过消融实测，趋势非常清晰：完整闭环——有定位加压缩——迭代轮数最少，成功率最高。去掉定位器，轮数翻倍以上，成功率明显下降。去掉压缩器，轮数也涨，但影响比定位小。去掉所有错题引导，轮数飙升，成功率砍半。"
+    },
+    {
+      "index": 25,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 627.2,
+      "end": 646.9,
+      "duration": 19.7,
+      "text": "差别在哪？\"你错了，再试一遍\" vs \"输入零X零四零零时，mantissa carry信号在第47行缺少进位逻辑，期望零X零八零零实际零X零四零零\"。外部工具提供证据，L L M负责生成补丁——各司其职。两者缺一不可。"
+    },
+    {
+      "index": 26,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 646.9,
+      "end": 656.0,
+      "duration": 9.1,
+      "text": "验证不是自己造轮子。刚才说的穷举和等价验证，实验室里用开源工具——Verilator、Yosys——就能跑，必要的情况上商用E D A。"
+    },
+    {
+      "index": 27,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 656.0,
+      "end": 688.0,
+      "duration": 32.0,
+      "text": "Spy Glass做lint检查——语法错误、组合环、多驱动、隐式锁存，秒级扫完。V C S做仿真——C编译成D P I C golden model，和R T L逐bit比对。HECTOR做C-to-R T L形式化等价检查——用SAT求解器证明C参考模型和生成的R T L在所有输入上行为一致。Formality做综合前后等价检查——确保D C综合没有引入逻辑错误。Design Compiler做综合评估——面积、时序、功耗，功能对了P P A不行也不算完。"
+    },
+    {
+      "index": 28,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 688.0,
+      "end": 703.0,
+      "duration": 15.0,
+      "text": "但这里有个问题：这些工具的输出是给人看的，不是给L L M看的。Spy Glass吐出来的warning、V C S的仿真日志、HECTOR的counter example——格式各异，几百行，L L M根本消化不了。"
+    },
+    {
+      "index": 29,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 703.0,
+      "end": 723.5,
+      "duration": 20.5,
+      "text": "所以我们自研了一层E D A桥接——把每种商用E D A工具的诊断报告解析成结构化J S O N。L L M拿到这个J S O N，就知道哪个信号、哪一行、输入什么、错在哪。这是整个系统里最关键的胶水——没有它，商用E D A和L L M之间就是断路的。"
+    },
+    {
+      "index": 30,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 723.5,
+      "end": 732.1,
+      "duration": 8.6,
+      "text": "生成是自研的，验证是工业级的，中间的桥接也是自研的。三层加在一起，才是完整的闭环。"
+    },
+    {
+      "index": 31,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 732.1,
+      "end": 757.4,
+      "duration": 25.3,
+      "text": "诚实面对墙。算法选择碾压一切优化。硬件设计行业有一个常见的陷阱：拿到一个算法，先翻译成硬件，然后花大量时间调优。但如果算法本身选错了呢？C参考模型不只是验证的锚——它也是算法选择的载体。你在C层面做算法优化的成本，比在R T L层面低一个数量级。"
+    },
+    {
+      "index": 32,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 757.4,
+      "end": 782.6,
+      "duration": 25.2,
+      "text": "1000行是规模墙，这不全是工程问题——有一部分是理论限制。C语言是图灵完备的，可综合的Verilog不是。C可以写递归、动态内存分配、无界循环——这些在硬件里根本不存在。能做的只有一个子集。我们的实测：200行左右的模块，成功率接近百分之百。超过1000行，成功率开始明显下降。"
+    },
+    {
+      "index": 33,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 782.6,
+      "end": 807.8,
+      "duration": 25.2,
+      "text": "但规模墙不意味着只能做玩具。我们在一颗RISC five处理器核心上做了完整的C to R T L验证——从指令译码到执行单元，逐模块生成、逐模块验证。Spike作为I S A级的C参考模型提供每条指令的golden answer，覆盖整数运算、分支跳转、C S R访问。这不是浮点加法器级别的演示——这是处理器级别的闭环验证。"
+    },
+    {
+      "index": 34,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 807.8,
+      "end": 823.8,
+      "duration": 16.0,
+      "text": "模型能力决定天花板。我们发现同一个L L M在temperature等于零的确定性采样下，跑10次生成的代码高度相似。L L M推理的边际A P I成本已大幅下降——瓶颈不在算力费用，在方法论和模型能力。"
+    },
+    {
+      "index": 35,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 823.8,
+      "end": 839.1,
+      "duration": 15.3,
+      "text": "还有一个墙必须承认：迭代不能没有尽头。需要硬终止——单模块超过10轮未收敛，停止，转人工。不自动重试，输出最佳尝试和完整日志。没有硬终止的自动化系统，是token 炸弹。"
+    },
+    {
+      "index": 36,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 839.1,
+      "end": 846.0,
+      "duration": 6.9,
+      "text": "目前所有C转R T L的方法——包括我们自己——都有一个致命缺陷：每个设计从零开始。"
+    },
+    {
+      "index": 37,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 846.0,
+      "end": 872.7,
+      "duration": 26.7,
+      "text": "我们跑完F16 mul的调试过程——sub mags F16第一次生成大概率有错，经过多轮迭代才调通。过程中发现了：subnormal处理是浮点运算的共同难点，对阶进位是反复出错的模式，count leading zeros 16在所有浮点模块里都是最稳定的底层函数。这些经验去哪了？消失了。下一个设计F16 add，从零开始，同样的坑重新踩。"
+    },
+    {
+      "index": 38,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 872.7,
+      "end": 886.3,
+      "duration": 13.6,
+      "text": "再举一个例子。我们发现简单的工具函数——比如count leading zeros 16、pack to F16——L L M一次就能生成正确代码。但这些成功模式对下一个复杂模块完全没有传递。"
+    },
+    {
+      "index": 39,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 886.3,
+      "end": 899.2,
+      "duration": 12.9,
+      "text": "这正是硬件设计行业几十年来的老问题。一个资深工程师做了20颗芯片，脑子里积累了大量\"这种结构用这种方法处理最好\"的经验。人离职了，经验就消失了。"
+    },
+    {
+      "index": 40,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 899.2,
+      "end": 911.5,
+      "duration": 12.3,
+      "text": "单次执行能走多远——200行以内的模块成功率很高，平均不到10轮迭代。但单次执行的天花板已经到了。往上走，不是靠更好的模型，是靠Harness积累。"
+    },
+    {
+      "index": 41,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 911.5,
+      "end": 916.0,
+      "duration": 4.5,
+      "text": "以下是基于20个Soft Float模块单次执行数据的工程推演。"
+    },
+    {
+      "index": 42,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 916.0,
+      "end": 943.7,
+      "duration": 27.7,
+      "text": "第1个浮点模块：冷启动，需要多轮迭代才能收敛——这是实测。第3个浮点模块：温启动，系统已知subnormal是难点、对阶进位是常见缺陷，预加载这些模式直接重点处理——迭代轮数明显减少。第8个浮点模块：热启动，5个模块的调试经验全部可检索——估计再减半。第15个浮点模块：经验库覆盖了大部分常见模式——可能进一步缩短。"
+    },
+    {
+      "index": 43,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 943.7,
+      "end": 953.7,
+      "duration": 10.0,
+      "text": "迭代轮数减半再减半——不是靠更大的模型，是靠经验的复利。这是设计目标，我们正在验证。怎么做到？三层机制。"
+    },
+    {
+      "index": 44,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 953.7,
+      "end": 974.1,
+      "duration": 20.4,
+      "text": "第一层：已验证模块直接复用。 count leading zeros 16在F16 round to int里已经通过穷举验证了。到F16 add时，它又出现在依赖树里——不需要重新生成，不需要重新验证，直接复用。叶子函数跨设计重叠率很高，做得越多，需要从零生成的模块就越少。"
+    },
+    {
+      "index": 45,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 974.1,
+      "end": 1011.8,
+      "duration": 37.7,
+      "text": "第二层：错题模式注入生成。 sub mags F16调了多轮，发现subnormal边界处理是反复出错的模式。这条经验存下来。下次生成add mags F16时，直接在提示词里告诉L L M：同类浮点函数常见缺陷是subnormal边界，尤其是两个subnormal相加结果跨过normal边界时，指数域需要加1。L L M第一次生成的代码质量就更高——不是模型变强了，是提示词里带了前人踩过的坑。注意：换模型版本后历史经验可能失效，需要回测。"
+    },
+    {
+      "index": 46,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1011.8,
+      "end": 1025.4,
+      "duration": 13.6,
+      "text": "第三层：调试策略检索。 验证失败拿到错题时，先在历史库里搜——这种错误之前见过吗？如果见过，附上上次的修复方式。L L M拿到上下文，修复速度快得多。"
+    },
+    {
+      "index": 47,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1025.4,
+      "end": 1036.4,
+      "duration": 11.0,
+      "text": "三层叠起来：已验证模块省掉重复工作，错题模式降低首次出错率，调试策略减少修复轮数。让每一次执行的经验成为下一次的起点。"
+    },
+    {
+      "index": 48,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1036.4,
+      "end": 1054.3,
+      "duration": 17.9,
+      "text": "这不是事后的分类——R two从架构设计之初就规划了双核驱动。刚才演示的是Path A——A I引擎直接生成R T L：纯组合逻辑、位操作密集、小型F S M、精度敏感型。但真实项目里，不是所有C代码都适合L L M直写。"
+    },
+    {
+      "index": 49,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1054.3,
+      "end": 1068.8,
+      "duration": 14.5,
+      "text": "有一类C代码已经是H L S兼容的——有pragma标注、循环有界、接口规范——这种代码直接交给Catapult或Vivado H L S编译就行。确定性翻译，不需要L L M。我们叫它Path B。"
+    },
+    {
+      "index": 50,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1068.8,
+      "end": 1090.0,
+      "duration": 21.2,
+      "text": "还有一类：C代码有全局状态、指针、不可综合的写法，但需要深度pipeline或资源共享优化——L L M直写的R T L功能对但P P A不达标。我们让L L M先把C虫构为H L S兼容格式，再交给H L S编译，最后L L M分析综合报告做P P A调优——这是Path C。"
+    },
+    {
+      "index": 51,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1090.0,
+      "end": 1103.6,
+      "duration": 13.6,
+      "text": "三条路径，同一个验证框架，同一个经验池。关键是：拔掉H L S，Path A加自研验证引擎完整运转。H L S是可选插件，不是架构主体。"
+    },
+    {
+      "index": 52,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1103.6,
+      "end": 1108.2,
+      "duration": 4.6,
+      "text": "你可能会问：L L M生成代码不靠谱，怎么敢用在硬件设计上？"
+    },
+    {
+      "index": 53,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1108.2,
+      "end": 1134.7,
+      "duration": 26.5,
+      "text": "先说一个关键的认知翻转：不要证明翻译过程是对的。证明翻译结果是对的。L L M是黑盒，你永远不知道它为什么生成了某段Verilog。但你不需要知道——你只需要证明这段Verilog跟C参考模型在所有输入上行为一致。翻译器不可信没关系，验证器可信就够了。整个方法论的可信度不依赖L L M，依赖验证。"
+    },
+    {
+      "index": 54,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1134.7,
+      "end": 1136.3,
+      "duration": 1.6,
+      "text": "三个约束让这件事成立。"
+    },
+    {
+      "index": 55,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1136.3,
+      "end": 1162.0,
+      "duration": 25.7,
+      "text": "约束一：A S T分解是确定性的。Clang解析函数依赖、按拓扑序排列——这一步不靠L L M，是编译器的静态分析。怎么拆、拆多细、什么顺序生成——全是确定性的。确定性的工作交给编译器，创造性的工作交给大模型。L L M只负责\"给定一个单函数C代码，生成等价的Verilog\"——任务被约束到它可靠工作的粒度。"
+    },
+    {
+      "index": 56,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1162.0,
+      "end": 1177.3,
+      "duration": 15.3,
+      "text": "约束二：验证是绝对的。我们的F16 round to int：65536种输入乘6种舍入模式，393216个组合，V C S跑完不到2秒。每一个都比对了。这不是抽样——是穷举。"
+    },
+    {
+      "index": 57,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1177.3,
+      "end": 1205.1,
+      "duration": 27.8,
+      "text": "F16 add有250亿种组合——穷举要跑几十个小时。还有一种更强的方法：形式化等价验证——用SAT求解器判定\"不存在任何输入能让C和Verilog给出不同答案\"。证明通过，250亿种情况逻辑完备覆盖。我们用HECTOR做这件事——Synopsys VC Formal里的C-to-R T L等价验证引擎，能直接把C代码作为参考模型输入，跟芯片公司验证I P用的是同一个工具。"
+    },
+    {
+      "index": 58,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1205.1,
+      "end": 1223.0,
+      "duration": 17.9,
+      "text": "我们的策略是根据模块规模选方法：小模块穷举仿真，大模块形式化等价验证。形式化验证超时怎么办？降级到约束随机仿真加覆盖率收集——不完备，但有兜底。底线不变：每一个子模块的正确性都有确凿证据。"
+    },
+    {
+      "index": 59,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1223.0,
+      "end": 1236.5,
+      "duration": 13.5,
+      "text": "验证失败时，工具在寻找反例的过程中，会生成一组输入赋值和部分内部信号的witness trace——这些trace精确到信号名和时钟周期，是错误定位器定位错误的原材料。"
+    },
+    {
+      "index": 60,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1236.5,
+      "end": 1258.2,
+      "duration": 21.7,
+      "text": "约束三：错题是可追溯的。不是\"R T L错了\"，是\"输入零X零四零零和零X零四零零，经过add mags F16，期望零X零八零零，实际零X零四零零，差在尾数进位逻辑\"。人能读懂这条错题。人能判断L L M的修复对不对。"
+    },
+    {
+      "index": 61,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1258.2,
+      "end": 1287.2,
+      "duration": 29.0,
+      "text": "此外，还需要把冗长的诊断信息压缩成L L M可处理的格式。去掉它，迭代次数明显上涨——不算致命，但压缩过的错题确实让L L M更快收敛。完整的反馈链路是这样的：E D A工具跑出mismatch → E D A桥接层解析报告 → 错误定位器定位到信号和行号 → 诊断压缩器压缩成几行 → 构建修复提示词 → 送回L L M。每一步都是确定性的，每一步都可以审计。"
+    },
+    {
+      "index": 62,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1287.2,
+      "end": 1304.5,
+      "duration": 17.3,
+      "text": "对比黑盒H L S：\"综合失败，请检查design\"——你连错在哪都不知道。对比传统仿真调试：打开波形工具，在几百万个时钟沿里手动定位异常信号——百分之九十九的时间花在找问题上。错题驱动的调试把这个比例翻过来。"
+    },
+    {
+      "index": 63,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1304.5,
+      "end": 1318.3,
+      "duration": 13.8,
+      "text": "这三个约束叠在一起：确定性的分解、绝对的验证、可追溯的反馈。L L M的创造力被框在一个安全的笼子里——它可以大胆尝试，错了有工业标准的验证工具兜底。"
+    },
+    {
+      "index": 64,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1318.3,
+      "end": 1340.0,
+      "duration": 21.7,
+      "text": "还有一个R two从第一天就坚持的设计原则：生成的R T L必须是白盒的——变量名保留、模块结构保留、人能逐行对照C源码审查。黑盒生成的R T L即使验证通过，工程师也不敢用——你不知道它里面藏了什么。白盒可读性不是锦上添花，是工程落地的前提。"
+    },
+    {
+      "index": 65,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1340.0,
+      "end": 1363.1,
+      "duration": 23.1,
+      "text": "背后的设计哲学是：Write like Software Behave like Hardware。C to R T L不负责时序收敛和面积优化——那是D C和Vivado的事。我们只做一件事：确保C加加的逻辑行为被无损、确定地翻译成Verilog。生成的代码应当像一个受过严格训练的初级工程师手写的——不是天书，是文档。"
+    },
+    {
+      "index": 66,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1363.1,
+      "end": 1402.6,
+      "duration": 39.5,
+      "text": "R two在这个过程中提供了9个核心组件：A S T分解器——拆函数、排拓扑序、分配路径。提示词引擎——构建生成提示词和修复提示词。E D A桥接层——商用E D A输出到结构化J S O N的翻译器。错误定位器——定位到模块、信号、行号。诊断压缩器——几百行诊断压缩到20行。C E G I S主控循环——串联生成、验证、修复的全流程。已验证模块库——跨设计复用。错题模式库——R A G注入。主控流水线——配置管理、硬终止、fallback策略。"
+    },
+    {
+      "index": 67,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1402.6,
+      "end": 1420.6,
+      "duration": 18.0,
+      "text": "买的：Spy Glass、V C S、HECTOR（VC Formal）、Formality、D C做验证。Catapult或Vivado H L S做Path B和Path C的调度——可选，拔掉不影响Path A。Claude和Kimi的A P I做R T L生成和修复。"
+    },
+    {
+      "index": 68,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1420.6,
+      "end": 1428.9,
+      "duration": 8.3,
+      "text": "一句话：生成是自研的，验证是工业级的，闭环控制是自研的。核心壁垒在自研组件，不在任何一个商用工具。"
+    },
+    {
+      "index": 69,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1428.9,
+      "end": 1439.3,
+      "duration": 10.4,
+      "text": "开源工具链——Verilator、Yosys、Symbi Yosys——作为无商用license时的降级方案。能力弱一些，但Path A的核心闭环依然成立。"
+    },
+    {
+      "index": 70,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1439.3,
+      "end": 1446.2,
+      "duration": 6.9,
+      "text": "回到开头。C代码进去，验证过的Verilog出来。这不是一个承诺——是你刚看到的结果。"
+    },
+    {
+      "index": 71,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1446.2,
+      "end": 1460.1,
+      "duration": 13.9,
+      "text": "但这只是开始。刚才演示的是数据通路模块——浮点加法器，纯组合逻辑。芯片设计里还有另一半：控制流模块——状态机、协议解析器、C S R管理。"
+    },
+    {
+      "index": 72,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1460.1,
+      "end": 1473.8,
+      "duration": 13.7,
+      "text": "Path A已经能处理简单F S M——小型状态机、计数器，用B M C做有界等价验证。复杂控制流——深层状态机、协议引擎——目前走Path B或Path C，借助H L S的调度能力。"
+    },
+    {
+      "index": 73,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1473.8,
+      "end": 1501.9,
+      "duration": 28.1,
+      "text": "三条路径覆盖不同模块特征。数据通路——A L U、F P U、编解码器——走Path A：L L M直接生成，商用E D A验证，错题闭环修复。需要调度优化的——走Path B或Path C：H L S做确定性翻译或调度。三者共享同一个验证框架，同一个经验池。风险模型不同，但可信度的根基是同一个——C代码是ground truth。"
+    },
+    {
+      "index": 74,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1501.9,
+      "end": 1516.7,
+      "duration": 14.8,
+      "text": "这条路走得通。L L M能生成Verilog，编译器能分解任务，商用E D A能验证正确性。但之前的尝试都是一次性的——跑完就忘，下一个设计从零开始。R two在这个基础上多做了五件事。"
+    },
+    {
+      "index": 75,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1516.7,
+      "end": 1565.1,
+      "duration": 48.4,
+      "text": "第一，精确纠错。错误定位器定位到信号和行号，诊断压缩器压缩诊断信息，E D A桥接层让商用工具的报告变成L L M能读懂的J S O N——验证工具提供证据，L L M负责修复。第二，经验积累。已验证模块跨设计复用，错题模式注入下次生成的提示词，调试策略从历史库检索——迭代轮数减半再减半是设计目标，我们正在验证。第三，三条路径。数据通路用L L M直写加E D A验证，需要调度的用H L S——两类能力各就各位，拔掉H L S核心不受影响。第四，端到端产品化。分解、生成、验证、纠错、积累——不是五个独立的工具拼在一起，是一条自动化流水线。"
+    },
+    {
+      "index": 76,
+      "speaker": "zh_female_mizaitongxue_v2_saturn_bigtts",
+      "start": 1565.1,
+      "end": 1583.0,
+      "duration": 17.9,
+      "text": "R two的目标是交付，不是演示。第五，自研9个核心组件。A S T分解器、提示词引擎、E D A桥接层、错误定位器、诊断压缩器、C E G I S主控循环、已验证模块库、错题模式库、主控流水线。"
+    },
+    {
+      "index": 77,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1583.0,
+      "end": 1587.9,
+      "duration": 4.9,
+      "text": "说了这么多，具体怎么跑通？拿F16 add做例子，从头到尾走一遍。"
+    },
+    {
+      "index": 78,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1587.9,
+      "end": 1622.3,
+      "duration": 34.4,
+      "text": "第一步，搭工具链——每个E D A工具跑通hello world。第二步，配置核心组件——A S T分解器、E D A桥接层、错误定位器、提示词引擎、经验库、主控循环。第三步，C L Z 16全链路跑通——65536个输入全部verified，确认流水线从生成到验证到反馈的闭环是通的。第四步，F16 add梯度推进——叶子穷举、中间C E C、顶层HECTOR C-to-R T L等价验证，逐层往上走。第五步，数据复盘。"
+    },
+    {
+      "index": 79,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1622.3,
+      "end": 1629.8,
+      "duration": 7.5,
+      "text": "第三步走完，第一个模块通过。第四步走完，F16 add全链通过。这是M V P，不是P P T。"
+    },
+    {
+      "index": 80,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1629.8,
+      "end": 1645.8,
+      "duration": 16.0,
+      "text": "一句话总结——C代码是逻辑的权威来源。穷举和形式化等价验证是正确性的最终裁判。错题是调试的精确武器。经验积累是规模墙的唯一出路。五件事叠在一起——这就是R two的C to R T L。"
+    },
+    {
+      "index": 81,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1645.8,
+      "end": 1656.9,
+      "duration": 11.1,
+      "text": "C代码进去，验证过的Verilog出来。小模块每个输入都跑过，大模块每个输入都证过。 欢迎大家尝试一下这条L L M for C to R T L的通路。"
+    }
+  ],
+  "nlp_count": 82,
+  "tts_total": 1656.9,
+  "mp3_duration": 1661.51175,
+  "failed_segments": 0
+}

@@ -1,0 +1,650 @@
+{
+  "audio": "",
+  "nlp": "/Users/gaoyuan/Projects/r2-video/tdd/oral_script_v2_nlp.json",
+  "nlp_timings": [
+    {
+      "index": 0,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 0.0,
+      "end": 14.2,
+      "duration": 14.2,
+      "text": "先立一条公理：测试是系统行为的唯一真相来源。不是文档，不是注释，不是工程师脑子里的理解——是可执行的、可重复的、会在行为偏离时立刻报警的测试。"
+    },
+    {
+      "index": 1,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 14.2,
+      "end": 17.0,
+      "duration": 2.8,
+      "text": "有了这条公理，三大难题才看得清。"
+    },
+    {
+      "index": 2,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 17.0,
+      "end": 61.7,
+      "duration": 44.7,
+      "text": "第一个难题：认知过载。 我们有限的头脑无法同时追求系统的两个目标——正确的行为和正确的结构。你在写R T L的时候，大脑要同时处理三件事——功能对不对、结构好不好、代码干不干净。认知科学告诉我们，工作记忆的容量是7±2个组块。三件事同时做，每件事占两三个组块，你的工作记忆就满了。满了之后会怎样？顾了功能顾不了结构，顾了结构漏了边界条件。A P B桥的写缓冲死锁就是这么漏掉的——工程师在实现写缓冲的功能时，认知带宽已经被占满，没有余量去思考\"两个请求同时打到同一个地址\"这种边界场景。"
+    },
+    {
+      "index": 3,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 61.7,
+      "end": 93.2,
+      "duration": 31.5,
+      "text": "T D D的解法是三阶段认知分离。red阶段只做分析——定义期望行为，写断言，不想实现。green阶段只做直觉——用最简单的方式让测试通过，不想优化。REFACTOR阶段只做审美——优化结构，不改行为。三件事拆成三步，每步只占工作记忆的一个槽位。R two T D D的六步执行法——READ、red、green、VERIFY、REFACTOR、UPDATE——就是这个认知分离的工程实现。"
+    },
+    {
+      "index": 4,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 93.2,
+      "end": 109.7,
+      "duration": 16.5,
+      "text": "第二个难题：恐惧与熵增。 Kent Beck说：\"T D D是一种在编程过程中管理恐惧的方法。\"Robert C. Martin说得更直接：\"你给我一个设计精美但没有测试的应用程序，我会害怕触碰它，它会腐烂。\""
+    },
+    {
+      "index": 5,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 109.7,
+      "end": 144.2,
+      "duration": 34.5,
+      "text": "系统工程的本质是对抗熵增，让总的工作量最低效果最优。每一次修改都可能引入副作用，时间越长，副作用越多，系统越脆弱。恐惧加速这个过程：你越怕改，就越不敢改；越不敢改，代码就越腐烂；越腐烂，你就越怕改。死循环。微序列器里两条看似无关的流水线路径产生耦合——标志更新和指令预取，隐藏在时序里，资深工程师三四个月都不一定发现。不是他不想找，是改一行怕崩十行。"
+    },
+    {
+      "index": 6,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 144.2,
+      "end": 174.7,
+      "duration": 30.5,
+      "text": "T D D的解法是棘轮机制。每一个通过的测试都是棘轮上的一颗齿——允许前进，防止倒退。你改了任何代码，已有的测试立刻告诉你有没有破坏已验证的行为。Kent Beck说：\"测试将恐惧转化为无聊。\"不是\"不怕了\"，是\"怕也没用，因为棘轮会保护你\"。R two T D D的七个不变量就是七颗棘轮的齿，T D D状态文件就是外部化的记忆——锁住每一步已验证的进度。"
+    },
+    {
+      "index": 7,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 174.7,
+      "end": 198.2,
+      "duration": 23.5,
+      "text": "第三个难题：歧义与延迟。 \"微序列器持续监控所有输入信号，如果输入被认为是激活，则设置对应的待处理标志。\"什么条件算激活？当拍设置还是下一拍？需要使能信号吗？自然语言写的规格文档天然带歧义，这些歧义在传统流程里要等到调试阶段甚至流片后才暴露。"
+    },
+    {
+      "index": 8,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 198.2,
+      "end": 230.3,
+      "duration": 32.1,
+      "text": "T D D真正有效的部分是周期的大小。\"在1000行代码里找缺陷，和在10行增量里找缺陷，成本是指数级的差异。延迟反馈不是线性增长调试成本——是指数增长。T D D的解法是可执行规格加秒级负反馈回路。功能点就是可执行规格——不是自然语言的\"应该怎样\"，是机器可运行的\"必须怎样\"。red阶段就是秒级反馈——写完断言立刻跑，偏差立刻可见，缺陷没有机会积累。"
+    },
+    {
+      "index": 9,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 230.3,
+      "end": 243.5,
+      "duration": 13.2,
+      "text": "三大难题，一个对策：把验证的顺序反过来。先定义什么是对的，再实现。NO R T L WITHOUT A 失败中 TEST FIRST。这就是R two T D D。"
+    },
+    {
+      "index": 10,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 243.5,
+      "end": 260.3,
+      "duration": 16.8,
+      "text": "认知过载、恐惧与熵增、歧义与延迟——三大难题指向同一个对策。R two的回答是三个核心技术方案：可执行文档（可执行规格文档）、测试驱动开发（T D D）与配置驱动生成（配置驱动生成）。"
+    },
+    {
+      "index": 11,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 260.3,
+      "end": 271.5,
+      "duration": 11.2,
+      "text": "R two T D D=规格文档驱动开发 可执行文档驱动开发 + 测试驱动开发测试先于代码+ 验证驱动 Development做对抗性验证，三合一。"
+    },
+    {
+      "index": 12,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 271.5,
+      "end": 304.0,
+      "duration": 32.5,
+      "text": "这是是专门为 A I 驱动的芯片设计验证而虫构的T D D 方法论。它源自传统软件 T D D，是智能体落地不可或缺的抓手，我们根据硬件设计的本质特性进行了深度改造，当把它贴回你熟悉的验证计划视角，你就会发现它并不陌生。R two T D D的六步流程：A I从pdf等人类可读文档提取机器可执行文档，然后A I生成测试，接着实现R T L，再做对抗审查，之后形式化强化，最后收敛签字。"
+    },
+    {
+      "index": 13,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 304.0,
+      "end": 310.9,
+      "duration": 6.9,
+      "text": "A I在这里面能做什么？自动生成验证计划、自动对齐计划与实现、自动识别验证缺口。"
+    },
+    {
+      "index": 14,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 310.9,
+      "end": 330.1,
+      "duration": 19.2,
+      "text": "T D D方法必须遵循的一个铁律是，NO R T L WITHOUT A 失败中 TEST FIRST。都有明确的\"目标先行\"理念，强调可量化的完成标准，通过单元级的稳定可靠和增量开发构建更复杂的系统，这句话适用于设计代码和验证代码的开发。"
+    },
+    {
+      "index": 15,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 330.1,
+      "end": 335.4,
+      "duration": 5.3,
+      "text": "A I加持后的完整工作流——从规格提取到覆盖率闭合的11步流转："
+    },
+    {
+      "index": 16,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 335.4,
+      "end": 362.8,
+      "duration": 27.4,
+      "text": "SPEC_EXTRACTED（从文档里把规格提取出来了）→ F P_DEFINED（把规格拆成具体功能点，比如\"8位计数器\"）→ ASSERTION_WRITTEN（给这个功能点写测试断言）→ red_已失败（先跑测试，这时候R T L还是空的，测试必然失败）→ R T L_STUBBED（搭了个R T L的架子）→ green_通过（写出R T L，测试通过了）→ REFACTORING（虫构优化代码）→ COVERAGE_ANALYZING（检查覆盖率，"
+    },
+    {
+      "index": 17,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 362.8,
+      "end": 378.0,
+      "duration": 15.2,
+      "text": "看哪些路径没跑到）→ COVERAGE_CLOSING（补测试填覆盖率缺口）→ ITERATION_COMPLETE（这一个功能点做完了）→ T D D_COMPLETE（所有功能点都搞定，收工）。如果覆盖率不达标，ITERATION_COMPLETE 会回到 F P_DEFINED 补提功能点，形成大循环。"
+    },
+    {
+      "index": 18,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 378.0,
+      "end": 383.0,
+      "duration": 5.0,
+      "text": "11步是宏观状态机，每个F P在循环内部走的是6步执行法："
+    },
+    {
+      "index": 19,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 383.0,
+      "end": 402.8,
+      "duration": 19.8,
+      "text": "六步流程：Step 1: READ（理解 功能点）→ Step 2: red（生成 C++ 测试平台，必须 失败）→ Step 3: green（生成 R T L，让 测试平台 通过）→ Step 4: VERIFY（所有断言通过，无警告）→ Step 5: REFACTOR（lint检查 清理，回归测试）→ Step 6: UPDATE（写入 T D D状态文件）。"
+    },
+    {
+      "index": 20,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 402.8,
+      "end": 419.9,
+      "duration": 17.1,
+      "text": "六步流程就是三阶段认知分离的工程实现：READ+red是分析——定义期望行为，不想实现；green是直觉——最简实现，不想优化；REFACTOR是审美——优化结构，不改行为。三件事拆成三步，每步只占工作记忆的一个槽位。"
+    },
+    {
+      "index": 21,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 419.9,
+      "end": 448.1,
+      "duration": 28.2,
+      "text": "在技术方案上，用形式化的公式来表述，R two T D D 是这样一个六元组 Chip T D D = (P, S, A, δ, I, T)，其中 P 是前置条件（开工前要准备啥：规格、功能点、工具链），S 是状态空间（会经历哪些阶段），A 是动作集合（每个阶段能干什么），δ 是状态转换函数（什么条件下进入下一阶段），I 是不变量（全程不能破的铁律），T 是终止条件（什么时候算做完）。"
+    },
+    {
+      "index": 22,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 448.1,
+      "end": 463.2,
+      "duration": 15.1,
+      "text": "六元组里的I——不变量——是最关键的。状态机告诉你怎么走，不变量告诉你走的过程中什么条件必须始终成立。不变量就是棘轮的齿——每一颗都锁定一个已验证的行为，允许前进，防止倒退。"
+    },
+    {
+      "index": 23,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 463.2,
+      "end": 472.6,
+      "duration": 9.4,
+      "text": "总结一下，R two T D D = 红-绿-虫构 循环 + 功能点 驱动 + 可执行规格（可执行规格文档） + A I 记忆锁。"
+    },
+    {
+      "index": 24,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 472.6,
+      "end": 479.3,
+      "duration": 6.7,
+      "text": "R two T D D保证了七个不变量。前四个跟软件T D D共享，后三个是芯片独有的。"
+    },
+    {
+      "index": 25,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 479.3,
+      "end": 501.5,
+      "duration": 22.2,
+      "text": "第一个，规格一致性。每个功能点都必须追溯到规格文档的具体片段。你不能凭空想象一个功能点——\"我觉得这里应该有个边界测试，加一个\"——这不是T D D。没有规格文档参考的测试不是T D D测试。这条规则保证的是：你验的东西就是客户要的东西，不多不少。"
+    },
+    {
+      "index": 26,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 501.5,
+      "end": 526.1,
+      "duration": 24.6,
+      "text": "第二个，断言覆盖性。每个F P必须有至少一个断言覆盖，而且断言的信号集必须包含F P定义的所有信号。举个例子，G P I O控制器的72个F P对应1283个断言——平均每个F P将近18个断言。不是随便写几个assert就完了，是每个信号的每个行为都有对应的检查。"
+    },
+    {
+      "index": 27,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 526.1,
+      "end": 547.1,
+      "duration": 21.0,
+      "text": "第三个，red阶段有效性。这是最关键的不变量。两层要求：第一，桩代码必须让断言失败；第二更强——不存在对桩代码的简单修改能意外通过断言。这保证的是测试的杀伤力——你的测试不是碰巧检测到了缺陷，它是必然能检测到缺陷。"
+    },
+    {
+      "index": 28,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 547.1,
+      "end": 576.1,
+      "duration": 29.0,
+      "text": "拿G P I O控制器的真实数据说。stub R T L是28行全零输出，跑出来15个失败、21个通过。那21个通过是什么？是reset值恰好为0，stub的全零输出碰巧匹配了reset态的预期值。不是测试无效，但也说明reset值检查类测试的杀伤力需要更仔细的设计。失败率百分之四十二，超过百分之三十的准出标准，确认测试平台有杀伤力，可以进green。"
+    },
+    {
+      "index": 29,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 576.1,
+      "end": 592.0,
+      "duration": 15.9,
+      "text": "第四个，green阶段正确性。一旦绿了就不能再红回去——除非你进入下一轮Red引入新的断言。这就是棘轮机制——每一个通过的测试都是一颗齿，锁住进度。你已经通过的测试，后面的修改不能让它退化。"
+    },
+    {
+      "index": 30,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 592.0,
+      "end": 598.6,
+      "duration": 6.6,
+      "text": "以上四个跟软件T D D共享。接下来三个是芯片独有的，软件T D D里完全不存在。"
+    },
+    {
+      "index": 31,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 598.6,
+      "end": 628.1,
+      "duration": 29.5,
+      "text": "第五个，覆盖率闭合。toggle覆盖率大于等于百分之九十五，行覆盖率大于等于百分之九十五，分支覆盖率大于等于百分之九十。这些是硬指标、签字门控。软件T D D的覆盖率是可选的参考指标，芯片T D D的覆盖率是强制的。而且覆盖率百分之百不等于没缺陷——F A A报告和多篇D V Con论文都证实了这一点，所以覆盖率闭合必须结合变异测试，不是数字达标就完事。"
+    },
+    {
+      "index": 32,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 628.1,
+      "end": 654.0,
+      "duration": 25.9,
+      "text": "第六个，并发正确性。R T L是并发执行的，所有信号在每个时钟沿同时更新。这个不变量要求R T L的行为必须是确定性的，不能因为仿真器的调度顺序不同而产生不同结果。硬件是并行结构，但我们的测试流程要尽量做成串行——用串行的测试流来描述并行的硬件行为，这个不变量保证的就是这个串行化描述的可靠性。"
+    },
+    {
+      "index": 33,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 654.0,
+      "end": 678.3,
+      "duration": 24.3,
+      "text": "第七个，多抽象层一致性。行为级的语义、R T L的语义、门级网表的语义必须等价。R T L仿真通过了不等于综合之后也通过。这在软件里完全不存在——软件的源码就是最终产物。芯片有四层抽象：行为模型、R T L、门级网表、物理版图。每一层的行为都必须跟上一层一致，这是芯片特有的工程挑战。"
+    },
+    {
+      "index": 34,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 678.3,
+      "end": 693.4,
+      "duration": 15.1,
+      "text": "七个不变量定义了R two T D D的工程保证。状态机告诉你怎么走，不变量告诉你哪些红线绝对不能踩。七颗棘轮的齿，把恐惧转化为无聊——你不再害怕改代码，因为棘轮不允许倒退。"
+    },
+    {
+      "index": 35,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 693.4,
+      "end": 720.8,
+      "duration": 27.4,
+      "text": "> [素材：S3假设4修正 — 来源：魏依承《从第一性原理思考 智能体ic Engineering》] > 一个诚实的边界声明：T D D拦住了百分之八十的功能缺陷，但\"通过测试≠可提交\"。测试覆盖功能正确性，无法覆盖设计意图一致性、代码质量规范和非功能性约束。剩下的百分之二十需要规格文档 审查和Code 审查补充——这正是R two保留人工签核环节的原因。"
+    },
+    {
+      "index": 36,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 720.8,
+      "end": 724.2,
+      "duration": 3.4,
+      "text": "那具体怎么落地？需要什么工具？看实际案例。"
+    },
+    {
+      "index": 37,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 724.2,
+      "end": 740.8,
+      "duration": 16.6,
+      "text": "验证一个I P需要回答两个问题。第一个：\"我的规格文档功能验对了吗？\"每个F P是通过还是失败。这是R two T D D的工作。第二个：\"我的R T L覆盖全了吗？\"toggle、line达标了吗，缺口在哪。这是R two C O V的工作。"
+    },
+    {
+      "index": 38,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 740.8,
+      "end": 745.2,
+      "duration": 4.4,
+      "text": "两个不同阶段、不同驱动力的工作，不该塞进一个工具。"
+    },
+    {
+      "index": 39,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 745.2,
+      "end": 762.4,
+      "duration": 17.2,
+      "text": "整个流水线是这样的：P D F to M D把人类可读文档转成Markdown，规格文档X --tdd从Markdown提取功能点和寄存器映射，R two T D D拿功能点做功能验证——\"对不对\"，R two C O V拿寄存器映射做覆盖率收敛——\"全不全\"。"
+    },
+    {
+      "index": 40,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 762.4,
+      "end": 775.0,
+      "duration": 12.6,
+      "text": "R two T D D的输入是feature points J S O N，驱动力是规格文档 F P，方法是Red-绿色虫构，追溯链是断言到F P到规格文档。目标：0 失败。"
+    },
+    {
+      "index": 41,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 775.0,
+      "end": 788.8,
+      "duration": 13.8,
+      "text": "R two C O V的输入是vplan.J S O N加覆盖率数据，驱动力是覆盖率缺口，方法是gap分析、pattern选择、自动生成。目标：排除不可达点后toggle大于百分之九十。"
+    },
+    {
+      "index": 42,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 788.8,
+      "end": 816.6,
+      "duration": 27.8,
+      "text": "R two C O V内部有六个通用pattern。举三个：walking R W对读写寄存器逐bit做walking-1和walking-0遍历；walking signal通过映射寄存器驱动输出信号toggle；W 1 C walk对W 1 C寄存器逐bit触发再清零。关键是这些pattern对任何A P B外设通用——换个寄存器映射文件就能给U A R T、S P I、I 2 C跑，零I P知识投入。"
+    },
+    {
+      "index": 43,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 816.6,
+      "end": 823.0,
+      "duration": 6.4,
+      "text": "理论讲完了，看数据。一个工业级S O C内的三个I P案例，复杂度由易到难。"
+    },
+    {
+      "index": 44,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 823.0,
+      "end": 842.9,
+      "duration": 19.9,
+      "text": "第一个案例，G P I O 100。 可配置多通道G P I O控制器，A P B接口。规格文档X从data sheet提取72个功能点，覆盖六个功能域：寄存器读写、信号映射、Pull控制、中断、Debounce，以及后续基于覆盖率gap补提的10个增量F P。"
+    },
+    {
+      "index": 45,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 842.9,
+      "end": 874.1,
+      "duration": 31.2,
+      "text": "red阶段，创建stub R T L——28行，所有输出置零。跑出来15个失败，21个通过，确认测试平台有杀伤力。green阶段，基于72个F P逐模块从零生成R T L。7个功能测试平台全部通过，合计119个功能断言全通过。覆盖率闭合阶段，R two C O V基于reg map自动生成1164个覆盖率断言，0 失败。排除189个不可达点后，有效覆盖率百分之百。"
+    },
+    {
+      "index": 46,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 874.1,
+      "end": 885.9,
+      "duration": 11.8,
+      "text": "整个过程：288行R T L从零生成，未参考任何vendor R T L。token消耗50美金。工业就绪度9/10——差1分是C D C formal和lint检查 签核。"
+    },
+    {
+      "index": 47,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 885.9,
+      "end": 902.3,
+      "duration": 16.4,
+      "text": "第二个案例，A P B B R G 100。 A H B-to-A P B总线桥。比G P I O复杂在哪？有写缓冲Write Buffer，有多slave地址译码，有A H B协议状态机。规格文档X提取70个功能点。"
+    },
+    {
+      "index": 48,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 902.3,
+      "end": 908.6,
+      "duration": 6.3,
+      "text": "这个案例出了一件重要的事——green阶段平均迭代一点九次。不是每个F P一次过。"
+    },
+    {
+      "index": 49,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 908.6,
+      "end": 931.8,
+      "duration": 23.2,
+      "text": "8个测试平台 group，总计86个功能断言。其中有一个关键发现：功能点55，先缓冲写再读——在写缓冲还没排空的时候读同一地址。这是一个并发场景。T D D的red阶段写了针对这个场景的断言，green阶段的R T L第一版没有处理这个竞争条件——失败了。迭代修改后才通过。"
+    },
+    {
+      "index": 50,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 931.8,
+      "end": 963.6,
+      "duration": 31.8,
+      "text": "这不是人为构造的测试场景。这是从规格文档推导出的功能点——data sheet明确描述了write buffer的行为和读写交互。T D D循环自然暴露了这个真实缺陷。先写R T L再补测试的方法很可能漏掉这个场景，因为补测试的人已经知道R T L怎么实现的，不会去测\"不太可能发生\"的竞争条件。传统方法在整个R T L里找这种并发缺陷，T D D在10行增量里找——反馈延迟从周级压到分钟级。"
+    },
+    {
+      "index": 51,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 963.6,
+      "end": 971.9,
+      "duration": 8.3,
+      "text": "最终：441行R T L从零生成，86/86断言全通过，排除23个不可达点后toggle 百分之百。"
+    },
+    {
+      "index": 52,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 971.9,
+      "end": 1011.4,
+      "duration": 39.5,
+      "text": "第三个案例，控制导向微序列器的完整T D D闭环。 前两个是外设I P，第三个进控制核心。一个高并发、控制导向的微序列器模块，约4000行R T L，近16000个触发器。这个模块的特点是：多路输入信号的优先级仲裁、条件标志的流水线更新、指令预取与解码的交互——全是并发控制逻辑，不是寄存器读写。人做这个模块的验证，从拿到规格文档到覆盖率闭合，通常一位资深验证工程师需要三到四个月。用传统仿真方法，测试平台代码量在13000到20000行。"
+    },
+    {
+      "index": 53,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1011.4,
+      "end": 1053.0,
+      "duration": 41.6,
+      "text": "规格文档X从规格文档文档提取出104个功能点。跟G P I O和A P B桥不同的是，这些F P天然分成三类：Generate类定义输入约束——什么条件下什么信号可以同时有效；Check类定义行为断言——当多个触发器同时激活且存在最高优先级时，检查是否在同一周期选中了正确的触发器；Cover类定义覆盖目标——多个触发器同时激活的各种组合场景。这三类F P直接映射到assume、assert、cover三种S V A property。这是前两个案例没有的——G P I O和A P B桥的F P主要是Check类，Generate和Cover类很少。"
+    },
+    {
+      "index": 54,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1053.0,
+      "end": 1058.1,
+      "duration": 5.1,
+      "text": "微序列器的F P结构更完整，也更接近工业级验证计划的写法。"
+    },
+    {
+      "index": 55,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1058.1,
+      "end": 1082.3,
+      "duration": 24.2,
+      "text": "red阶段，104个F P产生了670个断言。注意这个数字——G P I O是119个功能断言，A P B桥是86个，微序列器是670个。平均每个F P 六点四个断言，断言密度是前两个案例的3倍以上。原因是控制逻辑的每个F P涉及的信号组合远多于寄存器字段。"
+    },
+    {
+      "index": 56,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1082.3,
+      "end": 1096.2,
+      "duration": 13.9,
+      "text": "green阶段平均迭代二点二次——介于A P B桥的一点九和纯C P U流水线的复杂度之间。32个缺陷在这个阶段被发现，其中至少5个是传统仿真方法很难捕获的高质量缺陷。"
+    },
+    {
+      "index": 57,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1096.2,
+      "end": 1130.3,
+      "duration": 34.1,
+      "text": "举一个关键缺陷。两条看似完全无关的逻辑路径产生了耦合：一条是条件标志更新路径——执行指令后更新进位和零标志；另一条是指令预取和解码路径——从队列中取下一条指令并解码。问题出在哪？指令解码逻辑会查询进位/零标志来判断预取的指令是否应该被执行。但由于标志更新存在流水线延迟，在特定指令序列下，预取的指令会被错误地作废。这个缺陷需要微架构级别的重设计才能修复。"
+    },
+    {
+      "index": 58,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1130.3,
+      "end": 1176.9,
+      "duration": 46.6,
+      "text": "这个缺陷跟A P B桥的功能点55有什么本质区别？功能点55是同一个功能域内的并发竞争——写缓冲和读操作抢同一个地址。微序列器这个缺陷是跨功能域的流水线耦合——标志更新和指令预取是两个独立的功能域，它们之间的依赖关系隐藏在流水线的时序里。T D D为什么能抓到？因为规格文档里分别描述了标志更新的行为和指令预取的行为，规格文档X提取了两组独立的F P，red阶段写了两组独立的断言。当green阶段实现R T L时，这两组断言同时跑——一组关于标志更新时序的断言和一组关于指令执行正确性的断言碰撞在一起，流水线延迟导致的耦合就暴露了。"
+    },
+    {
+      "index": 59,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1176.9,
+      "end": 1182.5,
+      "duration": 5.6,
+      "text": "先写R T L的人不会同时从两个功能域的视角审视同一段流水线逻辑。"
+    },
+    {
+      "index": 60,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1182.5,
+      "end": 1223.4,
+      "duration": 40.9,
+      "text": "这个案例还出了一个前两个案例完全没有的发现：T D D过程倒逼了百分之七十的规格文档改进。104条需求中有78条在T D D过程中被改进和澄清。什么意思？原始规格文档写的是\"微序列器持续监控所有输入信号，如果输入被认为是激活，则设置对应的待处理标志\"。T D D的F P提取阶段就会问：什么条件下算激活？激活的判定依赖哪些配置寄存器？待处理标志是当拍设置还是下一拍设置？设置待处理需要使能信号吗？这些问题在传统方法里要等到验证阶段甚至调试阶段才会被发现。"
+    },
+    {
+      "index": 61,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1223.4,
+      "end": 1240.8,
+      "duration": 17.4,
+      "text": "T D D把它们提前到了F P定义阶段——因为你没有精确的规格文档就写不出精确的断言，写不出精确的断言就过不了red阶段。这就是可执行规格的力量——歧义在red阶段就被迫浮出水面，而不是藏到流片之后。"
+    },
+    {
+      "index": 62,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1240.8,
+      "end": 1280.2,
+      "duration": 39.4,
+      "text": "覆盖率闭合阶段，R two C O V生成了超过18000个功能覆盖点和3400个代码覆盖点。这里有一个非常有价值的数据：百分之八十的缺陷在断言验证阶段被发现——就是R two T D D的红绿循环；剩余百分之二十的缺陷在覆盖率闭合阶段被发现——就是R two C O V驱动的补提F P环节。百分之二十是怎么发现的？覆盖率分析暴露了意外的过度约束和缺失的断言，这些对应着缺失的F P。这个八二的比例量化了R two T D D和R two C O V各自的价值——功能验证抓大头，覆盖率闭合补漏洞。"
+    },
+    {
+      "index": 63,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1280.2,
+      "end": 1314.8,
+      "duration": 34.6,
+      "text": "测试平台经济性是这个案例最亮眼的数据之一。整个T D D测试平台约4000行System Verilog代码。作为对比，同等复杂度的模块用传统仿真方法，测试平台代码量在13000到20000行之间——T D D测试平台精简了3到5倍。原因很直接：每个F P对应独立的assert和cover，不需要U V M的factory、sequence、score board这套样板架构。670个断言加cover group就是全部的验证逻辑，没有一行是框架开销。"
+    },
+    {
+      "index": 64,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1314.8,
+      "end": 1334.4,
+      "duration": 19.6,
+      "text": "覆盖率闭合速度也有硬数据对比。T D D方法在百分之二十五的项目进度时覆盖率已经到百分之九十八，百分之五十进度时百分之百闭合。而同复杂度的模块用传统仿真方法，百分之七十五进度时覆盖率才接近百分之九十。覆盖率闭合速度快了将近2倍。"
+    },
+    {
+      "index": 65,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1334.4,
+      "end": 1341.0,
+      "duration": 6.6,
+      "text": "整个过程token消耗约200美金。人做三到四个月，A I做下来压缩了一个数量级。"
+    },
+    {
+      "index": 66,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1341.0,
+      "end": 1364.7,
+      "duration": 23.7,
+      "text": "三个案例放在一起看。G P I O是L one级别，green迭代几乎1.0，F P结构简单，主要是Check类。A P B桥是L two级别，迭代一点九次，出了并发竞争缺陷。微序列器是L three级别，迭代二点二次，出了跨功能域的流水线耦合缺陷——复杂度越高，T D D暴露的缺陷越深层、越隐蔽。"
+    },
+    {
+      "index": 67,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1364.7,
+      "end": 1395.8,
+      "duration": 31.1,
+      "text": "这个案例还带来了前两个案例没有的三个量化维度。第一，规格文档改进率——百分之七十的需求被T D D过程倒逼改进，这说明T D D不只是验证方法，它是规格文档质量的放大器。第二，缺陷发现的八二法则——R two T D D抓百分之八十，R two C O V抓百分之二十，量化了两个工具各自的定位。第三，测试平台经济性——T D D测试平台比仿真测试平台精简3到5倍，覆盖率闭合快2倍。"
+    },
+    {
+      "index": 68,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1395.8,
+      "end": 1424.1,
+      "duration": 28.3,
+      "text": "三个案例，从288行G P I O到4000行微序列器，从72个F P到104个F P，从119个断言到670个断言，从50美金到200美金，从一轮闭合到覆盖率驱动的迭代闭合。数据证明了一件事：T D D方法论在I P级验证上，不只是能用，而且随着复杂度提升，它相对于传统方法的优势越来越大。但在A I时代，T D D还有另一层意义。"
+    },
+    {
+      "index": 69,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1424.1,
+      "end": 1427.4,
+      "duration": 3.3,
+      "text": "R two T D D 在 A I 时代的本质是什么？"
+    },
+    {
+      "index": 70,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1427.4,
+      "end": 1454.1,
+      "duration": 26.7,
+      "text": "第一个要讲的是 A I 的两大独特风险。第一个风险叫记忆丢失。A I 迭代的时候很容易产生记忆丢失，就是新功能把旧能力给覆盖掉了——这就是A I世界的熵增。R two T D D 的过程记录文件作为持久状态，确保 A I 不遗忘已经验证过的功能和已经成功过的路径。T D D状态文件就是对抗熵增的棘轮，锁住每一步已验证的进度。"
+    },
+    {
+      "index": 71,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1454.1,
+      "end": 1487.5,
+      "duration": 33.4,
+      "text": "第二个风险就是 A I 可能对 规格文档 和 R T L 产生一致但错误的理解。规格文档 输入给 A I，A I 输出 R T L，但如果 A I 对 规格文档 的理解错了，它生成的 R T L 也是错的，而且这个错误是一致的。R T L 错了，测试也错了，两者犯的是同一个错，结果测试还 通过了。怎么缓解？用异构 L L M，就是用不同的模型生成 R T L 和测试，再加上隔离上下文、形式验证仲裁这些策略。测试和设计可以共享上下文也可以隔离，各有利弊。"
+    },
+    {
+      "index": 72,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1487.5,
+      "end": 1511.3,
+      "duration": 23.8,
+      "text": "第三层是对齐层，规格文档 到 F P 到测试到 R T L，形成完整追溯链，当人不写代码的时候，可以通过测试状态理解 D U T的状态，理解A I 做了什么。同时，T D D方法本身自带虫构属性，倒逼设计验证持续保持健壮的响应变更的架构，而好的架构反过来又作用于对齐和响应变更。"
+    },
+    {
+      "index": 73,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1511.3,
+      "end": 1528.0,
+      "duration": 16.7,
+      "text": "最后是 A I 测试 A I 多智能体博弈模型。通过A I 生成 R T L 加上 A I 生成测试平台，形成对抗博弈，R two T D D 作为约束条件确保生成质量。支撑是生成器与验证器博弈模型，A I 测试 A I 的自动化循环。"
+    },
+    {
+      "index": 74,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1528.0,
+      "end": 1529.8,
+      "duration": 1.8,
+      "text": "回到开头的三大难题。"
+    },
+    {
+      "index": 75,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1529.8,
+      "end": 1553.5,
+      "duration": 23.7,
+      "text": "第一个难题：验证顺序反了。T D D把顺序反过来——NO R T L WITHOUT A 失败中 TEST FIRST。A P B桥的写缓冲死锁，首次运行red阶段就暴露了。微序列器的跨功能域流水线耦合，两组独立断言碰撞在一起自动捕获。不是靠更强的模型找到的，是靠正确的验证顺序找到的。"
+    },
+    {
+      "index": 76,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1553.5,
+      "end": 1576.4,
+      "duration": 22.9,
+      "text": "第二个难题：规格文档是模糊的。T D D倒逼规格文档精确化——104条需求中78条在T D D过程中被改进和澄清。你没有精确的规格文档就写不出精确的断言，写不出精确的断言就过不了red阶段。T D D不只是验证方法，它是规格文档质量的放大器。"
+    },
+    {
+      "index": 77,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1576.4,
+      "end": 1596.5,
+      "duration": 20.1,
+      "text": "第三个难题：A I的一致性错误。T D D用对抗结构拆开它——异构L L M生成R T L和测试，隔离上下文防止同源偏见，七个不变量作为独立于A I的工程保证。A I可以犯错，但两个独立的A I不太可能犯同一个错。"
+    },
+    {
+      "index": 78,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1596.5,
+      "end": 1618.4,
+      "duration": 21.9,
+      "text": "三个案例，复杂度递增，结论一致。G P I O一轮过，72个F P全绿。A P B桥抓到并发死锁，传统方法跑三周没撞上。微序列器670个断言，百分之八十的缺陷在红绿循环中捕获，测试平台精简3到5倍，覆盖率闭合速度快2倍。"
+    },
+    {
+      "index": 79,
+      "speaker": "zh_male_dayixiansheng_v2_saturn_bigtts",
+      "start": 1618.4,
+      "end": 1627.7,
+      "duration": 9.3,
+      "text": "复杂度越高，T D D相对传统方法的优势越大。这不是口号，是三个工业级I P用数据证明的工程纪律。"
+    }
+  ],
+  "nlp_count": 80,
+  "tts_total": 1627.7,
+  "mp3_duration": 1632.94425,
+  "failed_segments": 0
+}
